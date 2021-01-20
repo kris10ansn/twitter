@@ -1,0 +1,15 @@
+{
+    "name": "kristian/twitter",
+    "authors": [
+        {
+            "name": "BuildTools",
+            "email": "unconfigured@null.spigotmc.org"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    }
+}
