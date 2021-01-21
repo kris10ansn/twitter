@@ -32,7 +32,7 @@ class Request
         $requestObject = $method === "get"? $_GET : $_POST;
 
         foreach ($requestObject as $key => $value) {
-            $body[$key] = filter_input($inputType, FILTER_SANITIZE_SPECIAL_CHARS);
+            $body[$key] = filter_input($inputType, $key, FILTER_SANITIZE_SPECIAL_CHARS);
         }
 
         return $body;
