@@ -2,14 +2,14 @@
 
 namespace app\controllers;
 
-use app\models\LoginForm;
+use app\models\LoginFormModel;
 use app\src\Request;
 
 class AuthController extends \app\src\Controller
 {
     public function login(): string
     {
-        $loginForm = new LoginForm();
+        $loginForm = new LoginFormModel();
 
         if (Request::getMethod() === "post") {
             $request = Request::getBody();

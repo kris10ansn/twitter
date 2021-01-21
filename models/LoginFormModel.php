@@ -10,7 +10,7 @@ use app\src\validation\MaximumLengthRule;
 use app\src\validation\MinimumLengthRule;
 use app\src\validation\RequiredRule;
 
-class LoginForm
+class LoginFormModel
 {
     public array $fields = [
         "email" => "",

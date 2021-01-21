@@ -1,8 +1,8 @@
 
 <?php
-/** @var LoginForm $model */
+/** @var LoginFormModel $model */
 
-use app\models\LoginForm;
+use app\models\LoginFormModel;
 
 ?>
 
