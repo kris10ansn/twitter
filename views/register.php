@@ -24,7 +24,7 @@ use app\models\RegisterFormModel;
         Display name
         <input type="text" name="username" value="<?= $model->fields["username"] ?>">
     </label>
-    <p class="error"><?= $model->getFirstError("lastname") ?></p>
+    <p class="error"><?= $model->getFirstError("username") ?></p>
 
     <label>
         E-mail
