@@ -21,8 +21,8 @@ class LoginFormModel extends FormModel
     protected function rules(): array
     {
         return [
-            "email" => [new RequiredRule(), new EmailRule(), new MaximumLengthRule(255)],
-            "password" => [new RequiredRule(), new MinimumLengthRule(4), new MaximumLengthRule(96)]
+            "email" => [new RequiredRule()],
+            "password" => [new RequiredRule()]
         ];
     }
 }
