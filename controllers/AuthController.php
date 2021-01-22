@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\LoginFormModel;
+use app\models\RegisterFormModel;
 use app\src\Request;
 
 class AuthController extends \app\src\Controller
@@ -27,10 +28,19 @@ class AuthController extends \app\src\Controller
 
     public function register(): string
     {
+        $registerForm = new RegisterFormModel();
+
         if (Request::getMethod() === "post") {
-            return "Handling post...";
+            $request = Request::getBody();
+            $registerForm->loadData($request);
+
+            if ($registerForm->validate()) {
+                return "Valid data bro!";
+            }
         }
 
-        return $this->render("register");
+        return $this->render("register", [
+            "model" => $registerForm
+        ]);
     }
 }

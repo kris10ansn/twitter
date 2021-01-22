@@ -33,4 +33,9 @@ abstract class FormModel
 
         return empty($this->errors);
     }
+
+    public function getFirstError(string $field): string
+    {
+        return isset($this->errors[$field]) ? $this->errors[$field] : "";
+    }
 }

@@ -12,12 +12,12 @@ use app\models\LoginFormModel;
     <label>
         E-mail
         <input type="text" name="email" value="<?= $model->fields["email"] ?>">
-        <p class="error"><?= isset($model->errors["email"]) ? $model->errors["email"] : "" ?></p>
+        <p class="error"><?= $model->getFirstError("email") ?></p>
     </label>
     <label>
         Password
         <input type="password" name="password" value="<?= $model->fields["password"] ?>">
-        <p class="error"><?= isset($model->errors["password"]) ? $model->errors["password"] : "" ?></p>
+        <p class="error"><?= $model->getFirstError("password") ?></p>
     </label>
 
     <button type="submit">Log in</button>
