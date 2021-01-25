@@ -8,6 +8,7 @@ use app\models\User;
 
 class Session
 {
+    private const FLASH_KEY = "flash_msg";
     private static ?User $user = null;
 
     public static function start()
@@ -26,6 +27,23 @@ class Session
         }
 
         return self::$user;
+    }
+
+    public static function setFlash($key, $message)
+    {
+        $_SESSION[self::FLASH_KEY][$key] = [
+            "message" => $message,
+            "remove" => false
+        ];
+    }
+
+    public static function getFlash($key): ?string
+    {
+        if (isset($_SESSION[self::FLASH_KEY][$key])) {
+            return $_SESSION[self::FLASH_KEY][$key]["message"];
+        }
+
+        return null;
     }
 
     public static function set($key, $value)

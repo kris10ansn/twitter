@@ -6,6 +6,7 @@ use app\models\LoginFormModel;
 use app\models\RegisterFormModel;
 use app\src\Request;
 use app\src\Response;
+use app\src\Session;
 
 class AuthController extends \app\src\Controller
 {
@@ -18,7 +19,8 @@ class AuthController extends \app\src\Controller
             $loginForm->loadData($request);
 
             if ($loginForm->validate() && $loginForm->login()) {
-                // TODO: Flash message
+                $user = Session::getUser();
+                Session::setFlash("success", "Welcome back, $user->firstname!");
                 Response::redirect("/");
             }
         }
@@ -37,7 +39,8 @@ class AuthController extends \app\src\Controller
             $registerForm->loadData($request);
 
             if ($registerForm->validate() && $registerForm->register()) {
-                // TODO: Flash message
+                $user = Session::getUser();
+                Session::setFlash("success", "Welcome, $user->firstname!");
                 Response::redirect("/");
             }
         }
