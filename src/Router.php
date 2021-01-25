@@ -10,11 +10,6 @@ class Router
     /** @var Route[] $routes */
     private array $routes = [];
 
-    public function __construct()
-    {
-        Session::start();
-    }
-
     public function addRoute(Route $route)
     {
         $this->routes[] = $route;
