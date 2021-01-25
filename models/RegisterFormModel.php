@@ -20,6 +20,11 @@ class RegisterFormModel extends FormModel
     ];
     public array $errors;
 
+    public function register()
+    {
+        // TODO: implement
+    }
+
     protected function rules(): array
     {
         $nameRules = [new RequiredRule(), new MinimumLengthRule(2), new MaximumLengthRule(45)];

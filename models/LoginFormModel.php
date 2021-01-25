@@ -18,6 +18,11 @@ class LoginFormModel extends FormModel
     ];
     public array $errors;
 
+    public function login()
+    {
+        // TODO: implement
+    }
+
     protected function rules(): array
     {
         return [
