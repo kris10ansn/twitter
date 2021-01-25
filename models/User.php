@@ -5,7 +5,7 @@ use app\src\Database;
 
 class User
 {
-    public static function findOne($where)
+    public static function find($where)
     {
         $tableName = "user";
         $selectors = implode("AND", array_map(fn($key) => "$key = :$key", array_keys($where)));
