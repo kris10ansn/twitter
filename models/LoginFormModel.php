@@ -18,9 +18,23 @@ class LoginFormModel extends FormModel
     ];
     public array $errors;
 
-    public function login()
+    public function login(): bool
     {
-        // TODO: implement
+        $user = User::find(["email" => $this->fields["email"]]);
+
+        if (!$user) {
+            $this->setError("email", "No user with that e-mail address");
+            return false;
+        }
+
+        if (!password_verify($this->fields["password"], $user->password)) {
+            $this->setError("password", "Wrong password");
+            return false;
+        }
+
+        // TODO: Actually log in the user
+
+        return true;
     }
 
     protected function rules(): array

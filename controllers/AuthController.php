@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\LoginFormModel;
 use app\models\RegisterFormModel;
 use app\src\Request;
+use app\src\Response;
 
 class AuthController extends \app\src\Controller
 {
@@ -16,8 +17,9 @@ class AuthController extends \app\src\Controller
             $request = Request::getBody();
             $loginForm->loadData($request);
 
-            if ($loginForm->validate()) {
-                return "Valid data bro!";
+            if ($loginForm->validate() && $loginForm->login()) {
+                // TODO: Flash message
+                Response::redirect("/");
             }
         }
 
