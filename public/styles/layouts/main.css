@@ -1,5 +1,58 @@
-p.error {
-  color: red;
+nav {
+  width: 100%;
+  display: flex;
+  background: #d3d3d3;
+  padding: 0 var(--page-margin);
+}
+nav div#right,
+nav div#left {
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+nav div#right#left,
+nav div#left#left {
+  justify-content: flex-start;
+}
+nav div#right#right,
+nav div#left#right {
+  justify-content: flex-end;
+}
+nav div#right a,
+nav div#left a {
+  padding: 20px;
+}
+nav div#right a:hover,
+nav div#left a:hover {
+  background: #bbbbbb;
+}
+nav div#right a.login, nav div#right a.register,
+nav div#left a.login,
+nav div#left a.register {
+  align-self: flex-end;
+}
+nav div#right div,
+nav div#left div {
+  padding: 20px;
+}
+
+div.flash {
+  --flash-main-color: lightgray;
+  --flash-secondary-color: gray;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: var(--flash-main-color);
+  border: 3px solid var(--flash-secondary-color);
+  border-radius: 4px;
+}
+div.flash.success {
+  --flash-main-color: lightgreen;
+  --flash-secondary-color: green;
+}
+
+main {
+  padding: 0 var(--page-margin);
 }
 
 /*# sourceMappingURL=main.css.map */

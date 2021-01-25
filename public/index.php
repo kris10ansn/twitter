@@ -17,6 +17,7 @@ $router = new Router();
 $router->addRoute(new Route("/", HomeController::class, "home"));
 $router->addRoute(new Route("/login", AuthController::class, "login"));
 $router->addRoute(new Route("/register", AuthController::class, "register"));
+$router->addRoute(new Route("/logout", AuthController::class, "logout"));
 
 $router->resolve();
 

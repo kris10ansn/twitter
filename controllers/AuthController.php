@@ -49,4 +49,10 @@ class AuthController extends \app\src\Controller
             "model" => $registerForm
         ]);
     }
+
+    public function logout()
+    {
+        Session::logout();
+        Response::redirect("/");
+    }
 }

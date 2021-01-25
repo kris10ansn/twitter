@@ -1,3 +1,7 @@
+:root {
+  --page-margin: 20px;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -5,6 +9,11 @@ html, body {
 
 * {
   box-sizing: border-box;
+}
+
+a:hover,
+button:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=global.css.map */

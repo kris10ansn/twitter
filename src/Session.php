@@ -68,4 +68,10 @@ class Session
     {
         unset($_SESSION[$key]);
     }
+
+    public static function logout()
+    {
+        self::$user = null;
+        self::remove("user");
+    }
 }
