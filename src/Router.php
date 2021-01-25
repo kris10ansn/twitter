@@ -15,7 +15,7 @@ class Router
         Session::start();
     }
 
-    public function register(Route $route)
+    public function addRoute(Route $route)
     {
         $this->routes[] = $route;
     }
