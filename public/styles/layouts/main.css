@@ -39,9 +39,9 @@ nav div#left div {
 div.flash {
   --flash-main-color: lightgray;
   --flash-secondary-color: gray;
-  width: 100%;
+  max-width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px var(--page-margin);
   background: var(--flash-main-color);
   border: 3px solid var(--flash-secondary-color);
   border-radius: 4px;

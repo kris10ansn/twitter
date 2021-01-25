@@ -17,7 +17,6 @@ class LoginFormModel extends FormModel
         "email" => "",
         "password" => ""
     ];
-    public array $errors;
 
     public function login(): bool
     {

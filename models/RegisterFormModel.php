@@ -13,6 +13,8 @@ use app\src\validation\RequiredRule;
 
 class RegisterFormModel extends FormModel
 {
+    use DBModel;
+
     public array $fields = [
         "email" => "",
         "username" => "",
@@ -20,26 +22,15 @@ class RegisterFormModel extends FormModel
         "lastname" => "",
         "password" => ""
     ];
-    public array $errors;
 
     public function register(): bool
     {
         // Hash passord
         $this->fields["password"] = (string) password_hash($this->fields["password"], PASSWORD_DEFAULT);
 
-        $db = Database::getInstance();
+        $this->insert();
 
-        $attributes_string = implode(",", array_keys($this->fields));
-        $values_string = implode(",", array_map(fn($key) => ":$key", array_keys($this->fields)));
-
-        $statement = $db->pdo->prepare("INSERT INTO user ($attributes_string) VALUES ($values_string)");
-
-        foreach ($this->fields as $key => $value) {
-            $statement->bindValue(":$key", $value);
-        }
-
-        $statement->execute();
-        $id = $db->pdo->lastInsertId();
+        $id = Database::getInstance()->pdo->lastInsertId();
 
         Session::set("user", $id);
 

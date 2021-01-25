@@ -13,6 +13,7 @@ class User
     public string $lastname;
     public string $email;
     public string $created_at;
+    public string $password;
 
     public static function find($where): User
     {

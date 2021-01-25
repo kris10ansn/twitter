@@ -18,13 +18,19 @@ class Router
     public function resolve()
     {
         $path = Request::getPath();
+        $found = false;
 
         foreach ($this->routes as $route) {
             if ($route->path === $path) {
                 $controller = new $route->controller;
 
                 echo $controller->{$route->method}();
+                $found = true;
             }
+        }
+
+        if (!$found) {
+            echo "404 Not found";
         }
     }
 }

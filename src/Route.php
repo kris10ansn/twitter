@@ -8,7 +8,7 @@ class Route
 {
     public string $path;
     public string $method;
-    public $controller;
+    public string $controller;
 
     public function __construct(string $path, $controller, string $method)
     {
