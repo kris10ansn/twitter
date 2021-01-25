@@ -13,6 +13,10 @@ abstract class FormModel
 
     protected abstract function rules(): array;
 
+    protected function setError(string $field, string $message) {
+        $this->errors[$field] = $message;
+    }
+
     public function loadData(array $data): void
     {
         foreach (array_keys($this->fields) as $fieldName) {
@@ -27,7 +31,7 @@ abstract class FormModel
             $error = $validation->getFirstError($this->fields[$field]);
 
             if ($error) {
-                $this->errors[$field] = $error;
+                $this->setError($field, $error);
             }
         }
 
