@@ -1,3 +1,8 @@
+<?php
+
+use app\src\Session;
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,6 +20,9 @@
         <a href="/login">Log in</a>
         <a href="/register">Register account</a>
     </nav>
+    <div class="flash success">
+        <?= Session::getFlash("success") ?>
+    </div>
     <main>
         {{content}}
     </main>
