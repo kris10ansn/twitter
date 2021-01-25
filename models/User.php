@@ -7,7 +7,14 @@ use app\src\Database;
 
 class User
 {
-    public static function find($where)
+    public int $id;
+    public string $username;
+    public string $firstname;
+    public string $lastname;
+    public string $email;
+    public string $created_at;
+
+    public static function find($where): User
     {
         $tableName = "user";
         $selectors = implode("AND", array_map(fn($key) => "$key = :$key", array_keys($where)));
@@ -21,6 +28,6 @@ class User
         }
 
         $statement->execute();
-        return $statement->fetchObject();
+        return $statement->fetchObject(User::class);
     }
 }
