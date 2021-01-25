@@ -14,6 +14,14 @@ class Session
     public static function start()
     {
         session_start();
+
+        foreach ($_SESSION[self::FLASH_KEY] as $key => &$flashMessage) {
+            if ($flashMessage["remove"] === true) {
+                unset($_SESSION[self::FLASH_KEY][$key]);
+            } else {
+                $flashMessage["remove"] = true;
+            }
+        }
     }
 
     public static function getUser(): ?User
