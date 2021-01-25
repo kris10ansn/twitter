@@ -36,8 +36,9 @@ class AuthController extends \app\src\Controller
             $request = Request::getBody();
             $registerForm->loadData($request);
 
-            if ($registerForm->validate()) {
-                return "Valid data bro!";
+            if ($registerForm->validate() && $registerForm->register()) {
+                // TODO: Flash message
+                Response::redirect("/");
             }
         }
 
