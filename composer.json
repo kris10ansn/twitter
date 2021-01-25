@@ -6,7 +6,9 @@
             "email": "unconfigured@null.spigotmc.org"
         }
     ],
-    "require": {},
+    "require": {
+      "ext-pdo": "*"
+    },
     "autoload": {
         "psr-4": {
             "app\\": "./"
