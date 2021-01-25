@@ -4,6 +4,7 @@
 namespace app\models;
 
 
+use app\src\Session;
 use app\src\Validation;
 use app\src\validation\EmailRule;
 use app\src\validation\MaximumLengthRule;
@@ -32,7 +33,7 @@ class LoginFormModel extends FormModel
             return false;
         }
 
-        // TODO: Actually log in the user
+        Session::set("user", $user->id);
 
         return true;
     }
