@@ -9,24 +9,6 @@ use app\src\Session;
 
 class Post
 {
-    private const SQL = "
-        SELECT post.id, post.text, post.created_at,
-               user.id as user_id,user.username,
-               user.firstname, user.lastname
-        FROM post
-        JOIN user ON post.user_id = user.id
-    ";
-
-    private const SQL_WITH_USER = "
-        SELECT post.id, post.text, post.created_at,
-               user.id as user_id,user.username,
-               user.firstname, user.lastname,
-               (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
-               (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
-        FROM post
-        JOIN user ON post.user_id = user.id
-    ";
-
     public int $id;
     public string $text;
     public string $created_at;
@@ -40,7 +22,12 @@ class Post
     public static function from(int $id): Post
     {
         $db = Database::getInstance();
-        $statement = $db->pdo->prepare(self::SQL . " WHERE post.id=:id");
+
+        $statement = $db->pdo->prepare("
+            SELECT post.*, user.username, user.firstname, user.lastname
+            FROM post JOIN user ON post.user_id = user.id WHERE post.id=:id
+        ");
+
         $statement->execute([":id" => $id]);
 
         return $statement->fetchObject(Post::class);
@@ -51,7 +38,12 @@ class Post
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare(self::SQL_WITH_USER . " ORDER BY post.created_at DESC");
+        $statement = $db->pdo->prepare("
+            SELECT post.*, user.username, user.firstname, user.lastname,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
+            FROM post JOIN user ON post.user_id = user.id ORDER BY post.created_at DESC
+        ");
 
         $user = Session::getUser();
         $statement->execute(["user_id" => $user->id]);
