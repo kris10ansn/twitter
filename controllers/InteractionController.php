@@ -31,7 +31,7 @@ class InteractionController extends \app\src\Controller
                     Post::like($user->id, $postId);
                 }
             } else {
-                die("Invalid request");
+                die("400 Bad request");
             }
         } else {
             die("403 Forbidden route");
