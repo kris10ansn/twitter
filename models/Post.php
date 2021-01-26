@@ -17,6 +17,7 @@ class Post
     public string $lastname;
     public int $user_id;
     public int $liked;
+    public int $likes;
 
     /** @return Post[] */
     public static function all(): array
@@ -31,7 +32,10 @@ class Post
                         SELECT count(*)
                         FROM `like`
                         WHERE `like`.post_id=post.id AND `like`.user_id=:user_id
-                   ) as liked
+                   ) as liked,
+                   (
+                       SELECT count(*) FROM `like` WHERE `like`.post_id=post.id
+                   ) as likes
             FROM post
             JOIN user
             ON post.user_id=user.id
@@ -50,6 +54,13 @@ class Post
 
         $statement = $db->pdo->prepare("INSERT INTO `like` (post_id, user_id) VALUES (:post_id, :user_id)");
 
+        $statement->execute([ "post_id" => $postId, "user_id" => $userId ]);
+    }
+
+    public static function unlike(int $userId, int $postId)
+    {
+        $db = Database::getInstance();
+        $statement = $db->pdo->prepare("DELETE FROM `like` WHERE user_id=:user_id AND post_id=:post_id");
         $statement->execute([ "post_id" => $postId, "user_id" => $userId ]);
     }
 
