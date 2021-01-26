@@ -53,12 +53,15 @@ class Post
         $statement->execute([ "post_id" => $postId, "user_id" => $userId ]);
     }
 
-    public static function userHasLiked(int $userId, int $postId)
+    public static function userHasLiked(int $userId, int $postId): bool
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT count(*) FROM `like` WHERE post_id=:post_id AND user_id=:user_id");
+        $statement = $db->pdo->prepare("SELECT count(*) as liked FROM `like` WHERE post_id=:post_id AND user_id=:user_id");
 
         $statement->execute(["post_id" => $postId, "user_id" => $userId]);
+        $obj = $statement->fetchObject();
+
+        return (bool) $obj->liked;
     }
 }
