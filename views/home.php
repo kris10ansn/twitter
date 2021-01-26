@@ -29,10 +29,7 @@ $user = Session::getUser()
         <div class="post">
             <form action="/interact?post_id=<?= $post->id ?>" method="post" id="<?= $post->id ?>" style="display: none"></form>
             <p>
-                <b><?= "$post->firstname $post->lastname" ?></b>
-            </p>
-            <p>
-                @<?= $post->username ?>
+                <b><?= "$post->firstname $post->lastname" ?> (@<?= $post->username ?>)</b>
             </p>
             <div class="text">
                 <?= $post->text ?>
