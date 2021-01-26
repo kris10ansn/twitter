@@ -16,19 +16,21 @@ class InteractionController extends \app\src\Controller
     {
         if (Request::getMethod() === "post") {
             $user = Session::getUser();
-            $body = Request::getBody();
-            $postId = Request::getParameter(Request::METHOD_GET, "post_id");
 
             if ($user === null) {
                 Response::redirect("/login");
                 return;
             }
 
+            $body = Request::getBody();
+            $postId = Request::getParameter(Request::METHOD_GET, "post_id");
+            $post = Post::from($postId);
+
             if (isset($body["like"]) && is_numeric($postId)) {
-                if (Post::userHasLiked($user->id, $postId)) {
-                    Post::unlike($user->id, $postId);
+                if ($post->likedBy($user)) {
+                    $post->unlike($user);
                 } else {
-                    Post::like($user->id, $postId);
+                    $post->like($user);
                 }
             } else {
                 die("400 Bad request");
