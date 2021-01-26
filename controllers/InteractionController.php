@@ -30,6 +30,6 @@ class InteractionController extends \app\src\Controller
             die("403 Forbidden route");
         }
 
-//        Response::redirect($previousUrl);
+        Response::redirect($previousUrl);
     }
 }
