@@ -19,6 +19,11 @@ class InteractionController extends \app\src\Controller
             $body = Request::getBody();
             $postId = Request::getParameter(Request::METHOD_GET, "post_id");
 
+            if ($user === null) {
+                Response::redirect("/login");
+                return;
+            }
+
             if (isset($body["like"]) && is_numeric($postId)) {
                 if (Post::userHasLiked($user->id, $postId)) {
                     Post::unlike($user->id, $postId);
