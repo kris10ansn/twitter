@@ -21,7 +21,7 @@ class InteractionController extends \app\src\Controller
 
             if (isset($body["like"]) && is_numeric($postId)) {
                 if (Post::userHasLiked($user->id, $postId)) {
-                    echo "Already liked";
+                    Post::unlike($user->id, $postId);
                 } else {
                     Post::like($user->id, $postId);
                 }
