@@ -32,7 +32,7 @@ class PostFormModel extends FormModel
     protected function rules(): array
     {
         return [
-            "text" => [new RequiredRule()],
+            "text" => [new RequiredRule("What do you want to post?")],
         ];
     }
 }
