@@ -1,5 +1,8 @@
 # Todo
 
+* [ ] Post Model
+    * [ ] Make non-static model
+
 * [ ] Mentions
     * [ ] Mentions table
     * [ ] Replace @username with  @[id] on backend
