@@ -26,7 +26,7 @@ class PostFormModel extends FormModel
         }
 
         $this->fields["user_id"] = $user->id;
-        return $this->insert();
+        return $this->insert("post");
     }
 
     protected function rules(): array

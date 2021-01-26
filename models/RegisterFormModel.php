@@ -28,7 +28,7 @@ class RegisterFormModel extends FormModel
         // Hash passord
         $this->fields["password"] = (string) password_hash($this->fields["password"], PASSWORD_DEFAULT);
 
-        $this->insert();
+        $this->insert("user");
 
         $id = Database::getInstance()->pdo->lastInsertId();
 
