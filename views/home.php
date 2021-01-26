@@ -26,6 +26,7 @@ $user = Session::getUser()
 
 <div id="posts">
     <?php foreach ($posts as $post): ?>
+        <form action="/interact?post_id=<?= $post->id ?>" method="post" id="interact" style="display: none"></form>
         <div class="post">
             <p>
                 <b><?= "$post->firstname $post->lastname" ?></b>
@@ -35,6 +36,11 @@ $user = Session::getUser()
             </p>
             <div class="text">
                 <?= $post->text ?>
+            </div>
+            <div class="buttons">
+                <button type="submit" form="interact" name="like">
+                    <?= $post->liked ? "Liked" : "Like" ?>
+                </button>
             </div>
         </div>
     <?php endforeach; ?>

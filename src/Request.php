@@ -6,6 +6,10 @@ namespace app\src;
 
 class Request
 {
+    // Har kun funksjon for GET og POST foreløpig (kanskje permanent)
+    public const METHOD_GET = "get";
+    public const METHOD_POST = "post";
+
     public static function getPath(): string
     {
         $path = $_SERVER["REQUEST_URI"] ?? "/";
@@ -28,14 +32,20 @@ class Request
         $body = [];
         $method = self::getMethod();
 
-        $inputType = $method === "get"? INPUT_GET : INPUT_POST;
-        $requestObject = $method === "get"? $_GET : $_POST;
+        $inputType = $method === self::METHOD_GET ? INPUT_GET : INPUT_POST;
+        $requestObject = $method === self::METHOD_GET ? $_GET : $_POST;
 
         foreach ($requestObject as $key => $value) {
             $body[$key] = filter_input($inputType, $key, FILTER_SANITIZE_SPECIAL_CHARS);
         }
 
         return $body;
+    }
+
+    public static function getParameter(string $method, string $key)
+    {
+        $requestObject = $method === self::METHOD_GET ? $_GET : $_POST;
+        return $requestObject[$key] ?? null;
     }
 }
 
