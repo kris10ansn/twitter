@@ -22,3 +22,5 @@ use app\models\LoginFormModel;
 
     <button type="submit">Log in</button>
 </form>
+
+<p>Don't have an account? <a href="/register">Register</a></p>
