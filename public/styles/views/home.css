@@ -1,0 +1,11 @@
+#posts {
+  display: flex;
+  flex-direction: column;
+}
+#posts .post {
+  border: 1px solid black;
+  display: block;
+  margin: 10px 0;
+}
+
+/*# sourceMappingURL=home.css.map */

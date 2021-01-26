@@ -3,6 +3,7 @@
 
 namespace app\controllers;
 
+use app\models\Post;
 use app\models\PostFormModel;
 use app\src\Controller;
 use app\src\Request;
@@ -31,8 +32,11 @@ class HomeController extends Controller
             }
         }
 
+        $posts = Post::all();
+
         return $this->render("home", [
-            "postModel" => $postModel
+            "postModel" => $postModel,
+            "posts" => $posts
         ]);
     }
 }
