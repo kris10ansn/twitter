@@ -46,7 +46,9 @@ class Post
         ");
 
         $user = Session::getUser();
-        $statement->execute(["user_id" => $user->id]);
+
+        $statement->bindValue(":user_id", $user->id ?? null);
+        $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, Post::class);
     }
