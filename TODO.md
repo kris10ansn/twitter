@@ -1,5 +1,7 @@
 # Todo
 
+* [ ] Don't allow spaces in username
+
 * [ ] Post Model
     * [ ] Make non-static model
 
