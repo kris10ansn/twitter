@@ -1,7 +1,7 @@
 nav {
   width: 100%;
   display: flex;
-  background: var(--color-background-secondary);
+  background: #d3d3d3;
   padding: 0 var(--page-margin);
 }
 nav div#right,
@@ -21,12 +21,10 @@ nav div#left#right {
 nav div#right a,
 nav div#left a {
   padding: 20px;
-  color: inherit;
-  text-decoration: inherit;
 }
 nav div#right a:hover,
 nav div#left a:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: #bbbbbb;
 }
 nav div#right a.login, nav div#right a.register,
 nav div#left a.login,
@@ -38,19 +36,4 @@ nav div#left div {
   padding: 20px;
 }
 
-div.flash {
-  --flash-main-color: lightgray;
-  --flash-secondary-color: gray;
-  max-width: 100%;
-  padding: 10px;
-  margin: 10px var(--page-margin);
-  background: var(--flash-main-color);
-  border: 3px solid var(--flash-secondary-color);
-  border-radius: 4px;
-}
-div.flash.success {
-  --flash-main-color: lightgreen;
-  --flash-secondary-color: green;
-}
-
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=navbar.css.map */

@@ -1,10 +1,109 @@
-#posts {
-  display: flex;
-  flex-direction: column;
 
-  .post {
-    border: 1px solid black;
-    display: block;
-    margin: 10px 0;
+div#content {
+  display: flex;
+  justify-content: center;
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      margin: 0;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .card {
+    background: var(--color-background-secondary);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  main {
+    width: 600px;
+    margin: 20px;
+
+    div#new-post {
+      margin-bottom: 26px;
+      font-size: 20px;
+
+      div#input {
+        display: flex;
+        align-items: center;
+
+        button {
+          font-size: 0.8em;
+          font-weight: bold;
+          color: var(--font-color);
+          background: var(--color-highlight);
+          border: none;
+          outline: none;
+
+          margin-right: 5px;
+          margin-left: 15px;
+
+          padding: 6px 8px;
+          border-radius: 6px;
+          height: fit-content;
+        }
+
+        div[contenteditable] {
+          cursor: text;
+          border: none;
+          width: 100%;
+          outline: none;
+          caret-color: var(--font-color);
+          color: var(--font-color);
+          padding-bottom: 12px;
+          border-bottom: 1px solid var(--color-background);
+
+          &:empty:before {
+            content: attr(data-placeholder);
+            opacity: 0.3;
+            position: absolute;
+          }
+        }
+      }
+
+      textarea {
+        display: none;
+      }
+    }
+
+    div#posts {
+      display: flex;
+      flex-direction: column;
+
+      div.post {
+        display: block;
+        margin: 10px 0;
+
+        div.buttons {
+          display: flex;
+          justify-content: space-between;
+
+          button.like {
+            all: unset;
+            cursor: pointer;
+
+            &:not(.liked) {
+              filter: grayscale(255);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  aside {
+    div#trending {
+      width: 325px;
+      height: 500px;
+
+      margin: 20px;
+      padding: 20px;
+
+      border-radius: 10px;
+    }
   }
 }

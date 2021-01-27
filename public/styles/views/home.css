@@ -1,11 +1,101 @@
-#posts {
+div#content {
+  display: flex;
+  justify-content: center;
+}
+div#content h1 {
+  margin: 0;
+}
+div#content h2 {
+  margin: 0;
+}
+div#content h3 {
+  margin: 0;
+}
+div#content h4 {
+  margin: 0;
+}
+div#content h5 {
+  margin: 0;
+}
+div#content h6 {
+  margin: 0;
+}
+div#content p {
+  margin: 0;
+}
+div#content .card {
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  padding: 14px;
+}
+div#content main {
+  width: 600px;
+  margin: 20px;
+}
+div#content main div#new-post {
+  margin-bottom: 26px;
+  font-size: 20px;
+}
+div#content main div#new-post div#input {
+  display: flex;
+  align-items: center;
+}
+div#content main div#new-post div#input button {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: var(--font-color);
+  background: var(--color-highlight);
+  border: none;
+  outline: none;
+  margin-right: 5px;
+  margin-left: 15px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  height: fit-content;
+}
+div#content main div#new-post div#input div[contenteditable] {
+  cursor: text;
+  border: none;
+  width: 100%;
+  outline: none;
+  caret-color: var(--font-color);
+  color: var(--font-color);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-background);
+}
+div#content main div#new-post div#input div[contenteditable]:empty:before {
+  content: attr(data-placeholder);
+  opacity: 0.3;
+  position: absolute;
+}
+div#content main div#new-post textarea {
+  display: none;
+}
+div#content main div#posts {
   display: flex;
   flex-direction: column;
 }
-#posts .post {
-  border: 1px solid black;
+div#content main div#posts div.post {
   display: block;
   margin: 10px 0;
+}
+div#content main div#posts div.post div.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+div#content main div#posts div.post div.buttons button.like {
+  all: unset;
+  cursor: pointer;
+}
+div#content main div#posts div.post div.buttons button.like:not(.liked) {
+  filter: grayscale(255);
+}
+div#content aside div#trending {
+  width: 325px;
+  height: 500px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=home.css.map */
