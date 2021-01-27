@@ -37,7 +37,7 @@ $user = Session::getUser()
             <div class="buttons">
                 <?= $post->likes ?>
                 <button type="submit" form="<?= $post->id ?>" name="like">
-                    <?= $post->liked ? "Liked" : "Like" ?>
+                    <?= $post->liked ? "❤️" : "♡" ?>
                 </button>
             </div>
         </div>
