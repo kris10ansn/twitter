@@ -28,6 +28,7 @@ class RegisterFormModel extends FormModel
     {
         // Hash password
         $this->fields["password"] = (string) password_hash($this->fields["password"], PASSWORD_DEFAULT);
+        $this->fields["username"] = strtolower($this->fields["username"]);
 
         $this->insert("user");
 
