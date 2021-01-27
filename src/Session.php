@@ -15,7 +15,7 @@ class Session
     {
         session_start();
 
-        if ($_SESSION[self::FLASH_KEY]) {
+        if (isset($_SESSION[self::FLASH_KEY])) {
             foreach ($_SESSION[self::FLASH_KEY] as $key => &$flashMessage) {
                 if ($flashMessage["remove"] === true) {
                     unset($_SESSION[self::FLASH_KEY][$key]);
