@@ -15,7 +15,7 @@ class User
     public string $created_at;
     public string $password;
 
-    public static function find($where): User
+    public static function find($where): ?User
     {
         $tableName = "user";
         $selectors = implode("AND", array_map(fn($key) => "$key = :$key", array_keys($where)));
@@ -29,6 +29,12 @@ class User
         }
 
         $statement->execute();
-        return $statement->fetchObject(User::class);
+        $fetchedObject = $statement->fetchObject(User::class);
+
+        if ($fetchedObject) {
+            return $fetchedObject;
+        }
+
+        return null;
     }
 }
