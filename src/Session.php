@@ -15,11 +15,13 @@ class Session
     {
         session_start();
 
-        foreach ($_SESSION[self::FLASH_KEY] as $key => &$flashMessage) {
-            if ($flashMessage["remove"] === true) {
-                unset($_SESSION[self::FLASH_KEY][$key]);
-            } else {
-                $flashMessage["remove"] = true;
+        if ($_SESSION[self::FLASH_KEY]) {
+            foreach ($_SESSION[self::FLASH_KEY] as $key => &$flashMessage) {
+                if ($flashMessage["remove"] === true) {
+                    unset($_SESSION[self::FLASH_KEY][$key]);
+                } else {
+                    $flashMessage["remove"] = true;
+                }
             }
         }
     }
