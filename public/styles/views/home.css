@@ -62,6 +62,7 @@ div#content main div#new-post div#input div[contenteditable] {
   color: var(--font-color);
   padding-bottom: 12px;
   border-bottom: 1px solid var(--color-background);
+  min-height: 2em;
 }
 div#content main div#new-post div#input div[contenteditable]:empty:before {
   content: attr(data-placeholder);
