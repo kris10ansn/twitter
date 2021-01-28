@@ -26,7 +26,29 @@ class PostFormModel extends FormModel
         }
 
         $this->fields["user_id"] = $user->id;
-        return $this->insert("post");
+
+
+        $result = $this->insert("post");
+
+        preg_match_all("/#\w+/", $this->fields["text"], $matches);
+
+        if ($result === true && $matches && count($matches[0]) > 0) {
+            $db = Database::getInstance();
+            $post_id = $db->pdo->lastInsertId();
+
+            foreach ($matches[0] as $hashtag) {
+                $hashtag = strtolower($hashtag);
+
+                $statement = $db->pdo->prepare("INSERT INTO hashtagged (post_id, name) VALUES (:post_id, :name)");
+                $statement->bindValue(":post_id", $post_id);
+                $statement->bindValue(":name", $hashtag);
+
+                $statement->execute();
+            }
+
+        }
+
+        return $result;
     }
 
     protected function rules(): array

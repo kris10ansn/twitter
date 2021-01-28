@@ -5,6 +5,7 @@ namespace app\controllers;
 
 use app\models\Post;
 use app\models\PostFormModel;
+use app\models\Trending;
 use app\src\Controller;
 use app\src\Request;
 use app\src\Response;
@@ -34,9 +35,12 @@ class HomeController extends Controller
 
         $posts = Post::all();
 
+        $trending = Trending::getTop(6);
+
         return $this->render("home", [
             "postModel" => $postModel,
-            "posts" => $posts
+            "posts" => $posts,
+            "trending" => $trending
         ]);
     }
 }

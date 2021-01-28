@@ -27,6 +27,10 @@ div#content {
       margin-bottom: 26px;
       font-size: 20px;
 
+      p.error {
+        margin-top: 14px;
+      }
+
       div#input {
         display: flex;
         align-items: center;
@@ -79,6 +83,10 @@ div#content {
         display: block;
         margin: 10px 0;
 
+        div.text {
+          margin: 12px 0;
+        }
+
         div.buttons {
           display: flex;
           justify-content: space-between;
@@ -98,13 +106,40 @@ div#content {
 
   aside {
     div#trending {
-      width: 325px;
-      height: 500px;
+      width: 350px;
 
       margin: 20px;
-      padding: 20px;
+      padding: 20px 0;
 
       border-radius: 10px;
+
+      h1 {
+        margin-left: 20px;
+        margin-bottom: 10px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: inherit;
+
+        div.hashtag {
+          width: 100%;
+          padding: 16px 20px;
+          font-size: 18px;
+          transition: background .2s;
+          cursor: pointer;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+          }
+
+          p.small {
+            font-size: .8em;
+            margin: 4px 0;
+            color: #aaaaaa;
+          }
+        }
+      }
     }
   }
 }

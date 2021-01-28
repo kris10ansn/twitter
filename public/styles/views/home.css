@@ -36,6 +36,9 @@ div#content main div#new-post {
   margin-bottom: 26px;
   font-size: 20px;
 }
+div#content main div#new-post p.error {
+  margin-top: 14px;
+}
 div#content main div#new-post div#input {
   display: flex;
   align-items: center;
@@ -80,6 +83,9 @@ div#content main div#posts div.post {
   display: block;
   margin: 10px 0;
 }
+div#content main div#posts div.post div.text {
+  margin: 12px 0;
+}
 div#content main div#posts div.post div.buttons {
   display: flex;
   justify-content: space-between;
@@ -92,11 +98,33 @@ div#content main div#posts div.post div.buttons button.like:not(.liked) {
   filter: grayscale(255);
 }
 div#content aside div#trending {
-  width: 325px;
-  height: 500px;
+  width: 350px;
   margin: 20px;
-  padding: 20px;
+  padding: 20px 0;
   border-radius: 10px;
+}
+div#content aside div#trending h1 {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+div#content aside div#trending a {
+  color: inherit;
+  text-decoration: inherit;
+}
+div#content aside div#trending a div.hashtag {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 18px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+div#content aside div#trending a div.hashtag:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+div#content aside div#trending a div.hashtag p.small {
+  font-size: 0.8em;
+  margin: 4px 0;
+  color: #aaaaaa;
 }
 
 /*# sourceMappingURL=home.css.map */

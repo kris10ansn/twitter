@@ -1,6 +1,7 @@
 <?php
 /** @var PostFormModel $postModel */
 /** @var Post[] $posts */
+/** @var object[] $trending */
 
 use app\models\Post;
 use app\models\PostFormModel;
@@ -34,7 +35,7 @@ $user = Session::getUser()
                     <p class="error"><?= $postModel->getFirstError("text") ?></p>
                 </form>
             <?php else: ?>
-                <p>Log in to post</p>
+                <p><a href="/login">Log in</a> to post</p>
             <?php endif; ?>
         </div>
 
@@ -43,10 +44,13 @@ $user = Session::getUser()
                 <div class="card post">
                     <form action="/interact?post_id=<?= $post->id ?>" method="post" id="<?= $post->id ?>" style="display: none"></form>
                     <p>
-                        <b><?= "$post->firstname $post->lastname" ?> (@<?= $post->username ?>)</b>
+                        <b><?= "$post->firstname $post->lastname" ?></b> (@<?= $post->username ?>)
                     </p>
                     <div class="text">
-                        <?= $post->text ?>
+                        <?= preg_replace(
+                                "/(#\w+)/",
+                                "<a href='/hashtag/$1'>$1</a>",
+                                $post->text) ?>
                     </div>
                     <div class="buttons">
                         <button class="like <?= $post->liked ? "liked" : "" ?>" type="submit" form="<?= $post->id ?>" name="like">
@@ -60,6 +64,14 @@ $user = Session::getUser()
     <aside>
         <div id="trending" class="card">
             <h1>Trending</h1>
+            <?php foreach ($trending as $hashtag): ?>
+                <a href="/hashtags/<?= $hashtag->name ?>">
+                    <div class="hashtag">
+                        <?= $hashtag->name ?>
+                        <p class="small"><?= $hashtag->posts ?> posts</p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
         </div>
     </aside>
 </div>

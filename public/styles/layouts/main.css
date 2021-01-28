@@ -39,18 +39,15 @@ nav div#left div {
 }
 
 div.flash {
-  --flash-main-color: lightgray;
-  --flash-secondary-color: gray;
+  --color-flash: lightgray;
   max-width: 100%;
-  padding: 10px;
+  padding: 14px;
   margin: 10px var(--page-margin);
-  background: var(--flash-main-color);
-  border: 3px solid var(--flash-secondary-color);
+  background: var(--color-flash);
   border-radius: 4px;
 }
 div.flash.success {
-  --flash-main-color: lightgreen;
-  --flash-secondary-color: green;
+  --color-flash: #42a942;
 }
 
 /*# sourceMappingURL=main.css.map */
