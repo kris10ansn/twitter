@@ -52,6 +52,7 @@ use app\src\Session;
             <?= $successFlash ?>
         </div>
     <?php endif; ?>
-        {{content}}
+
+    {{content}}
 </body>
 </html>
