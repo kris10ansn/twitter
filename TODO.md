@@ -1,5 +1,7 @@
 # Todo
 
+* [ ] Make layout with trending aside tag
+
 * [ ] Don't allow spaces in username
 
 * [ ] Post Model
