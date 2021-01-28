@@ -28,9 +28,7 @@ $user = Session::getUser()
             <?php if ($user !== null): ?>
                 <form action="" method="post" onsubmit="onSubmit()">
                     <div id="input">
-                        <div contenteditable data-placeholder="What's on your mind?">
-                            <?= $postModel->fields["text"] ?>
-                        </div>
+                        <div contenteditable data-placeholder="What's on your mind?"><?= $postModel->fields["text"] ?></div>
                         <button type="submit">Post</button>
                     </div>
                     <textarea name="text"></textarea>
