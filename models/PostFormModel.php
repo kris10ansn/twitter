@@ -6,6 +6,7 @@ namespace app\models;
 
 use app\src\Database;
 use app\src\Session;
+use app\src\validation\MaximumLengthRule;
 use app\src\validation\MinimumLengthRule;
 use app\src\validation\RequiredRule;
 
@@ -54,7 +55,7 @@ class PostFormModel extends FormModel
     protected function rules(): array
     {
         return [
-            "text" => [new RequiredRule("What do you want to post?")],
+            "text" => [new RequiredRule("What do you want to post?"), new MaximumLengthRule(255)],
         ];
     }
 }
