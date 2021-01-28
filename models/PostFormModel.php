@@ -14,6 +14,8 @@ class PostFormModel extends FormModel
 {
     use DBModel;
 
+    public const HASHTAG_REGEX = "/\w*(?<!&)#(\w+)/";
+
     public array $fields = [
         "text" => "",
         "user_id" => "",
@@ -31,7 +33,7 @@ class PostFormModel extends FormModel
 
         $result = $this->insert("post");
 
-        preg_match_all("/#(\w+)/", $this->fields["text"], $matches);
+        preg_match_all(self::HASHTAG_REGEX, $this->fields["text"], $matches);
 
         if ($result === true && $matches && count($matches[0]) > 0) {
             $db = Database::getInstance();
@@ -55,7 +57,13 @@ class PostFormModel extends FormModel
     protected function rules(): array
     {
         return [
-            "text" => [new RequiredRule("What do you want to post?"), new MaximumLengthRule(255)],
+            "text" => [
+                new RequiredRule("What do you want to post?"),
+                new MaximumLengthRule(
+                    255,
+                    "Post can't be longer than {max} characters. (You typed {num})"
+                ),
+            ],
         ];
     }
 }

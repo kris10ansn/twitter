@@ -28,7 +28,9 @@ $user = Session::getUser()
             <?php if ($user !== null): ?>
                 <form action="" method="post" onsubmit="onSubmit()">
                     <div id="input">
-                        <div contenteditable data-placeholder="What's on your mind?"></div>
+                        <div contenteditable data-placeholder="What's on your mind?">
+                            <?= $postModel->fields["text"] ?>
+                        </div>
                         <button type="submit">Post</button>
                     </div>
                     <textarea name="text"></textarea>
@@ -51,8 +53,8 @@ $user = Session::getUser()
                     </p>
                     <div class="text">
                         <?= preg_replace(
-                                "/(#\w+)/",
-                                "<a href='/hashtag/$1'>$1</a>",
+                                PostFormModel::HASHTAG_REGEX,
+                                "<a href='/hashtag/$1'>#$1</a>",
                                 $post->text) ?>
                     </div>
                     <div class="buttons">
@@ -71,7 +73,7 @@ $user = Session::getUser()
             <?php foreach ($trending as $hashtag): ?>
                 <a href="/hashtag/<?= $hashtag->name ?>">
                     <div class="hashtag">
-                        <?= $hashtag->name ?>
+                        #<?= $hashtag->name ?>
                         <p class="small"><?= $hashtag->posts ?> posts</p>
                     </div>
                 </a>
