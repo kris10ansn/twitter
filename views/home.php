@@ -44,7 +44,10 @@ $user = Session::getUser()
                 <div class="card post">
                     <form action="/interact?post_id=<?= $post->id ?>" method="post" id="<?= $post->id ?>" style="display: none"></form>
                     <p>
-                        <b><?= "$post->firstname $post->lastname" ?></b> (@<?= $post->username ?>)
+                        <b>
+                            <?= "$post->firstname $post->lastname" ?>
+                        </b>
+                        (<a href="/user/<?= $post->id ?>">@<?= $post->username ?></a>)
                     </p>
                     <div class="text">
                         <?= preg_replace(
