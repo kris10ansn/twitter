@@ -35,6 +35,7 @@ div#content main {
 div#content main div#new-post {
   margin-bottom: 26px;
   font-size: 20px;
+  max-width: 100%;
 }
 div#content main div#new-post p.error {
   margin-top: 14px;
@@ -66,6 +67,8 @@ div#content main div#new-post div#input div[contenteditable] {
   padding-bottom: 12px;
   border-bottom: 1px solid var(--color-background);
   min-height: 2em;
+  overflow-wrap: break-word;
+  max-width: 500px;
 }
 div#content main div#new-post div#input div[contenteditable]:empty:before {
   content: attr(data-placeholder);
@@ -85,6 +88,7 @@ div#content main div#posts div.post {
 }
 div#content main div#posts div.post div.text {
   margin: 12px 0;
+  overflow-wrap: break-word;
 }
 div#content main div#posts div.post div.buttons {
   display: flex;
@@ -105,7 +109,7 @@ div#content aside div#trending {
 }
 div#content aside div#trending h1 {
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 div#content aside div#trending a {
   color: inherit;
