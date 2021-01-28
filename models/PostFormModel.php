@@ -31,13 +31,13 @@ class PostFormModel extends FormModel
 
         $result = $this->insert("post");
 
-        preg_match_all("/#\w+/", $this->fields["text"], $matches);
+        preg_match_all("/#(\w+)/", $this->fields["text"], $matches);
 
         if ($result === true && $matches && count($matches[0]) > 0) {
             $db = Database::getInstance();
             $post_id = $db->pdo->lastInsertId();
 
-            foreach ($matches[0] as $hashtag) {
+            foreach ($matches[1] as $hashtag) {
                 $hashtag = strtolower($hashtag);
 
                 $statement = $db->pdo->prepare("INSERT INTO hashtagged (post_id, name) VALUES (:post_id, :name)");
