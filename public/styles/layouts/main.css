@@ -1,8 +1,16 @@
+:root {
+  --navbar-height: 61px;
+}
+
 nav {
   width: 100%;
   display: flex;
   background: var(--color-background-secondary);
   padding: 0 var(--page-margin);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--navbar-height);
 }
 nav div#right,
 nav div#left {
@@ -20,9 +28,11 @@ nav div#left#right {
 }
 nav div#right a,
 nav div#left a {
-  padding: 20px;
+  padding: 0 20px;
   color: inherit;
   text-decoration: inherit;
+  height: var(--navbar-height);
+  line-height: var(--navbar-height);
 }
 nav div#right a:hover,
 nav div#left a:hover {
@@ -40,11 +50,24 @@ nav div#left div {
 
 div.flash {
   --color-flash: lightgray;
-  max-width: 100%;
+  width: 100%;
   padding: 14px;
-  margin: 10px var(--page-margin);
   background: var(--color-flash);
-  border-radius: 4px;
+  position: fixed;
+  top: var(--navbar-height);
+  z-index: 1;
+  animation: disappear 3s ease-in-out forwards;
+}
+@keyframes disappear {
+  from {
+    top: -30px;
+  }
+  20%, 90% {
+    top: var(--navbar-height);
+  }
+  to {
+    top: -30px;
+  }
 }
 div.flash.success {
   --color-flash: #42a942;

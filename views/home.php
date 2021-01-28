@@ -64,8 +64,9 @@ $user = Session::getUser()
     <aside>
         <div id="trending" class="card">
             <h1>Trending</h1>
+            <hr>
             <?php foreach ($trending as $hashtag): ?>
-                <a href="/hashtags/<?= $hashtag->name ?>">
+                <a href="/hashtag/<?= $hashtag->name ?>">
                     <div class="hashtag">
                         <?= $hashtag->name ?>
                         <p class="small"><?= $hashtag->posts ?> posts</p>

@@ -39,7 +39,7 @@ div#content {
         button {
           font-size: 0.8em;
           font-weight: bold;
-          color: var(--font-color);
+          color: var(--color-font-main);
           background: var(--color-highlight);
           border: none;
           outline: none;
@@ -57,8 +57,8 @@ div#content {
           border: none;
           width: 100%;
           outline: none;
-          caret-color: var(--font-color);
-          color: var(--font-color);
+          caret-color: var(--color-font-main);
+          color: var(--color-font-main);
           padding-bottom: 12px;
           border-bottom: 1px solid var(--color-background);
           min-height: 2em;
@@ -112,36 +112,41 @@ div#content {
     div#trending {
       width: 350px;
 
-      margin: 20px;
+      $margin: 20px;
+
+      margin: $margin;
       padding: 20px 0;
 
       border-radius: 10px;
+
+      position: sticky;
+      top: calc(var(--navbar-height) + #{$margin});
 
       h1 {
         margin-left: 20px;
         margin-bottom: 12px;
       }
 
-      a {
-        color: inherit;
-        text-decoration: inherit;
+      hr {
+        border: 1px solid var(--color-background);
+        margin-top: 15px;
+      }
 
-        div.hashtag {
-          width: 100%;
-          padding: 16px 20px;
-          font-size: 18px;
-          transition: background .2s;
-          cursor: pointer;
+      div.hashtag {
+        width: 100%;
+        padding: 16px 20px;
+        font-size: 18px;
+        transition: background .2s;
+        cursor: pointer;
 
-          &:hover {
-            background: rgba(255, 255, 255, 0.1);
-          }
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
 
-          p.small {
-            font-size: .8em;
-            margin: 4px 0;
-            color: #aaaaaa;
-          }
+        p.small {
+          font-size: .8em;
+          margin: 4px 0;
+          color: #aaaaaa;
         }
       }
     }

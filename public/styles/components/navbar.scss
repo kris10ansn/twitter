@@ -1,8 +1,18 @@
+:root {
+  --navbar-height: 61px;
+}
+
 nav {
   width: 100%;
   display: flex;
   background: var(--color-background-secondary);
   padding: 0 var(--page-margin);
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  height: var(--navbar-height);
 
 
   div#right,
@@ -19,9 +29,13 @@ nav {
     }
 
     a {
-      padding: 20px;
+      padding: 0 20px;
       color: inherit;
       text-decoration: inherit;
+
+      height: var(--navbar-height);
+      // Sentrerer teksten vertikalt
+      line-height: var(--navbar-height);
 
       &:hover {
         background: rgba(0, 0, 0, 0.3);

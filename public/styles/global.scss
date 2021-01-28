@@ -6,7 +6,8 @@
   --color-background: rgb(30, 29, 43);
   --color-background-secondary: rgb(35, 37, 52);
   --color-highlight: rgb(128, 89, 255);
-  --font-color: white;
+  --color-font-main: white;
+  --color-font-link: #718bff;
 }
 
 html, body {
@@ -14,11 +15,16 @@ html, body {
   padding: 0;
 
   background: var(--color-background);
-  color: var(--font-color);
+  color: var(--color-font-main);
 }
 
 * {
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-font-link);
 }
 
 a:hover,
