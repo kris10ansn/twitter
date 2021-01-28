@@ -18,8 +18,12 @@ class MaximumLengthRule extends ValidationRule
 
     public function getError(string $input): string
     {
-        if (strlen($input) > $this->maximumLength) {
-            return str_replace("{max}", $this->maximumLength, $this->errorMessage);
+        $length = strlen($input);
+        if ($length > $this->maximumLength) {
+            $error = str_replace("{max}", $this->maximumLength, $this->errorMessage);
+            $error = str_replace("{num}", $length, $error);
+
+            return $error;
         }
 
         return false;

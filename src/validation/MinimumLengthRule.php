@@ -17,8 +17,13 @@ class MinimumLengthRule extends ValidationRule
 
     public function getError(string $input): string
     {
-        if (strlen($input) < $this->minimumLength) {
-            return str_replace("{min}", $this->minimumLength, $this->errorMessage);
+        $length = strlen($input);
+
+        if ($length < $this->minimumLength) {
+            $error = str_replace("{min}", $this->minimumLength, $this->errorMessage);
+            $error = str_replace("{num}", $length, $error);
+
+            return $error;
         }
 
         return false;
