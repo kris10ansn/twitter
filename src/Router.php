@@ -7,8 +7,6 @@ use ReflectionClass;
 
 class Router
 {
-    public const PREVIOUS_URL = "prev_url";
-
     /** @var Route[] $routes */
     private array $routes = [];
 
@@ -34,7 +32,5 @@ class Router
         if (!$found) {
             echo "404 Not found";
         }
-
-        Session::set(self::PREVIOUS_URL, $path);
     }
 }
