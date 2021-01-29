@@ -86,6 +86,9 @@ div#content main div#posts div.post {
   display: block;
   margin: 10px 0;
 }
+div#content main div#posts div.post form {
+  display: none;
+}
 div#content main div#posts div.post div.text {
   margin: 12px 0;
   overflow-wrap: break-word;

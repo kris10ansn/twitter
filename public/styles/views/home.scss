@@ -86,6 +86,10 @@ div#content {
         display: block;
         margin: 10px 0;
 
+        form {
+          display: none;
+        }
+
         div.text {
           margin: 12px 0;
           overflow-wrap: break-word;

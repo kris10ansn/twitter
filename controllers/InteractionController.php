@@ -4,7 +4,7 @@
 namespace app\controllers;
 
 
-use app\models\Post;
+use app\models\PostModel;
 use app\src\Request;
 use app\src\Response;
 use app\src\Router;
@@ -31,7 +31,7 @@ class InteractionController extends \app\src\Controller
                 return "400 Bad request";
             }
             
-            $post = Post::from($postId);
+            $post = PostModel::from($postId);
 
             if (isset($body["like"]) && is_numeric($postId)) {
                 if ($post->likedBy($user)) {

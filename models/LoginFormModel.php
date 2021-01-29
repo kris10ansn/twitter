@@ -20,7 +20,7 @@ class LoginFormModel extends FormModel
 
     public function login(): bool
     {
-        $user = User::find(["email" => $this->fields["email"]]);
+        $user = UserModel::find(["email" => $this->fields["email"]]);
 
         if (!$user) {
             $this->setError("email", "No user with that e-mail address");

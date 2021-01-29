@@ -7,7 +7,7 @@ namespace app\models;
 use app\src\Database;
 use app\src\Session;
 
-class Post
+class PostModel
 {
     public int $id;
     public string $text;
@@ -19,7 +19,7 @@ class Post
     public int $liked;
     public int $likes;
 
-    public static function from(int $id): Post
+    public static function from(int $id): PostModel
     {
         $db = Database::getInstance();
 
@@ -30,10 +30,10 @@ class Post
 
         $statement->execute([":id" => $id]);
 
-        return $statement->fetchObject(Post::class);
+        return $statement->fetchObject(PostModel::class);
     }
 
-    /** @return Post[] */
+    /** @return PostModel[] */
     public static function all(): array
     {
         $db = Database::getInstance();
@@ -50,24 +50,24 @@ class Post
         $statement->bindValue(":user_id", $user->id ?? null);
         $statement->execute();
 
-        return $statement->fetchAll(\PDO::FETCH_CLASS, Post::class);
+        return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
     }
 
-    public function like(User $user)
+    public function like(UserModel $user)
     {
         $db = Database::getInstance();
         $statement = $db->pdo->prepare("INSERT INTO `like` (post_id, user_id) VALUES (:post_id, :user_id)");
         $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
     }
 
-    public function unlike(User $user)
+    public function unlike(UserModel $user)
     {
          $db = Database::getInstance();
          $statement = $db->pdo->prepare("DELETE FROM `like` WHERE user_id=:user_id AND post_id=:post_id");
          $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
     }
 
-    public function likedBy(User $user): bool
+    public function likedBy(UserModel $user): bool
     {
         $db = Database::getInstance();
 

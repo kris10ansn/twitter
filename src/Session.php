@@ -4,12 +4,12 @@
 namespace app\src;
 
 
-use app\models\User;
+use app\models\UserModel;
 
 class Session
 {
     private const FLASH_KEY = "flash_msg";
-    private static ?User $user = null;
+    private static ?UserModel $user = null;
 
     public static function start()
     {
@@ -26,13 +26,13 @@ class Session
         }
     }
 
-    public static function getUser(): ?User
+    public static function getUser(): ?UserModel
     {
         if (self::$user === null) {
             $userId = Session::get("user");
 
             if ($userId !== null) {
-                self::$user = User::find(["id" => $userId]);
+                self::$user = UserModel::find(["id" => $userId]);
             }
         }
 

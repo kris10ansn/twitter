@@ -7,7 +7,7 @@ namespace app\models;
 use app\src\Database;
 use PDO;
 
-class Trending
+class TrendingModel
 {
     public static function getTop(int $n): array
     {

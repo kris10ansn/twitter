@@ -1,11 +1,12 @@
 <?php
 /** @var PostFormModel $postModel */
-/** @var Post[] $posts */
+/** @var PostModel[] $posts */
 /** @var object[] $trending */
 
-use app\models\Post;
+use app\models\PostModel;
 use app\models\PostFormModel;
 use app\src\Session;
+use app\views\components\PostComponent;
 
 $user = Session::getUser()
 
@@ -18,7 +19,7 @@ $user = Session::getUser()
         <script>
             function onSubmit() {
                 const textarea = document.querySelector("#new-post textarea");
-                const contentEditable = document.querySelector("#new-post div[contenteditable]");
+                const contentEditable = document.querySelector("#new-post div#text-input");
 
                 textarea.value = contentEditable.textContent;
             }
@@ -28,7 +29,7 @@ $user = Session::getUser()
             <?php if ($user !== null): ?>
                 <form action="" method="post" onsubmit="onSubmit()">
                     <div id="input">
-                        <div contenteditable data-placeholder="What's on your mind?"><?= $postModel->fields["text"] ?></div>
+                        <div contenteditable data-placeholder="What's on your mind?" id="text-input"><?= $postModel->fields["text"] ?></div>
                         <button type="submit">Post</button>
                     </div>
                     <textarea name="text"></textarea>
@@ -40,37 +41,9 @@ $user = Session::getUser()
         </div>
 
         <div id="posts">
-            <?php foreach ($posts as $post): ?>
-                <div class="card post">
-                    <form action="interact/<?= $post->id ?>" method="post" id="<?= $post->id ?>" style="display: none"></form>
-                    <p>
-                        <b>
-                            <?= "$post->firstname $post->lastname" ?>
-                        </b>
-                        (<a href="user/<?= $post->id ?>">@<?= $post->username ?></a>)
-                    </p>
-                    <div class="text">
-                        <?php
-                            $text = preg_replace(
-                                PostFormModel::HASHTAG_REGEX,
-                                "<a href='hashtag/$1'>#$1</a>",
-                                $post->text);
-                            $text = preg_replace(
-                                    "/@(\w+)/",
-                                "<a href='user/$1'>@$1</a>",
-                                $text
-                            );
-
-                            echo $text;
-                        ?>
-                    </div>
-                    <div class="buttons">
-                        <button class="like <?= $post->liked ? "liked" : "" ?>" type="submit" form="<?= $post->id ?>" name="like">
-                            ❤️<?= $post->likes ?>
-                        </button>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+            <?php foreach ($posts as $post) {
+                echo new PostComponent($post);
+            }?>
         </div>
     </main>
     <aside>
