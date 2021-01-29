@@ -14,7 +14,7 @@ class InteractionController extends \app\src\Controller
 {
     public function interact(): string
     {
-        if (Request::getMethod() === "post") {
+        if (Request::getMethod() === Request::METHOD_POST) {
             $user = Session::getUser();
 
             if ($user === null) {

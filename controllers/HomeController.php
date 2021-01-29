@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         $postModel = new PostFormModel();
 
-        if (Request::getMethod() === "post") {
+        if (Request::getMethod() === Request::METHOD_POST) {
             $user = Session::getUser();
 
             if ($user === null) {

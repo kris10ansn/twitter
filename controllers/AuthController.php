@@ -14,7 +14,7 @@ class AuthController extends \app\src\Controller
     {
         $loginForm = new LoginFormModel();
 
-        if (Request::getMethod() === "post") {
+        if (Request::getMethod() === Request::METHOD_POST) {
             $request = Request::getBody();
             $loginForm->loadData($request);
 
@@ -34,7 +34,7 @@ class AuthController extends \app\src\Controller
     {
         $registerForm = new RegisterFormModel();
 
-        if (Request::getMethod() === "post") {
+        if (Request::getMethod() === Request::METHOD_POST) {
             $request = Request::getBody();
             $registerForm->loadData($request);
 
