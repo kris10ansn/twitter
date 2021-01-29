@@ -76,6 +76,9 @@ $user = Session::getUser()
                     </div>
                 </a>
             <?php endforeach; ?>
+            <?php if (count($trending) === 0): ?>
+                <p>Try posting a <a>#hasthag</a> to get on trending!</p>
+            <?php endif; ?>
         </div>
     </aside>
 </div>

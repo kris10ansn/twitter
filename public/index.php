@@ -7,11 +7,11 @@ use app\src\Route;
 use app\src\Router;
 use app\src\Session;
 
-$root = dirname(__DIR__);
+$root = str_replace("\\", "/", dirname(__DIR__));
 require_once($root . "/vendor/autoload.php");
 
 define("APP_ROOT", $root);
-define("APP_URL_ROOT", str_replace("/srv/http", "", $root));
+define("APP_URL_ROOT", preg_replace("/(\/srv\/http)|(C:\/wamp64\/www)/", "", $root));
 
 Session::start();
 $router = new Router();
