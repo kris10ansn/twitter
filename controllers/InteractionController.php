@@ -46,6 +46,6 @@ class InteractionController extends \app\src\Controller
             die("403 Forbidden route");
         }
 
-        echo "<script>window.history.back();</script>";
+        return "<script>window.history.back();</script>";
     }
 }
