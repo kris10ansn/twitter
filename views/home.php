@@ -50,10 +50,19 @@ $user = Session::getUser()
                         (<a href="user/<?= $post->id ?>">@<?= $post->username ?></a>)
                     </p>
                     <div class="text">
-                        <?= preg_replace(
+                        <?php
+                            $text = preg_replace(
                                 PostFormModel::HASHTAG_REGEX,
                                 "<a href='hashtag/$1'>#$1</a>",
-                                $post->text) ?>
+                                $post->text);
+                            $text = preg_replace(
+                                    "/@(\w+)/",
+                                "<a href='user/$1'>@$1</a>",
+                                $text
+                            );
+
+                            echo $text;
+                        ?>
                     </div>
                     <div class="buttons">
                         <button class="like <?= $post->liked ? "liked" : "" ?>" type="submit" form="<?= $post->id ?>" name="like">
