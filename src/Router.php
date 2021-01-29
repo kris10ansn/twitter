@@ -23,7 +23,7 @@ class Router
         $found = false;
 
         foreach ($this->routes as $route) {
-            if ($route->path === $path) {
+            if ($route->path === $path || preg_match($route->path, $path)) {
                 $controller = new $route->controller;
 
                 echo $controller->{$route->method}();

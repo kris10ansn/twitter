@@ -72,7 +72,7 @@ $user = Session::getUser()
                 <a href="/hashtag/<?= $hashtag->name ?>">
                     <div class="hashtag">
                         #<?= $hashtag->name ?>
-                        <p class="small"><?= $hashtag->posts ?> posts</p>
+                        <p class="small"><?= $hashtag->posts ?> posts, <?= $hashtag->likes ?> likes</p>
                     </div>
                 </a>
             <?php endforeach; ?>
