@@ -15,6 +15,16 @@ class UserModel
     public string $created_at;
     public string $password;
 
+    public static function from(int $id): ?UserModel
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("SELECT * FROM user WHERE id=:id");
+        $statement->execute([":id" => $id]);
+
+        return $statement->fetchObject(UserModel::class);
+    }
+
     public static function find($where): ?UserModel
     {
         $tableName = "user";
