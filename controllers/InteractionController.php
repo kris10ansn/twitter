@@ -12,18 +12,25 @@ use app\src\Session;
 
 class InteractionController extends \app\src\Controller
 {
-    public function interact()
+    public function interact(): string
     {
         if (Request::getMethod() === "post") {
             $user = Session::getUser();
 
             if ($user === null) {
                 Response::redirect("/login");
-                return;
+                return "";
             }
 
             $body = Request::getBody();
-            $postId = Request::getParameter(Request::METHOD_GET, "post_id");
+            preg_match("/interact\/(.+)/", Request::getPath(), $matches);
+
+            if (count($matches) > 0 && is_numeric($matches[1])) {
+                $postId = (int)$matches[1];
+            } else {
+                return "400 Bad request";
+            }
+            
             $post = Post::from($postId);
 
             if (isset($body["like"]) && is_numeric($postId)) {
