@@ -13,6 +13,6 @@ class Response
 
     public static function redirect($path)
     {
-        header("Location: $path");
+        header("Location: " . constant("APP_URL_ROOT") . "$path");
     }
 }

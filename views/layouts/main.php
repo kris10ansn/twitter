@@ -10,9 +10,13 @@ use app\src\Session;
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <base href="<?= constant("APP_URL_ROOT") ?>/">
+
     <title>Hello, World!</title>
-    <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/layouts/main.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/layouts/main.css">
+
 
     <style>
         /* Temporary */
@@ -24,19 +28,19 @@ use app\src\Session;
 <body>
     <nav>
         <div id="left">
-            <a href="/">Home</a>
+            <a href=".">Home</a>
         </div>
         <div id="right">
 
             <?php
             $user = Session::getUser();
             if ($user === null): ?>
-                <a href="/login" class="login">Log in</a>
-                <a href="/register" class="register">Register account</a>
+                <a href="login" class="login">Log in</a>
+                <a href="register" class="register">Register account</a>
             <?php else: ?>
                 <div><?= "$user->firstname $user->lastname ($user->email)" ?></div>
                 <div>
-                    <form action="/logout" method="post">
+                    <form action="logout" method="post">
                         <button type="submit" name="logout">
                             Log out
                         </button>

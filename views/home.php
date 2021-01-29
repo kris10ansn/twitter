@@ -11,7 +11,7 @@ $user = Session::getUser()
 
 ?>
 
-<link rel="stylesheet" href="/styles/views/home.css">
+<link rel="stylesheet" href="styles/views/home.css">
 
 <div id="content">
     <main>
@@ -35,24 +35,24 @@ $user = Session::getUser()
                     <p class="error"><?= $postModel->getFirstError("text") ?></p>
                 </form>
             <?php else: ?>
-                <p><a href="/login">Log in</a> to post</p>
+                <p><a href="login">Log in</a> to post</p>
             <?php endif; ?>
         </div>
 
         <div id="posts">
             <?php foreach ($posts as $post): ?>
                 <div class="card post">
-                    <form action="/interact?post_id=<?= $post->id ?>" method="post" id="<?= $post->id ?>" style="display: none"></form>
+                    <form action="interact/<?= $post->id ?>" method="post" id="<?= $post->id ?>" style="display: none"></form>
                     <p>
                         <b>
                             <?= "$post->firstname $post->lastname" ?>
                         </b>
-                        (<a href="/user/<?= $post->id ?>">@<?= $post->username ?></a>)
+                        (<a href="user/<?= $post->id ?>">@<?= $post->username ?></a>)
                     </p>
                     <div class="text">
                         <?= preg_replace(
                                 PostFormModel::HASHTAG_REGEX,
-                                "<a href='/hashtag/$1'>#$1</a>",
+                                "<a href='hashtag/$1'>#$1</a>",
                                 $post->text) ?>
                     </div>
                     <div class="buttons">
@@ -69,7 +69,7 @@ $user = Session::getUser()
             <h1>Trending</h1>
             <hr>
             <?php foreach ($trending as $hashtag): ?>
-                <a href="/hashtag/<?= $hashtag->name ?>">
+                <a href="hashtag/<?= $hashtag->name ?>">
                     <div class="hashtag">
                         #<?= $hashtag->name ?>
                         <p class="small"><?= $hashtag->posts ?> posts, <?= $hashtag->likes ?> likes</p>
