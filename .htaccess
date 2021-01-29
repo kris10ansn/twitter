@@ -2,8 +2,11 @@ RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+# Alle filforespørsler (alt som matcher med "navn.utvidelse")
+# omdirigeres til /public/navn.utvidelse
 RewriteRule ((.+)\.(.+)) ./public/$1 [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+# Alt annet 
 RewriteRule (.+) ./public/index.php?path=$1 [L]
