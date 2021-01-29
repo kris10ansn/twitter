@@ -30,6 +30,19 @@ class PostFormModel extends FormModel
 
         $this->fields["user_id"] = $user->id;
 
+        preg_match_all("/@(\w+)/", $this->fields["text"], $matches);
+
+        if (isset($matches[1])) {
+            for ($i = 0; $i < count($matches[1]); $i++) {
+                $match = $matches[0][$i];
+                $username = $matches[1][$i];
+                $user = UserModel::find([ "username" => $username ]);
+
+                if ($user) {
+                    $this->fields["text"] = str_replace($match, "@[{$user->id}]{$username}", $this->fields["text"]);
+                }
+            }
+        }
 
         $result = $this->insert("post");
 

@@ -21,8 +21,8 @@ class PostComponent
     {
         $liked = $this->post->liked ? "liked" : "";
         $processedText = preg_replace(
-            [PostFormModel::HASHTAG_REGEX, "/@(\w+)/"],
-            ['<a href="hashtag/$1">#$1</a>', '<a href="user/$1">@$1</a>'],
+            [PostFormModel::HASHTAG_REGEX, "/@\[(\d+)](\w+)/"],
+            ['<a href="hashtag/$1">#$1</a>', '<a href="user/$1">@$2</a>'],
             $this->post->text
         );
 
