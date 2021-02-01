@@ -37,10 +37,15 @@ class HomeController extends Controller
 
         $trending = TrendingModel::getTop(6);
 
-        return $this->render("home", "main", [
+        $data = [
             "postModel" => $postModel,
             "posts" => $posts,
             "trending" => $trending
-        ]);
+        ];
+
+        $mainLayout = $this->renderLayout("main", $data);
+        $postsLayout = $this->renderLayoutInside($mainLayout, "posts", $data);
+
+        return $this->renderView("home", $postsLayout, $data);
     }
 }

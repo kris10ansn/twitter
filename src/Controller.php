@@ -26,6 +26,11 @@ abstract class Controller
         return ob_get_clean();
     }
 
+    public function renderLayoutInside($parentLayout, $childLayoutName, $data=[])
+    {
+        return $this->renderView("layouts/$childLayoutName", $parentLayout, $data);
+    }
+
     public function render($viewName, $layoutName, $data = []): string
     {
         $layoutContent = $this->renderLayout($layoutName, $data);
