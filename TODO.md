@@ -1,5 +1,7 @@
 # Todo
 
+* [ ] Add /user/:id route
+
 * [x] Make layout with trending aside tag
 
 * [x] Don't allow spaces in username
