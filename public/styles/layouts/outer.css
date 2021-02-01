@@ -1,0 +1,76 @@
+:root {
+  --navbar-height: 61px;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  background: var(--color-background-secondary);
+  padding: 0 var(--page-margin);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--navbar-height);
+}
+nav div#right,
+nav div#left {
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+nav div#right#left,
+nav div#left#left {
+  justify-content: flex-start;
+}
+nav div#right#right,
+nav div#left#right {
+  justify-content: flex-end;
+}
+nav div#right a,
+nav div#left a {
+  padding: 0 20px;
+  color: inherit;
+  text-decoration: inherit;
+  height: var(--navbar-height);
+  line-height: var(--navbar-height);
+}
+nav div#right a:hover,
+nav div#left a:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+nav div#right a.login, nav div#right a.register,
+nav div#left a.login,
+nav div#left a.register {
+  align-self: flex-end;
+}
+nav div#right div,
+nav div#left div {
+  padding: 20px;
+}
+
+div.flash {
+  --color-flash: lightgray;
+  width: 100%;
+  padding: 14px;
+  background: var(--color-flash);
+  position: fixed;
+  top: var(--navbar-height);
+  z-index: 1;
+  animation: disappear 3s ease-in-out forwards;
+}
+@keyframes disappear {
+  from {
+    top: -30px;
+  }
+  20%, 90% {
+    top: var(--navbar-height);
+  }
+  to {
+    top: -30px;
+  }
+}
+div.flash.success {
+  --color-flash: #42a942;
+}
+
+/*# sourceMappingURL=outer.css.map */

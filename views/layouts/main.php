@@ -1,6 +1,6 @@
 <?php /** @var object[] $trending */ ?>
 
-<link rel="stylesheet" href="styles/layouts/posts.css">
+<link rel="stylesheet" href="styles/layouts/main.css">
 
 <div id="content">
     <main>

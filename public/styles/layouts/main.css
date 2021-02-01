@@ -1,76 +1,70 @@
-:root {
-  --navbar-height: 61px;
-}
-
-nav {
-  width: 100%;
+div#content {
   display: flex;
+  justify-content: center;
+}
+div#content h1 {
+  margin: 0;
+}
+div#content h2 {
+  margin: 0;
+}
+div#content h3 {
+  margin: 0;
+}
+div#content h4 {
+  margin: 0;
+}
+div#content h5 {
+  margin: 0;
+}
+div#content h6 {
+  margin: 0;
+}
+div#content p {
+  margin: 0;
+}
+div#content .card {
   background: var(--color-background-secondary);
-  padding: 0 var(--page-margin);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  height: var(--navbar-height);
-}
-nav div#right,
-nav div#left {
-  display: flex;
-  flex-basis: 0;
-  flex-grow: 1;
-}
-nav div#right#left,
-nav div#left#left {
-  justify-content: flex-start;
-}
-nav div#right#right,
-nav div#left#right {
-  justify-content: flex-end;
-}
-nav div#right a,
-nav div#left a {
-  padding: 0 20px;
-  color: inherit;
-  text-decoration: inherit;
-  height: var(--navbar-height);
-  line-height: var(--navbar-height);
-}
-nav div#right a:hover,
-nav div#left a:hover {
-  background: rgba(0, 0, 0, 0.3);
-}
-nav div#right a.login, nav div#right a.register,
-nav div#left a.login,
-nav div#left a.register {
-  align-self: flex-end;
-}
-nav div#right div,
-nav div#left div {
-  padding: 20px;
-}
-
-div.flash {
-  --color-flash: lightgray;
-  width: 100%;
+  border-radius: 8px;
   padding: 14px;
-  background: var(--color-flash);
-  position: fixed;
-  top: var(--navbar-height);
-  z-index: 1;
-  animation: disappear 3s ease-in-out forwards;
 }
-@keyframes disappear {
-  from {
-    top: -30px;
-  }
-  20%, 90% {
-    top: var(--navbar-height);
-  }
-  to {
-    top: -30px;
-  }
+div#content main {
+  width: 600px;
+  margin: 20px;
 }
-div.flash.success {
-  --color-flash: #42a942;
+div#content aside div#trending {
+  width: 350px;
+  margin: 20px;
+  padding: 20px 0;
+  border-radius: 10px;
+  position: sticky;
+  top: calc(var(--navbar-height) + 20px);
+}
+div#content aside div#trending h1 {
+  margin-left: 20px;
+  margin-bottom: 12px;
+}
+div#content aside div#trending hr {
+  border: 1px solid var(--color-background);
+  margin-top: 15px;
+}
+div#content aside div#trending p {
+  margin: 0 20px;
+}
+div#content aside div#trending div.hashtag {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 18px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+div#content aside div#trending div.hashtag:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+div#content aside div#trending div.hashtag p.small {
+  font-size: 0.8em;
+  margin: 4px 0;
+  color: #aaaaaa;
 }
 
 /*# sourceMappingURL=main.css.map */

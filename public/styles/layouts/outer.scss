@@ -1,0 +1,36 @@
+@import "../components/navbar.scss";
+
+div.flash {
+  --color-flash: lightgray;
+
+  width: 100%;
+  padding: 14px;
+
+  background: var(--color-flash);
+
+  position: fixed;
+  $top: var(--navbar-height);
+  top: $top;
+
+  z-index: 1;
+
+  @keyframes disappear {
+    from {
+      top: -30px;
+    }
+
+    20%, 90% {
+      top: $top;
+    }
+
+    to {
+      top: -30px;
+    }
+  }
+
+  animation: disappear 3s ease-in-out forwards;
+
+  &.success {
+    --color-flash: #42a942;
+  }
+}
