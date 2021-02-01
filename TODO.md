@@ -2,6 +2,8 @@
 
 * [ ] Add /user/:id route
 
+* [ ] Delete post
+
 * [x] Make layout with trending aside tag
 
 * [x] Don't allow spaces in username
