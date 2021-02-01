@@ -1,5 +1,8 @@
 <?php
 /** @var UserModel $user */
+/** @var PostFormModel $postModel */
+
+use app\models\PostFormModel;
 use app\models\UserModel;
 ?>
 
@@ -19,7 +22,10 @@ use app\models\UserModel;
                 <div contenteditable data-placeholder="What's on your mind?" id="text-input"><?= $postModel->fields["text"] ?></div>
                 <button type="submit">Post</button>
             </div>
-            <textarea name="text"></textarea>
+            <!-- PHPStorm klager på at jeg ikke har label element rundt textarea.. -->
+            <label>
+                <textarea name="text"></textarea>
+            </label>
             <p class="error"><?= $postModel->getFirstError("text") ?></p>
         </form>
     <?php else: ?>
