@@ -6,7 +6,7 @@ use app\views\components\PostComponent;
 
 ?>
 
-<link rel="stylesheet" href="styles/views/includes/posts.css">
+<link rel="stylesheet" href="styles/includes/posts.css">
 
 <div id="posts">
     <?php foreach ($posts as $post) {
