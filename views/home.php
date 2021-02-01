@@ -38,4 +38,4 @@ $user = Session::getUser();
     <?php endif; ?>
 </div>
 
-<?php include constant("APP_ROOT") . "/views/posts.php" ?>
+<?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
