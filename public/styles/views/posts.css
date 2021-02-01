@@ -1,0 +1,28 @@
+main div#posts {
+  display: flex;
+  flex-direction: column;
+}
+main div#posts div.post {
+  display: block;
+  margin: 10px 0;
+}
+main div#posts div.post form {
+  display: none;
+}
+main div#posts div.post div.text {
+  margin: 12px 0;
+  overflow-wrap: break-word;
+}
+main div#posts div.post div.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+main div#posts div.post div.buttons button.like {
+  all: unset;
+  cursor: pointer;
+}
+main div#posts div.post div.buttons button.like:not(.liked) {
+  filter: grayscale(255);
+}
+
+/*# sourceMappingURL=posts.css.map */

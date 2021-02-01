@@ -1,23 +1,41 @@
+<link rel="stylesheet" href="styles/layouts/home.css">
+
 <?php
-/** @var PostFormModel $postModel */
-/** @var PostModel[] $posts */
-/** @var object[] $trending */
+/** @var UserModel $user */
+/** @var PostFormModel $postFormModel */
 
-use app\models\PostModel;
 use app\models\PostFormModel;
+use app\models\UserModel;
 use app\src\Session;
-use app\views\components\PostComponent;
 
-$user = Session::getUser()
-
+$user = Session::getUser();
 ?>
 
-<link rel="stylesheet" href="styles/views/home.css">
+<script>
+    function onSubmit() {
+        const textarea = document.querySelector("#new-post textarea");
+        const contentEditable = document.querySelector("#new-post div#text-input");
 
-<?php include constant("APP_ROOT") . "/views/includes/new-post.php"; ?>
+        textarea.value = contentEditable.textContent;
+    }
+</script>
 
-<div id="posts">
-    <?php foreach ($posts as $post) {
-        echo new PostComponent($post);
-    }?>
+<div id="new-post" class="card">
+    <?php if ($user !== null): ?>
+        <form action="" method="post" onsubmit="onSubmit()">
+            <div id="input">
+                <div contenteditable data-placeholder="What's on your mind?" id="text-input"><?= $postFormModel->fields["text"] ?></div>
+                <button type="submit">Post</button>
+            </div>
+            <!-- PHPStorm klager på at jeg ikke har label element rundt textarea.. -->
+            <label>
+                <textarea name="text"></textarea>
+            </label>
+            <p class="error"><?= $postFormModel->getFirstError("text") ?></p>
+        </form>
+    <?php else: ?>
+        <p><a href="../public/index.php">Log in</a> to post</p>
+    <?php endif; ?>
 </div>
+
+<?php include constant("APP_ROOT") . "/views/posts.php" ?>

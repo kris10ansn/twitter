@@ -10,18 +10,6 @@ class Request
     public const METHOD_GET = "get";
     public const METHOD_POST = "post";
 
-    public static function _getPath(): string
-    {
-        $path = $_SERVER["REQUEST_URI"] ?? "/";
-        $argumentsPosition = strpos($path, "?");
-
-        if ($argumentsPosition === false) {
-            return $path;
-        }
-
-        return substr($path, 0, $argumentsPosition);
-    }
-
     public static function getPath()
     {
         return str_replace(constant("APP_URL_ROOT"), "", $_SERVER["REQUEST_URI"]);

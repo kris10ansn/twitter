@@ -9,7 +9,7 @@ use PDO;
 
 class TrendingModel
 {
-    public static function getTop(int $n): array
+    public static function getTop(int $n = 6): array
     {
         $db = Database::getInstance();
 

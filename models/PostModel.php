@@ -45,9 +45,9 @@ class PostModel
             FROM post JOIN user ON post.user_id = user.id ORDER BY post.created_at DESC
         ");
 
-        $user = Session::getUser();
+        $userId = Session::get("user");
 
-        $statement->bindValue(":user_id", $user->id ?? null);
+        $statement->bindValue(":user_id", $userId);
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
