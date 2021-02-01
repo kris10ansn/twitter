@@ -22,7 +22,7 @@ class Router
 
         foreach ($this->routes as $route) {
             // Setter alfakrøll foran preg_match for å unngå varsler om $path ikke er regex
-            if ($route->path === $path || @preg_match($route->path, $path)) {
+            if ($route->path === $path || $route->path === $path . "/" || @preg_match($route->path, $path)) {
                 $controller = new $route->controller;
 
                 echo $controller->{$route->method}();
