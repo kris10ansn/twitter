@@ -34,7 +34,7 @@ $user = Session::getUser();
             <p class="error"><?= $postFormModel->getFirstError("text") ?></p>
         </form>
     <?php else: ?>
-        <p><a href="../public/index.php">Log in</a> to post</p>
+        <p><a href="login">Log in</a> to post</p>
     <?php endif; ?>
 </div>
 
