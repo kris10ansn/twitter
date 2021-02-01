@@ -32,6 +32,9 @@ div#content main {
   width: 600px;
   margin: 20px;
 }
+div#content main h1 {
+  margin: 0.7em 0;
+}
 div#content aside div#trending {
   width: 350px;
   margin: 20px;
