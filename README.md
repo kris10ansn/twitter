@@ -2,7 +2,7 @@
 
 A php twitter clone. I tried using a mvc design strategy, 
 you can be the judge on if it's true MVC or not (first time).
-**This is just a personal project.**
+**This is just a personal repository for a school project.**
 
 ## Database credentials
 
