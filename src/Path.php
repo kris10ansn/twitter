@@ -8,7 +8,7 @@ class Path
 {
     public static function getParameter(string $path): ?string
     {
-        preg_match("/\/\w+\/(\w+(?:\/$|$))/", $path, $matches);
+        preg_match("/\/\w+\/(\w+)(?:\/$|$)/", $path, $matches);
 
         return $matches[1] ?? null;
     }
