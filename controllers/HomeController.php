@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         $trending = TrendingModel::getTop(6);
 
-        return $this->render("home", [
+        return $this->render("home", "main", [
             "postModel" => $postModel,
             "posts" => $posts,
             "trending" => $trending

@@ -6,13 +6,30 @@ namespace app\src;
 
 abstract class Controller
 {
-    private string $layout = "main";
-
-    public function render($view, $data = []): string
+    public function renderView($viewName, $layout, $data=[])
     {
-        $layoutContent = $this->renderFile("layouts/$this->layout");
-        $viewContent = $this->renderFile($view, $data);
-        return str_replace("{{content}}", $viewContent, $layoutContent);
+        return str_replace(
+            "{{content}}",
+            $this->renderFile($viewName, $data),
+            $layout
+        );
+    }
+
+    public function renderLayout($layoutName, $data=[])
+    {
+        foreach ($data as $key => $value) {
+            $$key = $value;
+        }
+
+        ob_start();
+        require constant("APP_ROOT") . "/views/layouts/$layoutName.php";
+        return ob_get_clean();
+    }
+
+    public function render($viewName, $layoutName, $data = []): string
+    {
+        $layoutContent = $this->renderLayout($layoutName, $data);
+        return $this->renderView($viewName, $layoutContent, $data);
     }
 
     private function renderFile($file, $data = []) {
@@ -24,10 +41,5 @@ abstract class Controller
         ob_start();
         require($root . "/views/$file.php");
         return ob_get_clean();
-    }
-
-    protected function setLayout(string $layout): void
-    {
-        $this->layout = $layout;
     }
 }
