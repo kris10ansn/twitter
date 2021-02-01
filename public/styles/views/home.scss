@@ -1,160 +1,87 @@
+main {
+  div#new-post {
+    margin-bottom: 26px;
+    font-size: 20px;
+    max-width: 100%;
 
-div#content {
-  display: flex;
-  justify-content: center;
+    p.error {
+      margin-top: 14px;
+    }
 
-  @for $i from 1 through 6 {
-    h#{$i} {
-      margin: 0;
+    div#input {
+      display: flex;
+      align-items: center;
+
+      button {
+        font-size: 0.8em;
+        font-weight: bold;
+        color: var(--color-font-main);
+        background: var(--color-highlight);
+        border: none;
+        outline: none;
+
+        margin-right: 5px;
+        margin-left: 15px;
+
+        padding: 6px 8px;
+        border-radius: 6px;
+        height: fit-content;
+      }
+
+      div[contenteditable] {
+        cursor: text;
+        border: none;
+        width: 100%;
+        outline: none;
+        caret-color: var(--color-font-main);
+        color: var(--color-font-main);
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--color-background);
+        min-height: 2em;
+        overflow-wrap: break-word;
+        max-width: 500px;
+
+        &:empty:before {
+          content: attr(data-placeholder);
+          opacity: 0.3;
+          position: absolute;
+        }
+      }
+    }
+
+    textarea {
+      display: none;
     }
   }
 
-  p {
-    margin: 0;
-  }
+  div#posts {
+    display: flex;
+    flex-direction: column;
 
-  .card {
-    background: var(--color-background-secondary);
-    border-radius: 8px;
-    padding: 14px;
-  }
+    div.post {
+      display: block;
+      margin: 10px 0;
 
-  main {
-    width: 600px;
-    margin: 20px;
-
-    div#new-post {
-      margin-bottom: 26px;
-      font-size: 20px;
-      max-width: 100%;
-
-      p.error {
-        margin-top: 14px;
-      }
-
-      div#input {
-        display: flex;
-        align-items: center;
-
-        button {
-          font-size: 0.8em;
-          font-weight: bold;
-          color: var(--color-font-main);
-          background: var(--color-highlight);
-          border: none;
-          outline: none;
-
-          margin-right: 5px;
-          margin-left: 15px;
-
-          padding: 6px 8px;
-          border-radius: 6px;
-          height: fit-content;
-        }
-
-        div[contenteditable] {
-          cursor: text;
-          border: none;
-          width: 100%;
-          outline: none;
-          caret-color: var(--color-font-main);
-          color: var(--color-font-main);
-          padding-bottom: 12px;
-          border-bottom: 1px solid var(--color-background);
-          min-height: 2em;
-          overflow-wrap: break-word;
-          max-width: 500px;
-
-          &:empty:before {
-            content: attr(data-placeholder);
-            opacity: 0.3;
-            position: absolute;
-          }
-        }
-      }
-
-      textarea {
+      form {
         display: none;
       }
-    }
 
-    div#posts {
-      display: flex;
-      flex-direction: column;
+      div.text {
+        margin: 12px 0;
+        overflow-wrap: break-word;
+      }
 
-      div.post {
-        display: block;
-        margin: 10px 0;
+      div.buttons {
+        display: flex;
+        justify-content: space-between;
 
-        form {
-          display: none;
-        }
+        button.like {
+          all: unset;
+          cursor: pointer;
 
-        div.text {
-          margin: 12px 0;
-          overflow-wrap: break-word;
-        }
-
-        div.buttons {
-          display: flex;
-          justify-content: space-between;
-
-          button.like {
-            all: unset;
-            cursor: pointer;
-
-            &:not(.liked) {
-              filter: grayscale(255);
-            }
+          &:not(.liked) {
+            filter: grayscale(255);
           }
-        }
-      }
-    }
-  }
-
-  aside {
-    div#trending {
-      width: 350px;
-
-      $margin: 20px;
-
-      margin: $margin;
-      padding: 20px 0;
-
-      border-radius: 10px;
-
-      position: sticky;
-      top: calc(var(--navbar-height) + #{$margin});
-
-      h1 {
-        margin-left: 20px;
-        margin-bottom: 12px;
-      }
-
-      hr {
-        border: 1px solid var(--color-background);
-        margin-top: 15px;
-      }
-
-      p {
-        margin: 0 20px;
-      }
-
-      div.hashtag {
-        width: 100%;
-        padding: 16px 20px;
-        font-size: 18px;
-        transition: background .2s;
-        cursor: pointer;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-
-        p.small {
-          font-size: .8em;
-          margin: 4px 0;
-          color: #aaaaaa;
         }
       }
     }

@@ -1,50 +1,16 @@
-div#content {
-  display: flex;
-  justify-content: center;
-}
-div#content h1 {
-  margin: 0;
-}
-div#content h2 {
-  margin: 0;
-}
-div#content h3 {
-  margin: 0;
-}
-div#content h4 {
-  margin: 0;
-}
-div#content h5 {
-  margin: 0;
-}
-div#content h6 {
-  margin: 0;
-}
-div#content p {
-  margin: 0;
-}
-div#content .card {
-  background: var(--color-background-secondary);
-  border-radius: 8px;
-  padding: 14px;
-}
-div#content main {
-  width: 600px;
-  margin: 20px;
-}
-div#content main div#new-post {
+main div#new-post {
   margin-bottom: 26px;
   font-size: 20px;
   max-width: 100%;
 }
-div#content main div#new-post p.error {
+main div#new-post p.error {
   margin-top: 14px;
 }
-div#content main div#new-post div#input {
+main div#new-post div#input {
   display: flex;
   align-items: center;
 }
-div#content main div#new-post div#input button {
+main div#new-post div#input button {
   font-size: 0.8em;
   font-weight: bold;
   color: var(--color-font-main);
@@ -57,7 +23,7 @@ div#content main div#new-post div#input button {
   border-radius: 6px;
   height: fit-content;
 }
-div#content main div#new-post div#input div[contenteditable] {
+main div#new-post div#input div[contenteditable] {
   cursor: text;
   border: none;
   width: 100%;
@@ -70,73 +36,39 @@ div#content main div#new-post div#input div[contenteditable] {
   overflow-wrap: break-word;
   max-width: 500px;
 }
-div#content main div#new-post div#input div[contenteditable]:empty:before {
+main div#new-post div#input div[contenteditable]:empty:before {
   content: attr(data-placeholder);
   opacity: 0.3;
   position: absolute;
 }
-div#content main div#new-post textarea {
+main div#new-post textarea {
   display: none;
 }
-div#content main div#posts {
+main div#posts {
   display: flex;
   flex-direction: column;
 }
-div#content main div#posts div.post {
+main div#posts div.post {
   display: block;
   margin: 10px 0;
 }
-div#content main div#posts div.post form {
+main div#posts div.post form {
   display: none;
 }
-div#content main div#posts div.post div.text {
+main div#posts div.post div.text {
   margin: 12px 0;
   overflow-wrap: break-word;
 }
-div#content main div#posts div.post div.buttons {
+main div#posts div.post div.buttons {
   display: flex;
   justify-content: space-between;
 }
-div#content main div#posts div.post div.buttons button.like {
+main div#posts div.post div.buttons button.like {
   all: unset;
   cursor: pointer;
 }
-div#content main div#posts div.post div.buttons button.like:not(.liked) {
+main div#posts div.post div.buttons button.like:not(.liked) {
   filter: grayscale(255);
-}
-div#content aside div#trending {
-  width: 350px;
-  margin: 20px;
-  padding: 20px 0;
-  border-radius: 10px;
-  position: sticky;
-  top: calc(var(--navbar-height) + 20px);
-}
-div#content aside div#trending h1 {
-  margin-left: 20px;
-  margin-bottom: 12px;
-}
-div#content aside div#trending hr {
-  border: 1px solid var(--color-background);
-  margin-top: 15px;
-}
-div#content aside div#trending p {
-  margin: 0 20px;
-}
-div#content aside div#trending div.hashtag {
-  width: 100%;
-  padding: 16px 20px;
-  font-size: 18px;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-div#content aside div#trending div.hashtag:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-div#content aside div#trending div.hashtag p.small {
-  font-size: 0.8em;
-  margin: 4px 0;
-  color: #aaaaaa;
 }
 
 /*# sourceMappingURL=home.css.map */

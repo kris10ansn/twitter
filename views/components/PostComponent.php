@@ -28,10 +28,10 @@ class PostComponent
 
         return "<div class='card post'>
             <form action='interact/{$this->post->id}' id='{$this->post->id}' method='post'></form>
-            <p>
+            <div class='top'>
                 <b>{$this->post->firstname} {$this->post->lastname}</b>
                 (<a href='user/{$this->post->user_id}'>@{$this->post->username}</a>)
-            </p>
+            </div>
             <div class='text'>
                 {$processedText}
             </div>

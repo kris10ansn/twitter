@@ -2,6 +2,8 @@
 
 use app\src\Session;
 
+$title = $title ?? "Twitter";
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,7 +15,7 @@ use app\src\Session;
 
     <base href="<?= constant("APP_URL_ROOT") ?>/">
 
-    <title>Hello, World!</title>
+    <title><?= $title ?></title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/layouts/main.css">
 
