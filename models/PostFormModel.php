@@ -55,11 +55,13 @@ class PostFormModel extends FormModel
             foreach ($matches[1] as $hashtag) {
                 $hashtag = strtolower($hashtag);
 
-                $statement = $db->pdo->prepare("INSERT INTO hashtagged (post_id, name) VALUES (:post_id, :name)");
-                $statement->bindValue(":post_id", $post_id);
-                $statement->bindValue(":name", $hashtag);
+                // IGNORE gjør at om det allerede finnes en rad med like primary keys (f.eks.
+                // hvis du har to like hashtags i en post) vil den bare ignoreres
+                $statement = $db->pdo->prepare(
+                    "INSERT IGNORE INTO hashtagged (post_id, name) VALUES (:post_id, :name)"
+                );
 
-                $statement->execute();
+                $statement->execute([":post_id" => $post_id, ":name" => $hashtag]);
             }
 
         }
