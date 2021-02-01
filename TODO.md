@@ -1,14 +1,13 @@
 # Todo
 
-* [ ] Make layout with trending aside tag
+* [x] Make layout with trending aside tag
 
-* [ ] Don't allow spaces in username
+* [x] Don't allow spaces in username
 
-* [ ] Post Model
-    * [ ] Make non-static model
+* [x] Post Model
+    * [x] Make non-static model
 
-* [ ] Mentions
-    * [ ] Mentions table
-    * [ ] Replace @username with  @[id] on backend
-    * [ ] Replace @[id] with <a href="link_to_user"\>@username</a\>
+* [x] Mentions
+    * [x] Replace @username with  @[id]\(username) on backend
+    * [x] Replace @[id]\(username) with <a href="link_to_user"\>@username</a\>
     
