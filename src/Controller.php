@@ -6,7 +6,7 @@ namespace app\src;
 
 abstract class Controller
 {
-    public function renderView($viewName, $layout, $data=[])
+    public function renderView(string $viewName, string $layout, array $data=[]): string
     {
         return str_replace(
             "{{content}}",
@@ -15,7 +15,7 @@ abstract class Controller
         );
     }
 
-    public function renderLayout($layoutName, $data=[])
+    public function renderLayout(string $layoutName, array $data=[]): string
     {
         foreach ($data as $key => $value) {
             $$key = $value;
@@ -26,18 +26,18 @@ abstract class Controller
         return ob_get_clean();
     }
 
-    public function renderLayoutInside($parentLayout, $childLayoutName, $data=[])
+    public function renderLayoutInside(string $parentLayout, string $childLayoutName, array $data=[]): string
     {
         return $this->renderView("layouts/$childLayoutName", $parentLayout, $data);
     }
 
-    public function render($viewName, $layoutName, $data = []): string
+    public function render(string $viewName, string $layoutName, array $data = []): string
     {
         $layoutContent = $this->renderLayout($layoutName, $data);
         return $this->renderView($viewName, $layoutContent, $data);
     }
 
-    private function renderFile($file, $data = []) {
+    private function renderFile(string $file, array $data = []): string {
         foreach ($data as $key => $value) {
             $$key = $value;
         }
