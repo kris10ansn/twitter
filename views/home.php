@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="styles/layouts/home.css">
+<link rel="stylesheet" href="styles/views/home.css">
 
 <?php
 /** @var UserModel $user */
