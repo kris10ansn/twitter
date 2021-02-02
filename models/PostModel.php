@@ -19,6 +19,33 @@ class PostModel
     public int $liked;
     public int $likes;
 
+    /**
+     * @param UserModel $user
+     * @return PostModel[]
+     */
+    public static function postedBy(UserModel $user): array
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("
+            SELECT post.*, user.username, user.firstname, user.lastname,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:self_user_id) as liked,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
+            FROM post
+                JOIN user ON post.user_id = user.id
+            WHERE user.id=:user_id
+            ORDER BY post.created_at DESC
+        ");
+
+        $selfUserId = Session::get("user");
+
+        $statement->bindValue(":self_user_id", $selfUserId);
+        $statement->bindValue(":user_id", $user->id);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
+    }
+
     public static function from(int $id): PostModel
     {
         $db = Database::getInstance();
