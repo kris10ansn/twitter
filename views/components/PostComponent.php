@@ -10,6 +10,7 @@ use app\models\PostModel;
 class PostComponent
 {
     private string $heart = "❤️";
+    private string $comment = "💬";
     private PostModel $post;
 
     public function __construct(PostModel $post)
@@ -40,6 +41,11 @@ class PostComponent
                   <button class='like {$liked}' name='like' type='submit' form='{$this->post->id}'>
                     {$this->heart}{$this->post->likes}
                   </button>
+                  <a href='post/{$this->post->id}'>
+                      <button class='comment'>
+                        {$this->comment}
+                      </button>
+                  </a>
             </div>
         </div>";
     }

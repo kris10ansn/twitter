@@ -15,12 +15,11 @@ class HomeController extends Controller
 {
     public function home(): string
     {
-
         $postModel = new PostFormModel();
+        $user = Session::getUser();
+
 
         if (Request::getMethod() === Request::METHOD_POST) {
-            $user = Session::getUser();
-
             if ($user === null) {
                 die("Not logged in");
             }
@@ -33,7 +32,12 @@ class HomeController extends Controller
             }
         }
 
-        $posts = PostModel::all();
+        if ($user) {
+            $posts = PostModel::feed($user->id);
+        } else {
+            $posts = PostModel::all();
+        }
+
 
         $trending = TrendingModel::getTop();
 

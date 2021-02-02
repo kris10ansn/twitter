@@ -17,9 +17,16 @@ main div#posts div.post div.buttons {
   display: flex;
   justify-content: space-between;
 }
-main div#posts div.post div.buttons button.like {
+main div#posts div.post div.buttons button {
   all: unset;
   cursor: pointer;
+  padding: 10px;
+  border-radius: 100px;
+  overflow: visible;
+  transition: background 0.2s ease;
+}
+main div#posts div.post div.buttons button:hover {
+  background: #fff1;
 }
 main div#posts div.post div.buttons button.like:not(.liked) {
   filter: grayscale(255);

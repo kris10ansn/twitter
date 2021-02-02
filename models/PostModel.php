@@ -80,6 +80,27 @@ class PostModel
         return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
     }
 
+    public static function feed(int $userId): array
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("
+            SELECT post.*, user.username, user.firstname, user.lastname,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
+            FROM post
+                JOIN user ON post.user_id = user.id
+            WHERE post.user_id
+                      IN (SELECT followed_id FROM follow WHERE follower_id=:user_id)
+                OR post.user_id=:user_id
+            ORDER BY post.created_at DESC
+        ");
+
+        $statement->execute([ ":user_id" => $userId ]);
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
+    }
+
     public function like(UserModel $user)
     {
         $db = Database::getInstance();

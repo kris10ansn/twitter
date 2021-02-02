@@ -20,12 +20,24 @@ main {
         display: flex;
         justify-content: space-between;
 
-        button.like {
+        button {
           all: unset;
           cursor: pointer;
 
-          &:not(.liked) {
-            filter: grayscale(255);
+          padding: 10px;
+          border-radius: 100px;
+          overflow: visible;
+
+          transition: background 0.2s ease;
+
+          &:hover {
+            background: #fff1;
+          }
+
+          &.like {
+            &:not(.liked) {
+              filter: grayscale(255);
+            }
           }
         }
       }

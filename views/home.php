@@ -3,8 +3,10 @@
 <?php
 /** @var UserModel $user */
 /** @var PostFormModel $postFormModel */
+/** @var PostModel[] $posts */
 
 use app\models\PostFormModel;
+use app\models\PostModel;
 use app\models\UserModel;
 use app\src\Session;
 
@@ -38,4 +40,10 @@ $user = Session::getUser();
     <?php endif; ?>
 </div>
 
-<?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
+<?php if ($posts): ?>
+    <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
+<?php endif; ?>
+
+<div class="card">
+    <p><a href="users">Follow someone</a> to see more posts here. </p>
+</div>
