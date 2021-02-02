@@ -15,6 +15,18 @@ class UserModel
     public string $created_at;
     public string $password;
 
+    public function follow(int $followId): bool
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("INSERT INTO follow (follower_id, followed_id) VALUES (:id, :follow_id)");
+
+        $statement->bindValue(":id", $this->id);
+        $statement->bindValue(":follow_id", $followId);
+
+        return $statement->execute();
+    }
+
     public static function from(int $id): ?UserModel
     {
         $db = Database::getInstance();

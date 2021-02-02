@@ -9,6 +9,7 @@ use app\models\TrendingModel;
 use app\models\UserModel;
 use app\src\Path;
 use app\src\Request;
+use app\src\Session;
 
 class UserController extends \app\src\Controller
 {
@@ -30,5 +31,18 @@ class UserController extends \app\src\Controller
         $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
 
         return $this->renderView("user", $mainLayout, $data);
+    }
+
+    public function follow(): string
+    {
+        if (Request::getMethod() === Request::METHOD_POST) {
+            $path = Request::getPath();
+            $followId = Path::getParameter($path);
+            $user = Session::getUser();
+
+            $user->follow($followId);
+        }
+
+        return "<script>window.history.back();</script>";
     }
 }
