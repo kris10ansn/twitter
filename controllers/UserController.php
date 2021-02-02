@@ -4,6 +4,8 @@
 namespace app\controllers;
 
 
+use app\models\PostModel;
+use app\models\TrendingModel;
 use app\models\UserModel;
 use app\src\Path;
 use app\src\Request;
@@ -15,11 +17,18 @@ class UserController extends \app\src\Controller
         $path = Request::getPath();
         $userId = Path::getParameter($path);
 
-
         $user = UserModel::from($userId);
 
-        return $this->render("user", "app", [
-            "user" => $user
-        ]);
+        $data = [
+            "user" => $user,
+            "posts" => PostModel::postedBy($user),
+            "trending" => TrendingModel::getTop(),
+
+        ];
+
+        $appLayout = $this->renderLayout("app", $data);
+        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
+
+        return $this->renderView("user", $mainLayout, $data);
     }
 }
