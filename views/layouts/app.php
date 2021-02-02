@@ -17,7 +17,7 @@ $title = $title ?? "Twitter";
 
     <title><?= $title ?></title>
     <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/layouts/outer.css">
+    <link rel="stylesheet" href="styles/layouts/app.css">
 
 
     <style>

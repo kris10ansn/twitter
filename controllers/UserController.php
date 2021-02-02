@@ -18,7 +18,7 @@ class UserController extends \app\src\Controller
 
         $user = UserModel::from($userId);
 
-        return $this->render("user", "outer", [
+        return $this->render("user", "app", [
             "user" => $user
         ]);
     }

@@ -25,7 +25,7 @@ class AuthController extends \app\src\Controller
             }
         }
 
-        return $this->render("login", "outer", [
+        return $this->render("login", "app", [
             "model" => $loginForm,
             "title" => "Log in"
         ]);
@@ -46,7 +46,7 @@ class AuthController extends \app\src\Controller
             }
         }
 
-        return $this->render("register", "outer", [
+        return $this->render("register", "app", [
             "model" => $registerForm,
             "title" => "Register a new account"
         ]);

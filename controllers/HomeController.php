@@ -43,8 +43,8 @@ class HomeController extends Controller
             "trending" => $trending
         ];
 
-        $outerLayout = $this->renderLayout("outer", $data);
-        $mainLayout = $this->renderLayoutInside($outerLayout, "main", $data);
+        $appLayout = $this->renderLayout("app", $data);
+        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
 
         return $this->renderView("home", $mainLayout, $data);
     }
