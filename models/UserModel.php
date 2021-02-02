@@ -22,7 +22,13 @@ class UserModel
         $statement = $db->pdo->prepare("SELECT * FROM user WHERE id=:id");
         $statement->execute([":id" => $id]);
 
-        return $statement->fetchObject(UserModel::class);
+        $fetchedObject = $statement->fetchObject(UserModel::class);
+
+        if ($fetchedObject) {
+            return $fetchedObject;
+        }
+
+        return null;
     }
 
     public static function find($where): ?UserModel
