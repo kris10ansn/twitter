@@ -27,6 +27,36 @@ class UserModel
         return $statement->execute();
     }
 
+    public function unfollow(int $followedId): bool
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("DELETE FROM follow WHERE follower_id=:id AND followed_id=:followed_id");
+
+        $statement->bindValue(":id", $this->id);
+        $statement->bindValue(":followed_id", $followedId);
+
+        return $statement->execute();
+    }
+
+    public function follows(int $userId): bool
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("SELECT * FROM follow WHERE follower_id=:id AND followed_id=:user_id");
+
+        $statement->bindValue(":id", $this->id);
+        $statement->bindValue(":user_id", $userId);
+
+        $statement->execute();
+
+        if ($statement->fetch(\PDO::FETCH_ASSOC)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static function from(int $id): ?UserModel
     {
         $db = Database::getInstance();

@@ -40,7 +40,11 @@ class UserController extends \app\src\Controller
             $followId = Path::getParameter($path);
             $user = Session::getUser();
 
-            $user->follow($followId);
+            if (!$user->follows($followId)) {
+                $user->follow($followId);
+            } else {
+                $user->unfollow($followId);
+            }
         }
 
         return "<script>window.history.back();</script>";
