@@ -26,6 +26,7 @@ $router->addRoute(new Route("/logout", AuthController::class, "logout"));
 $router->addRoute(new Route(Path::withParameter("interact"), InteractionController::class, "interact"));
 $router->addRoute(new Route(Path::withParameter("hashtag"), HashtagController::class, "hashtag"));
 $router->addRoute(new Route(Path::withParameter("user"), UserController::class, "user"));
+$router->addRoute(new Route(Path::withParameter("follow"), UserController::class, "follow"));
 
 $router->resolve();
 
