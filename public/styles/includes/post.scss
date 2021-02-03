@@ -19,10 +19,7 @@ div.post {
   }
 
   &.mentioned {
-    $color: rgba(255, 0, 255, 0.03);
-    // Triks for å overlaye fargen over den allerede satte bakgrunnen.
-    // Vil bare ha litt farget overlay med lav opacity
-    background-image: linear-gradient($color, $color) !important;
+    background: var(--color-highlight-secondary) !important;
 
     div.mention {
       display: block !important;

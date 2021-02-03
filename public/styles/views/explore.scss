@@ -4,13 +4,18 @@ form#sort {
 
   $option-margin: 5px;
   margin-left: -$option-margin;
+  margin-bottom: 20px;
 
   button.option {
     all: unset;
     cursor: pointer;
     padding: 10px 15px;
     margin: 0 $option-margin;
-    background: rgb(42, 36, 58);
+    background: var(--color-highlight-secondary);
     border-radius: 40px;
+
+    &.sorted-by {
+      background: var(--color-highlight);
+    }
   }
 }

@@ -2,14 +2,18 @@ form#sort {
   display: flex;
   flex-direction: row;
   margin-left: -5px;
+  margin-bottom: 20px;
 }
 form#sort button.option {
   all: unset;
   cursor: pointer;
   padding: 10px 15px;
   margin: 0 5px;
-  background: #2a243a;
+  background: var(--color-highlight-secondary);
   border-radius: 40px;
+}
+form#sort button.option.sorted-by {
+  background: var(--color-highlight);
 }
 
 /*# sourceMappingURL=explore.css.map */
