@@ -32,6 +32,7 @@ $title = $title ?? "Twitter";
     <nav>
         <div id="left">
             <a href=".">Home</a>
+            <a href="explore">Explore</a>
         </div>
         <div id="right">
 
