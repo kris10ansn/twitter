@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\models\Hashtag;
+use app\models\PostModel;
 use app\models\TrendingModel;
 use app\src\Controller;
 use app\src\Path;
@@ -20,7 +21,7 @@ class HashtagController extends Controller
         $trending = TrendingModel::getTop();
 
         $data = [
-            "posts" => Hashtag::all($hashtag),
+            "posts" => PostModel::withHashtag($hashtag),
             "trending" => $trending,
             "hashtag" => $hashtag
         ];
