@@ -31,7 +31,7 @@ main div#new-post div#input div[contenteditable] {
 }
 main div#new-post div#input div[contenteditable]:empty:before {
   content: attr(data-placeholder);
-  opacity: 0.3;
+  opacity: 0.6;
   position: absolute;
 }
 main div#new-post textarea {
