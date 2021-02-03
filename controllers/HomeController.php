@@ -52,4 +52,17 @@ class HomeController extends Controller
 
         return $this->renderView("home", $mainLayout, $data);
     }
+
+    public function explore()
+    {
+        $data = [
+            "posts" => PostModel::all(),
+            "trending" => TrendingModel::getTop()
+        ];
+
+        $appLayout = $this->renderLayout("app", $data);
+        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
+
+        return $this->renderView("explore", $mainLayout, $data);
+    }
 }
