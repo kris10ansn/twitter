@@ -10,7 +10,7 @@ use app\src\Response;
 use app\src\Router;
 use app\src\Session;
 
-class InteractionController extends \app\src\Controller
+class PostController extends \app\src\Controller
 {
     public function interact(): string
     {
