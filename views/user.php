@@ -11,7 +11,7 @@ $me = Session::getUser();
 
 <h1><?= "$user->firstname $user->lastname" ?> (<a href="user/<?= $user->id ?>">@<?= $user->username ?></a>)</h1>
 
-<?php if (!$me || $user->id !== $me->id): ?>
+<?php if ($me && $user->id !== $me->id): ?>
     <form action="follow/<?= $user->id ?>" method="post">
         <button type="submit">
             <?= !$me->follows($user->id) ? "Follow" : "Unfollow"; ?>
