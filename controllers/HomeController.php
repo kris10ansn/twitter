@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function home(): string
     {
-        $postModel = new PostFormModel();
+        $postFormModel = new PostFormModel();
         $user = Session::getUser();
 
 
@@ -25,26 +25,17 @@ class HomeController extends Controller
             }
 
             $request = Request::getBody();
-            $postModel->loadData($request);
+            $postFormModel->loadData($request);
 
-            if ($postModel->validate() && $postModel->post()) {
+            if ($postFormModel->validate() && $postFormModel->post()) {
                 Response::redirect("/");
             }
         }
 
-        if ($user) {
-            $posts = PostModel::feed($user->id);
-        } else {
-            $posts = PostModel::all();
-        }
-
-
-        $trending = TrendingModel::getTop();
-
         $data = [
-            "postFormModel" => $postModel,
-            "posts" => $posts,
-            "trending" => $trending
+            "postFormModel" => $postFormModel,
+            "posts" => $user ? PostModel::feed($user->id) : null,
+            "trending" => TrendingModel::getTop()
         ];
 
         $appLayout = $this->renderLayout("app", $data);

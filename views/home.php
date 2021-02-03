@@ -36,18 +36,16 @@ $user = Session::getUser();
             <p class="error"><?= $postFormModel->getFirstError("text") ?></p>
         </form>
     <?php else: ?>
-        <p><a href="login">Log in</a> to post</p>
+        <p><a href="login">Log in</a> to post and follow users. <a href="explore">Explore</a>.</p>
     <?php endif; ?>
 </div>
 
 <?php if ($user !== null): ?>
     <h1>Following</h1>
-<?php endif; ?>
 
-<?php if ($posts): ?>
     <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
-<?php endif; ?>
 
-<div class="card">
-    <p><a href="users">Follow someone</a> to see more posts here. </p>
-</div>
+    <div class="card">
+        <p><a href="users">Follow someone</a> to see more posts here. </p>
+    </div>
+<?php endif; ?>
