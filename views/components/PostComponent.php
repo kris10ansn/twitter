@@ -13,10 +13,12 @@ class PostComponent
     private string $heart = "❤️";
     private string $comment = "💬";
     private PostModel $post;
+    private bool $list;
 
-    public function __construct(PostModel $post)
+    public function __construct(PostModel $post, $list = true)
     {
         $this->post = $post;
+        $this->list = $list;
     }
 
     public function __toString(): string
@@ -41,6 +43,8 @@ class PostComponent
             }
         }
 
+        $viewLink = $this->list? "<a href='post/{$this->post->id}' class='view-post'>View post</a>" : "";
+
         return "<div class='card post {$mentioned}'>
             <form action='interact/{$this->post->id}' id='{$this->post->id}' method='post'></form>
             <div class='top'>
@@ -59,6 +63,7 @@ class PostComponent
                   <button class='like {$liked}' name='like' type='submit' form='{$this->post->id}'>
                     {$this->heart}{$this->post->likes}
                   </button>
+                  $viewLink
                   <a href='post/{$this->post->id}'>
                       <button class='comment'>
                         {$this->comment}
