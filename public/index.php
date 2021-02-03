@@ -20,6 +20,7 @@ Session::start();
 $router = new Router();
 
 $router->addRoute(new Route("/", HomeController::class, "home"));
+$router->addRoute(new Route("/explore", HomeController::class, "explore"));
 $router->addRoute(new Route("/login", AuthController::class, "login"));
 $router->addRoute(new Route("/register", AuthController::class, "register"));
 $router->addRoute(new Route("/logout", AuthController::class, "logout"));
