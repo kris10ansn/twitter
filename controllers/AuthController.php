@@ -55,6 +55,6 @@ class AuthController extends \app\src\Controller
     public function logout()
     {
         Session::logout();
-        Response::redirect("/");
+        echo "<script>window.history.back();</script>";
     }
 }
