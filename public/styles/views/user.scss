@@ -1,0 +1,12 @@
+div#user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  form {
+    button.follows {
+      background: var(--color-highlight-secondary);
+    }
+  }
+}

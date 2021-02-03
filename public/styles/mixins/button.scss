@@ -1,0 +1,10 @@
+@mixin main-button {
+  color: var(--color-font-main);
+  background: var(--color-highlight);
+  border: none;
+  outline: none;
+
+  padding: 10px 15px;
+  border-radius: 36px;
+  font: inherit;
+}

@@ -39,14 +39,16 @@ div.post {
   div.buttons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
-    margin: 0 -6px;
+    $padding: 6px;
+    margin: 0 $padding * -1;
 
     button {
       all: unset;
       cursor: pointer;
 
-      padding: 6px;
+      padding: $padding;
       border-radius: 100px;
       overflow: visible;
 

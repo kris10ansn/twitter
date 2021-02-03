@@ -33,4 +33,14 @@ button:hover {
   cursor: pointer;
 }
 
+button:not(.native) {
+  color: var(--color-font-main);
+  background: var(--color-highlight);
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 36px;
+  font: inherit;
+}
+
 /*# sourceMappingURL=global.css.map */

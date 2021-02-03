@@ -5,7 +5,13 @@ form#sort {
   margin-bottom: 20px;
 }
 form#sort button.option {
-  all: unset;
+  color: var(--color-font-main);
+  background: var(--color-highlight);
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 36px;
+  font: inherit;
   cursor: pointer;
   padding: 10px 15px;
   margin: 0 5px;

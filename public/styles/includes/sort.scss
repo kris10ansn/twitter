@@ -1,3 +1,5 @@
+@import "../mixins/button.scss";
+
 form#sort {
   display: flex;
   flex-direction: row;
@@ -7,7 +9,7 @@ form#sort {
   margin-bottom: 20px;
 
   button.option {
-    all: unset;
+    @include main-button;
     cursor: pointer;
     padding: 10px 15px;
     margin: 0 $option-margin;

@@ -1,0 +1,11 @@
+div#user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+div#user form button.follows {
+  background: var(--color-highlight-secondary);
+}
+
+/*# sourceMappingURL=user.css.map */

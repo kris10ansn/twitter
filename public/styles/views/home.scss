@@ -14,17 +14,8 @@ main {
 
       button {
         font-size: 0.8em;
-        font-weight: bold;
-        color: var(--color-font-main);
-        background: var(--color-highlight);
-        border: none;
-        outline: none;
-
         margin-right: 5px;
         margin-left: 15px;
-
-        padding: 6px 8px;
-        border-radius: 6px;
         height: fit-content;
       }
 

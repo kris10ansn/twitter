@@ -31,6 +31,7 @@ div.post div.text {
 div.post div.buttons {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 -6px;
 }
 div.post div.buttons button {
