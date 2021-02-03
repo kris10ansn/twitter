@@ -18,6 +18,7 @@ $title = $title ?? "Twitter";
     <title><?= $title ?></title>
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/layouts/app.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 
     <style>
