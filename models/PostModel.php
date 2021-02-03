@@ -50,12 +50,27 @@ class PostModel
     {
         $db = Database::getInstance();
 
+        $user = Session::getUser();
+
+        if ($user !== null) {
+            $likedQuery = "(SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked";
+        } else {
+            $likedQuery = "0 as liked";
+        }
+
         $statement = $db->pdo->prepare("
-            SELECT post.*, user.username, user.firstname, user.lastname
+            SELECT post.*, user.username, user.firstname, user.lastname,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes,
+                   $likedQuery
             FROM post JOIN user ON post.user_id = user.id WHERE post.id=:id
         ");
 
-        $statement->execute([":id" => $id]);
+        if ($user !== null) {
+            $statement->bindValue(":user_id", $user->id);
+        }
+
+        $statement->bindValue(":id", $id);
+        $statement->execute();
 
         return $statement->fetchObject(PostModel::class);
     }
