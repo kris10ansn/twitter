@@ -120,7 +120,7 @@ class PostModel
         return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
     }
 
-    public static function withHashtag(string $hashtag): array
+    public static function withHashtag(string $hashtag, $sort="post.created_at", $order="DESC"): array
     {
         $db = Database::getInstance();
 
@@ -133,7 +133,7 @@ class PostModel
                 JOIN post ON hashtagged.post_id = post.id
                 JOIN user ON post.user_id = user.id
             WHERE name=:name
-            ORDER BY post.created_at
+            ORDER BY $sort $order
         ");
 
         $userId= Session::get("user");
