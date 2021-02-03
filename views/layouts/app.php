@@ -45,7 +45,7 @@ $title = $title ?? "Twitter";
                 <div><?= "$user->firstname $user->lastname ($user->email)" ?></div>
                 <div>
                     <form action="logout" method="post">
-                        <button type="submit" name="logout">
+                        <button type="submit" name="logout" class="native">
                             Log out
                         </button>
                     </form>
