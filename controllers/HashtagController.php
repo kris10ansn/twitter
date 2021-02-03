@@ -18,11 +18,16 @@ class HashtagController extends Controller
         $path = Request::getPath();
         $hashtag = Path::getParameter($path);
 
-        $trending = TrendingModel::getTop();
+        $sort = "likes";
+        $sortParam = Request::getParameter(Request::METHOD_GET, "sort");
+
+        if ($sortParam === "new") {
+            $sort = "post.created_at";
+        }
 
         $data = [
-            "posts" => PostModel::withHashtag($hashtag),
-            "trending" => $trending,
+            "posts" => PostModel::withHashtag($hashtag, $sort),
+            "trending" => TrendingModel::getTop(),
             "hashtag" => $hashtag
         ];
 
