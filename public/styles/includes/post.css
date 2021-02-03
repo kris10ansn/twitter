@@ -2,6 +2,25 @@ div.post {
   display: block;
   margin: 10px 0;
 }
+div.post div.top {
+  display: flex;
+}
+div.post div.top div.spacer {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+div.post div.top div.mention {
+  color: mediumpurple;
+  font-weight: 900;
+  display: none;
+}
+div.post.mentioned {
+  background-image: linear-gradient(rgba(255, 0, 255, 0.03), rgba(255, 0, 255, 0.03)) !important;
+}
+div.post.mentioned div.mention {
+  display: block !important;
+  align-self: flex-end;
+}
 div.post form {
   display: none;
 }

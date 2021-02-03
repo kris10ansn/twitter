@@ -6,6 +6,7 @@ namespace app\views\components;
 
 use app\models\PostFormModel;
 use app\models\PostModel;
+use app\src\Session;
 
 class PostComponent
 {
@@ -27,11 +28,28 @@ class PostComponent
             $this->post->text
         );
 
-        return "<div class='card post'>
+        preg_match_all("/@\[(\d+)](\w+)/", $this->post->text, $matches);
+        $user = Session::getUser();
+
+        $mentioned = "";
+
+        if (isset($matches) && isset($matches[2]) && $user !== null) {
+            foreach ($matches[2] as $match) {
+                if (strtolower($match) === strtolower($user->username)) {
+                    $mentioned = "mentioned";
+                }
+            }
+        }
+
+        return "<div class='card post {$mentioned}'>
             <form action='interact/{$this->post->id}' id='{$this->post->id}' method='post'></form>
             <div class='top'>
-                <b>{$this->post->firstname} {$this->post->lastname}</b>
-                (<a href='user/{$this->post->user_id}'>@{$this->post->username}</a>)
+                <div class='user'>
+                    <b>{$this->post->firstname} {$this->post->lastname}</b>
+                    (<a href='user/{$this->post->user_id}'>@{$this->post->username}</a>)
+                </div>
+                <div class='spacer'></div>
+                <div class='mention'>@</div>
             </div>
             <div class='text'>
                 {$processedText}
