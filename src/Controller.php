@@ -6,15 +6,6 @@ namespace app\src;
 
 abstract class Controller
 {
-    public function renderText(string $text, string $layoutName): string
-    {
-        return str_replace(
-            "{{content}}",
-            $text,
-            $this->renderLayout($layoutName)
-        );
-    }
-
     public function renderView(string $viewName, string $layout, array $data=[]): string
     {
         return str_replace(
