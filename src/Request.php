@@ -10,9 +10,24 @@ class Request
     public const METHOD_GET = "get";
     public const METHOD_POST = "post";
 
+    public static function init()
+    {
+        $path = self::getPathRaw();
+        $query = parse_url($path, PHP_URL_QUERY);
+        parse_str($query, $parsedQuery);
+
+        foreach ($parsedQuery as $key => $value) {
+            $_GET[$key] = $value;
+        }
+    }
+
+    private static function getPathRaw() {
+        return str_replace(constant("APP_URL_ROOT"), "", $_SERVER["REQUEST_URI"]);
+    }
+
     public static function getPath()
     {
-        $path = str_replace(constant("APP_URL_ROOT"), "", $_SERVER["REQUEST_URI"]);
+        $path = self::getPathRaw();
         $argumentsPosition = strpos($path, "?");
 
         if ($argumentsPosition === false) {
@@ -27,16 +42,16 @@ class Request
         return strtolower($_SERVER["REQUEST_METHOD"]);
     }
 
-    public static function getBody(): array
+    public static function getBody($method = null): array
     {
         $body = [];
-        $method = self::getMethod();
+        $method = $method ?? self::getMethod();
 
         $inputType = $method === self::METHOD_GET ? INPUT_GET : INPUT_POST;
         $requestObject = $method === self::METHOD_GET ? $_GET : $_POST;
 
         foreach ($requestObject as $key => $value) {
-            $body[$key] = filter_input($inputType, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+            $body[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
         }
 
         return $body;
@@ -44,7 +59,7 @@ class Request
 
     public static function getParameter(string $method, string $key)
     {
-        $requestObject = $method === self::METHOD_GET ? $_GET : $_POST;
+        $requestObject = self::getBody($method);
         return $requestObject[$key] ?? null;
     }
 }
