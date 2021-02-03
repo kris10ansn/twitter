@@ -44,10 +44,17 @@ class HomeController extends Controller
         return $this->renderView("home", $mainLayout, $data);
     }
 
-    public function explore()
+    public function explore(): string
     {
+        $sort = "likes";
+        $sortParam = Request::getParameter(Request::METHOD_GET, "sort");
+
+        if ($sortParam === "new") {
+            $sort = "post.created_at";
+        }
+
         $data = [
-            "posts" => PostModel::all(),
+            "posts" => PostModel::all($sort),
             "trending" => TrendingModel::getTop()
         ];
 
