@@ -40,6 +40,10 @@ $user = Session::getUser();
     <?php endif; ?>
 </div>
 
+<?php if ($user !== null): ?>
+    <h1>Following</h1>
+<?php endif; ?>
+
 <?php if ($posts): ?>
     <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
 <?php endif; ?>
