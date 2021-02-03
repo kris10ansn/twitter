@@ -75,8 +75,12 @@ class PostModel
         return $statement->fetchObject(PostModel::class);
     }
 
-    /** @return PostModel[] */
-    public static function all(): array
+    /**
+     * @param string $sort
+     * @param string $order
+     * @return PostModel[]
+     */
+    public static function all($sort = "post.created_at", $order="DESC"): array
     {
         $db = Database::getInstance();
 
@@ -84,7 +88,7 @@ class PostModel
             SELECT post.*, user.username, user.firstname, user.lastname,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
-            FROM post JOIN user ON post.user_id = user.id ORDER BY post.created_at DESC
+            FROM post JOIN user ON post.user_id = user.id ORDER BY $sort $order
         ");
 
         $userId = Session::get("user");
