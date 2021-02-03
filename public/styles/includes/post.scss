@@ -1,0 +1,41 @@
+div.post {
+  display: block;
+  margin: 10px 0;
+
+  form {
+    display: none;
+  }
+
+  div.text {
+    margin: 12px 0;
+    overflow-wrap: break-word;
+  }
+
+  div.buttons {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0 -6px;
+
+    button {
+      all: unset;
+      cursor: pointer;
+
+      padding: 6px;
+      border-radius: 100px;
+      overflow: visible;
+
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #fff1;
+      }
+
+      &.like {
+        &:not(.liked) {
+          filter: grayscale(255);
+        }
+      }
+    }
+  }
+}

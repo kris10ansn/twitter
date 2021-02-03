@@ -29,9 +29,4 @@ div.post div.buttons button.like:not(.liked) {
   filter: grayscale(255);
 }
 
-main div#posts {
-  display: flex;
-  flex-direction: column;
-}
-
-/*# sourceMappingURL=posts.css.map */
+/*# sourceMappingURL=post.css.map */
