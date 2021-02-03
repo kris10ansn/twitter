@@ -1,0 +1,16 @@
+form#sort {
+  display: flex;
+  flex-direction: row;
+
+  $option-margin: 5px;
+  margin-left: -$option-margin;
+
+  button.option {
+    all: unset;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin: 0 $option-margin;
+    background: rgb(42, 36, 58);
+    border-radius: 40px;
+  }
+}

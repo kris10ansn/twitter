@@ -1,0 +1,15 @@
+form#sort {
+  display: flex;
+  flex-direction: row;
+  margin-left: -5px;
+}
+form#sort button.option {
+  all: unset;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin: 0 5px;
+  background: #2a243a;
+  border-radius: 40px;
+}
+
+/*# sourceMappingURL=explore.css.map */
