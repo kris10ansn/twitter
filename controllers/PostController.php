@@ -5,6 +5,8 @@ namespace app\controllers;
 
 
 use app\models\PostModel;
+use app\models\TrendingModel;
+use app\src\Path;
 use app\src\Request;
 use app\src\Response;
 use app\src\Router;
@@ -12,6 +14,24 @@ use app\src\Session;
 
 class PostController extends \app\src\Controller
 {
+    public function post(): string
+    {
+        $path = Request::getPath();
+        $postId = Path::getParameter($path);
+        $post = PostModel::from($postId);
+
+        $data = [
+            "trending" => TrendingModel::getTop(),
+            "post" => $post,
+            "title" => "Twitter | Post by $post->firstname $post->lastname"
+        ];
+
+        $appLayout = $this->renderLayout("app", $data);
+        $layout = $this->renderLayoutInside($appLayout, "main", $data);
+
+        return $this->renderView("post", $layout, $data);
+    }
+    
     public function interact(): string
     {
         if (Request::getMethod() === Request::METHOD_POST) {
