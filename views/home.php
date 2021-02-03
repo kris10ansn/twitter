@@ -22,6 +22,10 @@ $user = Session::getUser();
     }
 </script>
 
+<?php if ($user !== null): ?>
+    <h1>Following</h1>
+<?php endif; ?>
+
 <div id="new-post" class="card">
     <?php if ($user !== null): ?>
         <form action="" method="post" onsubmit="onSubmit()">
@@ -41,8 +45,6 @@ $user = Session::getUser();
 </div>
 
 <?php if ($user !== null): ?>
-    <h1>Following</h1>
-
     <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
 
     <div class="card">
