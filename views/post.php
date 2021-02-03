@@ -8,4 +8,4 @@ use app\views\components\PostComponent;
 
 <link rel="stylesheet" href="styles/includes/post.css">
 
-<?= new PostComponent($post) ?>
+<?= new PostComponent($post, false) ?>
