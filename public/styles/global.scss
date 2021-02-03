@@ -16,6 +16,10 @@ html, body {
 
   background: var(--color-background);
   color: var(--color-font-main);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 * {
