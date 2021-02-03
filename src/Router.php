@@ -17,6 +17,7 @@ class Router
 
     public function resolve()
     {
+        Request::init();
         $path = Request::getPath();
         $found = false;
 
