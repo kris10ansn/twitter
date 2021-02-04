@@ -6,6 +6,6 @@ use app\views\components\PostComponent;
 
 ?>
 
-<link rel="stylesheet" href="styles/includes/post.css">
+<link rel="stylesheet" href="styles/components/post.css">
 
 <?= new PostComponent($post, false) ?>
