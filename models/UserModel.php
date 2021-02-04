@@ -57,6 +57,26 @@ class UserModel
         return false;
     }
 
+    public function followerCount(): int
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("SELECT COUNT(*) FROM follow WHERE followed_id=:user_id");
+        $statement->execute([":user_id" => $this->id]);
+
+        return (int) $statement->fetchColumn();
+    }
+
+    public function followsCount(): int
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("SELECT COUNT(*) FROM follow WHERE follower_id=:user_id");
+        $statement->execute([":user_id" => $this->id]);
+
+        return (int) $statement->fetchColumn();
+    }
+
     public static function from(int $id): ?UserModel
     {
         $db = Database::getInstance();
