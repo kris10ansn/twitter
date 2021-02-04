@@ -10,6 +10,14 @@ use app\src\Route;
 use app\src\Router;
 use app\src\Session;
 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+date_default_timezone_set("Europe/Oslo");
+
 $root = str_replace("\\", "/", dirname(__DIR__));
 require_once($root . "/vendor/autoload.php");
 
