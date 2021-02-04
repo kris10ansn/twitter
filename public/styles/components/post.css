@@ -15,7 +15,7 @@ div.post div.top div.mention {
   display: none;
 }
 div.post.mentioned {
-  background-image: linear-gradient(rgba(255, 0, 255, 0.03), rgba(255, 0, 255, 0.03)) !important;
+  background: var(--color-highlight-secondary) !important;
 }
 div.post.mentioned div.mention {
   display: block !important;
@@ -31,6 +31,7 @@ div.post div.text {
 div.post div.buttons {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 -6px;
 }
 div.post div.buttons button {
