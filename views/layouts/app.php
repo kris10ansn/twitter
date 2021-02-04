@@ -42,7 +42,9 @@ $title = $title ?? "Twitter";
                 <a href="login" class="login">Log in</a>
                 <a href="register" class="register">Register account</a>
             <?php else: ?>
-                <div><?= "$user->firstname $user->lastname ($user->email)" ?></div>
+                <a class="user" href="user/<?= $user->id ?>">
+                    <?= "$user->firstname $user->lastname ($user->email)" ?>
+                </a>
                 <div>
                     <form action="logout" method="post">
                         <button type="submit" name="logout" class="native">
