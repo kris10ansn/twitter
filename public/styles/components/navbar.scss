@@ -44,6 +44,10 @@ nav {
       &.login, &.register {
         align-self: flex-end;
       }
+
+      &.user {
+        color: var(--color-font-link);
+      }
     }
 
     div {

@@ -43,6 +43,10 @@ nav div#left a.login,
 nav div#left a.register {
   align-self: flex-end;
 }
+nav div#right a.user,
+nav div#left a.user {
+  color: var(--color-font-link);
+}
 nav div#right div,
 nav div#left div {
   padding: 20px;
