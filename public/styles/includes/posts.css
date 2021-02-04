@@ -5,6 +5,9 @@ div.post {
 div.post div.top {
   display: flex;
 }
+div.post div.top div.date {
+  color: gray;
+}
 div.post div.top div.spacer {
   flex-grow: 1;
   flex-basis: 0;
@@ -12,6 +15,7 @@ div.post div.top div.spacer {
 div.post div.top div.mention {
   color: mediumpurple;
   font-weight: 900;
+  margin-left: 8px;
   display: none;
 }
 div.post.mentioned {
