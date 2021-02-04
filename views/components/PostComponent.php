@@ -7,6 +7,7 @@ namespace app\views\components;
 use app\models\PostFormModel;
 use app\models\PostModel;
 use app\src\Session;
+use app\src\util\Time;
 
 class PostComponent
 {
@@ -43,6 +44,9 @@ class PostComponent
             }
         }
 
+        $time = strtotime($this->post->created_at);
+        $date = Time::since($time);
+
         $viewLink = $this->list? "<a href='post/{$this->post->id}' class='view-post'>View post</a>" : "";
 
         return "<div class='card post {$mentioned}'>
@@ -53,6 +57,7 @@ class PostComponent
                     (<a href='user/{$this->post->user_id}'>@{$this->post->username}</a>)
                 </div>
                 <div class='spacer'></div>
+                <div class='date'>{$date}</div>
                 <div class='mention'>@</div>
             </div>
             <div class='text'>
