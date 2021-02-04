@@ -1,12 +1,16 @@
 div#user {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  div.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-  form {
-    button.follows {
-      background: var(--color-highlight-secondary);
+    form {
+      button.follows {
+        background: var(--color-highlight-secondary);
+      }
     }
   }
+
+  margin-bottom: 2em;
 }

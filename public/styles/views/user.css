@@ -1,10 +1,13 @@
 div#user {
+  margin-bottom: 2em;
+}
+div#user div.top {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-div#user form button.follows {
+div#user div.top form button.follows {
   background: var(--color-highlight-secondary);
 }
 
