@@ -4,26 +4,43 @@
 namespace app\controllers;
 
 
+use app\models\PostFormModel;
 use app\models\PostModel;
 use app\models\TrendingModel;
 use app\src\Path;
 use app\src\Request;
 use app\src\Response;
-use app\src\Router;
 use app\src\Session;
 
 class PostController extends \app\src\Controller
 {
     public function post(): string
     {
+        $postFormModel = new PostFormModel();
+
+        $request = Request::getBody();
         $path = Request::getPath();
         $postId = Path::getParameter($path);
         $post = PostModel::from($postId);
 
+        if (Request::getMethod() === Request::METHOD_POST) {
+            $postFormModel->loadData($request);
+            $postFormModel->fields["reply_id"] = $postId;
+
+            if ($postFormModel->validate() && $postFormModel->post()) {
+                $postFormModel->fields["text"] = "";
+                $postFormModel->fields["user_id"] = "";
+
+                Response::redirect("/post/$postId");
+            }
+        }
+
         $data = [
             "trending" => TrendingModel::getTop(),
             "post" => $post,
-            "title" => "Twitter | Post by $post->firstname $post->lastname"
+            "posts" => $post->getReplies(),
+            "title" => "Twitter | Post by $post->firstname $post->lastname",
+            "postFormModel" => $postFormModel
         ];
 
         $appLayout = $this->renderLayout("app", $data);
