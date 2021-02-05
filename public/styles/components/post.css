@@ -2,42 +2,52 @@ div.post {
   display: block;
   margin: 10px 0;
 }
+
 div.post div.top {
   display: flex;
 }
+
 div.post div.top div.date {
   color: gray;
 }
+
 div.post div.top div.spacer {
   flex-grow: 1;
   flex-basis: 0;
 }
+
 div.post div.top div.mention {
   color: mediumpurple;
   font-weight: 900;
   margin-left: 8px;
   display: none;
 }
+
 div.post.mentioned {
   background: var(--color-highlight-secondary) !important;
 }
+
 div.post.mentioned div.mention {
   display: block !important;
   align-self: flex-end;
 }
+
 div.post form {
   display: none;
 }
+
 div.post div.text {
   margin: 12px 0;
   overflow-wrap: break-word;
 }
+
 div.post div.buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 -6px;
 }
+
 div.post div.buttons button {
   all: unset;
   cursor: pointer;
@@ -46,11 +56,15 @@ div.post div.buttons button {
   overflow: visible;
   transition: background 0.2s ease;
 }
+
 div.post div.buttons button:hover {
   background: #fff1;
 }
+
 div.post div.buttons button.like:not(.liked) {
   filter: grayscale(255);
 }
+
+/*# sourceMappingURL=post.css.map */
 
 /*# sourceMappingURL=post.css.map */
