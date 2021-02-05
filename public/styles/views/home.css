@@ -1,41 +1,8 @@
-main div#new-post {
-  margin-bottom: 26px;
+div#top-card {
   font-size: 20px;
-  max-width: 100%;
+  margin-bottom: 26px;
 }
-main div#new-post p.error {
-  margin-top: 14px;
-}
-main div#new-post div#input {
-  display: flex;
-  align-items: center;
-}
-main div#new-post div#input button {
-  font-size: 0.8em;
-  margin-right: 5px;
-  margin-left: 15px;
-  height: fit-content;
-}
-main div#new-post div#input div[contenteditable] {
-  cursor: text;
-  border: none;
-  width: 100%;
-  outline: none;
-  caret-color: var(--color-font-main);
-  color: var(--color-font-main);
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-background);
-  min-height: 2em;
-  overflow-wrap: break-word;
-  max-width: 500px;
-}
-main div#new-post div#input div[contenteditable]:empty:before {
-  content: attr(data-placeholder);
-  opacity: 0.6;
-  position: absolute;
-}
-main div#new-post textarea {
-  display: none;
-}
+
+/*# sourceMappingURL=home.css.map */
 
 /*# sourceMappingURL=home.css.map */
