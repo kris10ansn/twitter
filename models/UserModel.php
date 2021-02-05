@@ -14,6 +14,7 @@ class UserModel
     public string $email;
     public string $created_at;
     public string $password;
+    public ?string  $biography;
 
     public function follow(int $followId): bool
     {
