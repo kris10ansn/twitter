@@ -19,6 +19,11 @@ class PostModel
     public int $liked;
     public int $likes;
 
+    private const SELECT_POSTS = "SELECT post.*, user.username, user.firstname, user.lastname,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
+                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
+            FROM post JOIN user ON post.user_id = user.id";
+
     /**
      * @param UserModel $user
      * @return PostModel[]
@@ -33,7 +38,7 @@ class PostModel
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
             FROM post
                 JOIN user ON post.user_id = user.id
-            WHERE user.id=:user_id
+            WHERE user.id=:user_id AND post.reply_id IS NULL
             ORDER BY post.created_at DESC
         ");
 
@@ -84,12 +89,7 @@ class PostModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("
-            SELECT post.*, user.username, user.firstname, user.lastname,
-                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
-                   (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
-            FROM post JOIN user ON post.user_id = user.id ORDER BY $sort $order
-        ");
+        $statement = $db->pdo->prepare(self::SELECT_POSTS . " WHERE post.reply_id IS NULL ORDER BY $sort $order");
 
         $userId = Session::get("user");
 
@@ -109,9 +109,9 @@ class PostModel
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
             FROM post
                 JOIN user ON post.user_id = user.id
-            WHERE post.user_id
+            WHERE (post.user_id
                       IN (SELECT followed_id FROM follow WHERE follower_id=:user_id)
-                OR post.user_id=:user_id
+                OR post.user_id=:user_id) AND post.reply_id IS NULL
             ORDER BY post.created_at DESC
         ");
 
@@ -169,5 +169,16 @@ class PostModel
         $obj = $statement->fetchObject();
 
         return (bool) $obj->liked;
+    }
+
+    public function getReplies(): array
+    {
+        $db = Database::getInstance();
+        $userId = Session::get("user");
+
+        $statement = $db->pdo->prepare(self::SELECT_POSTS . " WHERE post.reply_id=:post_id ORDER BY post.created_at");
+        $statement->execute(["post_id" => $this->id, "user_id" => $userId]);
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
     }
 }
