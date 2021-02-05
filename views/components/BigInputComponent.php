@@ -11,7 +11,7 @@ class BigInputComponent
     private FormModel $formModel;
     private string $placeholder;
     private string $action;
-    private int $identifier;
+    private string $identifier;
 
     public function __construct(FormModel $formModel, string $placeholder, string $action="")
     {
@@ -19,11 +19,12 @@ class BigInputComponent
         $this->placeholder = $placeholder;
         $this->action = $action;
 
-        $this->identifier = rand(0, PHP_INT_MAX);
+        $this->identifier = "input" . rand(0, PHP_INT_MAX);
     }
 
     public function __toString(): string
     {
+        /** @lang HTML */
         return "
         <script>
             function onSubmit{$this->identifier}() {
