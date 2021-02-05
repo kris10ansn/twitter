@@ -7,7 +7,9 @@ use app\src\Session;
 
 $me = Session::getUser();
 
-$follows = $me->follows($user->id);
+if ($me) {
+    $follows = $me->follows($user->id);
+}
 ?>
 
 <link rel="stylesheet" href="styles/views/user.css">
@@ -24,7 +26,7 @@ $follows = $me->follows($user->id);
             </form>
         <?php endif; ?>
     </div>
-
+    <p><?= $user->biography ?? "" ?></p>
     <p>Followers: <b><?= $user->followerCount() ?></b>&#9; Follows: <b><?= $user->followsCount() ?></b></p>
 </div>
 
