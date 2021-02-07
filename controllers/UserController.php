@@ -18,13 +18,22 @@ class UserController extends \app\src\Controller
         $path = Request::getPath();
         $userId = Path::getParameter($path);
 
-        $user = UserModel::from($userId);
+        if (is_numeric($userId)) {
+            $user = UserModel::from(intval($userId));
+        }
+
+        $trending = TrendingModel::getTop();
+
+        if (!isset($user) || !$user) {
+            $appLayout = $this->renderLayout("app");
+            $mainLayout = $this->renderLayoutInside($appLayout, "main", ["trending" => $trending]);
+            return $this->renderText("<h1>User not found</h1>", $mainLayout);
+        }
 
         $data = [
             "user" => $user,
             "posts" => PostModel::postedBy($user),
-            "trending" => TrendingModel::getTop(),
-
+            "trending" => $trending,
         ];
 
         $appLayout = $this->renderLayout("app", $data);
