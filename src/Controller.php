@@ -15,6 +15,11 @@ abstract class Controller
         );
     }
 
+    public function renderText(string $text, string $layout)
+    {
+        return str_replace("{{content}}", $text, $layout);
+    }
+
     public function renderLayout(string $layoutName, array $data=[]): string
     {
         foreach ($data as $key => $value) {
