@@ -16,6 +16,9 @@ class UserModel
     public string $password;
     public ?string  $biography;
 
+    private ?int $followerCount = null;
+    private ?int $followsCount = null;
+
     public function follow(int $followId): bool
     {
         $db = Database::getInstance();
@@ -60,22 +63,33 @@ class UserModel
 
     public function followerCount(): int
     {
+        if ($this->followerCount !== null) {
+            return $this->followerCount;
+        }
+
         $db = Database::getInstance();
 
         $statement = $db->pdo->prepare("SELECT COUNT(*) FROM follow WHERE followed_id=:user_id");
         $statement->execute([":user_id" => $this->id]);
 
-        return (int) $statement->fetchColumn();
+        $this->followerCount = (int) $statement->fetchColumn();
+
+        return $this->followerCount;
     }
 
     public function followsCount(): int
     {
+        if ($this->followsCount !== null) {
+            return $this->followsCount;
+        }
+
         $db = Database::getInstance();
 
         $statement = $db->pdo->prepare("SELECT COUNT(*) FROM follow WHERE follower_id=:user_id");
         $statement->execute([":user_id" => $this->id]);
 
-        return (int) $statement->fetchColumn();
+        $this->followsCount = (int) $statement->fetchColumn();
+        return $this->followsCount;
     }
 
     public static function from(int $id): ?UserModel
