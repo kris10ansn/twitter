@@ -7,6 +7,8 @@ use app\src\Database;
 
 class UserModel
 {
+    public const SORT_FOLLOWERS = "(SELECT COUNT(*) FROM follow WHERE followed_id=user.id)";
+
     public int $id;
     public string $username;
     public string $firstname;
@@ -129,5 +131,14 @@ class UserModel
         }
 
         return null;
+    }
+
+    public static function all($sort="user.created_at", $order="ASC"): array
+    {
+        $db = Database::getInstance();
+        $statement = $db->pdo->prepare("SELECT * FROM user ORDER BY $sort $order");
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
     }
 }
