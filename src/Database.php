@@ -17,8 +17,9 @@ final class Database
         $database = "twitter";
         $username = "root";
         $password = "ncWMI1w5yzdpD1KV";
+        $charset = "utf8";
 
-        $this->pdo = new PDO("mysql:host=$host;port=$port;dbname=$database", $username, $password);
+        $this->pdo = new PDO("mysql:host=$host;port=$port;dbname=$database;charset=$charset", $username, $password);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     }
