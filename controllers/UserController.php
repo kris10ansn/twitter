@@ -13,6 +13,28 @@ use app\src\Session;
 
 class UserController extends \app\src\Controller
 {
+    public function users(): string
+    {
+        $sort = UserModel::SORT_FOLLOWERS;
+        $sortParam = Request::getParameter(Request::METHOD_GET, "sort");
+
+        if ($sortParam === "new") {
+            $sort = "user.created_at";
+        }
+
+        $users = UserModel::all($sort, "DESC");
+
+        $data = [
+            "trending" => TrendingModel::getTop(),
+            "users" => $users
+        ];
+
+        $appLayout = $this->renderLayout("app", $data);
+        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
+
+        return $this->renderView("users", $mainLayout, $data);
+    }
+
     public function user(): string
     {
         $path = Request::getPath();
