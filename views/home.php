@@ -30,7 +30,6 @@ $user = Session::getUser();
     <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
 
     <div class="card">
-        <!-- TODO: Legg til "users" side hvor en kan følge folk. Linken peker foreløpig bare på explore. -->
-        <p><a href="explore">Follow someone</a> to see more posts here. </p>
+        <p><a href="users">Follow someone</a> to see more posts here. </p>
     </div>
 <?php endif; ?>

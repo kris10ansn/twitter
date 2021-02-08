@@ -33,6 +33,7 @@ $title = $title ?? "Twitter";
         <div id="left">
             <a href=".">Home</a>
             <a href="explore">Explore</a>
+            <a href="users">Users</a>
         </div>
         <div id="right">
 
