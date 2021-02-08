@@ -1,0 +1,30 @@
+div.user {
+  div.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+
+    div.user-info {
+      display: flex;
+      flex-direction: column;
+
+      * {
+        margin-bottom: 4px !important;
+      }
+
+      small {
+        font-size: .8em;
+      }
+    }
+
+
+    form {
+      button.follows {
+        background: var(--color-highlight-third);
+      }
+    }
+  }
+}
