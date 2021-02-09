@@ -7,9 +7,7 @@ use app\src\Session;
 
 $me = Session::getUser();
 
-if ($me) {
-    $follows = $me->follows($user->id);
-}
+$follows = $me && $me->follows($user->id);
 ?>
 
 <link rel="stylesheet" href="styles/views/user.css">
@@ -18,7 +16,7 @@ if ($me) {
     <div class="top">
         <h1><?= "$user->firstname $user->lastname" ?> (<a href="user/<?= $user->id ?>">@<?= $user->username ?></a>)</h1>
 
-        <?php if ($me && $user->id !== $me->id): ?>
+        <?php if (!$me || $user->id !== $me->id): ?>
             <form action="follow/<?= $user->id ?>" method="post">
                 <button type="submit" class="<?= $follows ? 'follows' : '' ?>">
                     <?= !$follows ? "Follow" : "Unfollow"; ?>
@@ -26,8 +24,8 @@ if ($me) {
             </form>
         <?php endif; ?>
     </div>
-    <p><?= $user->biography ?? "" ?></p>
     <p>Followers: <b><?= $user->followerCount() ?></b>&#9; Follows: <b><?= $user->followsCount() ?></b></p>
+    <p><?= $user->biography ?? "" ?></p>
 </div>
 
 <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
