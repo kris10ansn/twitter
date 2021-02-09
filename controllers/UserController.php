@@ -36,10 +36,10 @@ class UserController extends \app\src\Controller
         return $this->renderView("users", $mainLayout, $data);
     }
 
-    public function user(): string
+    public function user(array $parameters): string
     {
         $path = Request::getPath();
-        $userId = Path::getParameter($path);
+        $userId = $parameters["id"];
 
         if (is_numeric($userId)) {
             $user = UserModel::from(intval($userId));
@@ -80,11 +80,10 @@ class UserController extends \app\src\Controller
         return $this->renderView("user", $mainLayout, $data);
     }
 
-    public function follow(): string
+    public function follow(array $parameters): string
     {
         if (Request::getMethod() === Request::METHOD_POST) {
-            $path = Request::getPath();
-            $followId = Path::getParameter($path);
+            $followId = $parameters["id"];
             $user = Session::getUser();
 
             if ($user === null) {

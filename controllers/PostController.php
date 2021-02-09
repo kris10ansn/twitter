@@ -14,13 +14,12 @@ use app\src\Session;
 
 class PostController extends \app\src\Controller
 {
-    public function post(): string
+    public function post(array $parameters): string
     {
         $postFormModel = new PostFormModel();
-
         $request = Request::getBody();
-        $path = Request::getPath();
-        $postId = Path::getParameter($path);
+
+        $postId = $parameters["id"];
         $post = PostModel::from($postId);
 
         if (Request::getMethod() === Request::METHOD_POST) {

@@ -13,11 +13,9 @@ use app\src\Request;
 
 class HashtagController extends Controller
 {
-    public function hashtag(): string
+    public function hashtag(array $parameters): string
     {
-        $path = Request::getPath();
-        $hashtag = Path::getParameter($path);
-
+        $hashtag = $parameters["hashtag"];
         $sort = "likes";
         $sortParam = Request::getParameter(Request::METHOD_GET, "sort");
 
