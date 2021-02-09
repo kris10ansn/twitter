@@ -45,9 +45,24 @@ class UserController extends \app\src\Controller
             $user = UserModel::from(intval($userId));
         }
 
+        return $this->renderUser($user ?? null);
+    }
+
+    public function profile()
+    {
+        $user = Session::getUser();
+
+        if ($user === null) {
+            Response::redirect("/login");
+        }
+
+        return $this->renderUser($user);
+    }
+
+    private function renderUser(?UserModel $user) {
         $trending = TrendingModel::getTop();
 
-        if (!isset($user) || !$user) {
+        if ($user === null) {
             $appLayout = $this->renderLayout("app");
             $mainLayout = $this->renderLayoutInside($appLayout, "main", ["trending" => $trending]);
             return $this->renderText("<h1>User not found</h1>", $mainLayout);
