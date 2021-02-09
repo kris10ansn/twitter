@@ -43,7 +43,7 @@ $title = $title ?? "Twitter";
                 <a href="login" class="login">Log in</a>
                 <a href="register" class="register">Register account</a>
             <?php else: ?>
-                <a class="user" href="user/<?= $user->id ?>">
+                <a class="user" href="profile">
                     <?= "$user->firstname $user->lastname ($user->email)" ?>
                 </a>
                 <div>
