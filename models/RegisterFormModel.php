@@ -60,9 +60,10 @@ class RegisterFormModel extends FormModel
                     "A user with that e-mail already exists"
                 ),
             ],
-            "username" => array_merge($nameRules, [
+            "username" => [
+                ...$nameRules,
                 new UniqueRule("user", "username", "A user with that username already exists")
-            ]),
+            ],
             "firstname" => $nameRules,
             "lastname" => $nameRules,
             "password" => [new RequiredRule(), new MinimumLengthRule(4), new MaximumLengthRule(96)],
