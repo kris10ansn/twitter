@@ -29,15 +29,20 @@ $router = new Router();
 
 $router->addRoute(new Route("/", HomeController::class, "home"));
 $router->addRoute(new Route("/explore", HomeController::class, "explore"));
+
 $router->addRoute(new Route("/login", AuthController::class, "login"));
 $router->addRoute(new Route("/register", AuthController::class, "register"));
 $router->addRoute(new Route("/logout", AuthController::class, "logout"));
+
 $router->addRoute(new Route(Path::withParameter("interact"), PostController::class, "interact"));
+$router->addRoute(new Route(Path::withParameter("post"), PostController::class, "post"));
+
 $router->addRoute(new Route(Path::withParameter("hashtag"), HashtagController::class, "hashtag"));
+
 $router->addRoute(new Route(Path::withParameter("user"), UserController::class, "user"));
 $router->addRoute(new Route("/users", UserController::class, "users"));
 $router->addRoute(new Route(Path::withParameter("follow"), UserController::class, "follow"));
-$router->addRoute(new Route(Path::withParameter("post"), PostController::class, "post"));
+$router->addRoute(new Route("/profile", UserController::class, "profile"));
 
 $router->resolve();
 
