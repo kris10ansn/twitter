@@ -43,6 +43,7 @@ $router->addRoute(new Route("/user/:id", UserController::class, "user"));
 $router->addRoute(new Route("/users", UserController::class, "users"));
 $router->addRoute(new Route("/follow/:id", UserController::class, "follow"));
 $router->addRoute(new Route("/profile", UserController::class, "profile"));
+$router->addRoute(new Route("/profile/edit", UserController::class, "editProfile"));
 
 $router->resolve();
 

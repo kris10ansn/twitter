@@ -14,6 +14,18 @@ use app\src\Session;
 
 class UserController extends \app\src\Controller
 {
+    public function editProfile(): string
+    {
+        $data = [
+            "trending" => TrendingModel::getTop()
+        ];
+
+        $appLayout = $this->renderLayout("app", $data);
+        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
+
+        return $this->renderView("edit-profile", $mainLayout);
+    }
+
     public function users(): string
     {
         $sort = UserModel::SORT_FOLLOWERS;
