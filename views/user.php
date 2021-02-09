@@ -22,6 +22,10 @@ $follows = $me && $me->follows($user->id);
                     <?= !$follows ? "Follow" : "Unfollow"; ?>
                 </button>
             </form>
+        <?php else: ?>
+            <a href="profile/edit">
+                <button>Edit profile</button>
+            </a>
         <?php endif; ?>
     </div>
     <p><?= $user->biography ?? "" ?></p>
