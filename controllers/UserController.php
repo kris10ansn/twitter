@@ -9,6 +9,7 @@ use app\models\TrendingModel;
 use app\models\UserModel;
 use app\src\Path;
 use app\src\Request;
+use app\src\Response;
 use app\src\Session;
 
 class UserController extends \app\src\Controller
@@ -70,6 +71,10 @@ class UserController extends \app\src\Controller
             $path = Request::getPath();
             $followId = Path::getParameter($path);
             $user = Session::getUser();
+
+            if ($user === null) {
+                Response::redirect("/login");
+            }
 
             if (!$user->follows($followId)) {
                 $user->follow($followId);
