@@ -4,6 +4,7 @@
 
 use app\models\UserModel;
 use app\src\Session;
+use app\src\util\Time;
 
 $me = Session::getUser();
 $loggedIn = $me !== null;
@@ -24,11 +25,14 @@ $loggedIn = $me !== null;
                     <b><?= "$user->firstname $user->lastname" ?></b>
                     (<a href="user/<?= $user->id ?>">@<?= $user->username ?></a>)
                 </p>
-                <small><b><?= $user->followerCount() ?></b> followers</small>
+                <small>
+                    <b><?= $user->followerCount() ?></b> followers
+                    <span class="gray">Joined <?= Time::since(strtotime($user->created_at)) ?></span>
+                </small>
             </div>
             <form action="follow/<?= $user->id ?>" method="post">
                 <?php $follows = $loggedIn && $me->follows($user->id); ?>
-                <button <?= !$me ? "disabled" : "" ?> class="<?= $follows ? "follows" : "" ?>">
+                <button class="<?= $follows ? "follows" : "" ?>">
                     <?= $follows ? "Unfollow" : "Follow" ?>
                 </button>
             </form>
