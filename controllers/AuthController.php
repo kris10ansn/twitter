@@ -10,6 +10,8 @@ use app\src\Session;
 
 class AuthController extends \app\src\Controller
 {
+    public const AUTH_REDIRECT = "auth-redirect";
+
     public function login(): string
     {
         $loginForm = new LoginFormModel();
@@ -21,7 +23,8 @@ class AuthController extends \app\src\Controller
             if ($loginForm->validate() && $loginForm->login()) {
                 $user = Session::getUser();
                 Session::setFlash("success", "Welcome back, $user->firstname!");
-                Response::redirect("/");
+
+                $this->redirect();
             }
         }
 
@@ -42,7 +45,8 @@ class AuthController extends \app\src\Controller
             if ($registerForm->validate() && $registerForm->register()) {
                 $user = Session::getUser();
                 Session::setFlash("success", "Welcome, $user->firstname!");
-                Response::redirect("/");
+
+                $this->redirect();
             }
         }
 
@@ -56,5 +60,11 @@ class AuthController extends \app\src\Controller
     {
         Session::logout();
         echo "<script>window.history.back();</script>";
+    }
+
+    private function redirect() {
+        $redirect = Session::get(self::AUTH_REDIRECT) ?? "/";
+        Session::remove(self::AUTH_REDIRECT);
+        Response::redirect($redirect);
     }
 }
