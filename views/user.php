@@ -24,8 +24,9 @@ $follows = $me && $me->follows($user->id);
             </form>
         <?php endif; ?>
     </div>
-    <p>Followers: <b><?= $user->followerCount() ?></b>&#9; Follows: <b><?= $user->followsCount() ?></b></p>
     <p><?= $user->biography ?? "" ?></p>
+    <br><br>
+    <p><b><?= $user->followerCount() ?></b> Followers <b><?= $user->followsCount() ?></b> Following</p>
 </div>
 
 <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
