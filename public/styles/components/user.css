@@ -15,6 +15,9 @@ div.user div.top div.user-info * {
 div.user div.top div.user-info small {
   font-size: 0.8em;
 }
+div.user div.top div.user-info span.gray {
+  color: gray;
+}
 div.user div.top form button.follows {
   background: var(--color-highlight-third);
 }
