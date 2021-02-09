@@ -17,7 +17,7 @@ class Route
             ["\/",   "(?<$1>\w+)"],
             $path
         );
-        $path = "/{$path}(?:\/$|$)/";
+        $path = "/^{$path}(?:\/$|$)/";
 
         $this->path = $path;
         $this->method = $method;
