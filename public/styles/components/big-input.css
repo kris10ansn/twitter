@@ -1,23 +1,19 @@
 div.big-input {
   max-width: 100%;
 }
-
 div.big-input p.error {
   margin-top: 14px;
 }
-
 div.big-input div.input {
   display: flex;
   align-items: center;
 }
-
 div.big-input div.input button {
   font-size: 0.8em;
   margin-right: 5px;
   margin-left: 15px;
   height: fit-content;
 }
-
 div.big-input div.input div[contenteditable] {
   cursor: text;
   border: none;
@@ -31,17 +27,13 @@ div.big-input div.input div[contenteditable] {
   overflow-wrap: break-word;
   max-width: 500px;
 }
-
 div.big-input div.input div[contenteditable]:empty:before {
   content: attr(data-placeholder);
   opacity: 0.6;
   position: absolute;
 }
-
 div.big-input textarea {
   display: none;
 }
-
-/*# sourceMappingURL=big-input.css.map */
 
 /*# sourceMappingURL=big-input.css.map */
