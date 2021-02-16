@@ -16,6 +16,15 @@ class UserController extends \app\src\Controller
 {
     public function editProfile(): string
     {
+        $user = Session::getUser();
+
+        if ($user === null) {
+            $path = Request::getPath();
+            Session::set(AuthController::AUTH_REDIRECT, $path);
+            Response::redirect("/login");
+            return "";
+        }
+
         $data = [
             "trending" => TrendingModel::getTop()
         ];
