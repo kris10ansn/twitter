@@ -77,11 +77,13 @@ div.flash.success {
   --color-flash: #42a942;
 }
 
-label {
+div#content {
+  margin: var(--page-margin);
+}
+div#content label {
   display: flex;
 }
-
-input {
+div#content input {
   border: none;
   outline: none;
   padding: 10px 15px;

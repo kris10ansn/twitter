@@ -63,7 +63,8 @@ $title = $title ?? "Twitter";
             <?= $successFlash ?>
         </div>
     <?php endif; ?>
-
-    {{content}}
+    <div id="content">
+        {{content}}
+    </div>
 </body>
 </html>
