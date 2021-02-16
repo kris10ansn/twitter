@@ -48,7 +48,7 @@ class PostController extends \app\src\Controller
         return $this->renderView("post", $layout, $data);
     }
     
-    public function interact(): string
+    public function interact($parameter): string
     {
         if (Request::getMethod() === Request::METHOD_POST) {
             $user = Session::getUser();
@@ -59,17 +59,11 @@ class PostController extends \app\src\Controller
             }
 
             $body = Request::getBody();
-            preg_match("/interact\/(.+)/", Request::getPath(), $matches);
-
-            if (count($matches) > 0 && is_numeric($matches[1])) {
-                $postId = (int)$matches[1];
-            } else {
-                return "400 Bad request";
-            }
+            $postId = $parameter["id"];
             
             $post = PostModel::from($postId);
 
-            if (isset($body["like"]) && is_numeric($postId)) {
+            if (isset($body["like"]) && $post !== null) {
                 if ($post->likedBy($user)) {
                     $post->unlike($user);
                 } else {
