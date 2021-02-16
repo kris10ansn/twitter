@@ -59,6 +59,7 @@ class AuthController extends \app\src\Controller
     public function logout()
     {
         Session::logout();
+        Session::setFlash("success", "Good bye.");
         echo "<script>window.history.back();</script>";
     }
 
