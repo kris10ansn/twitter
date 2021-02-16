@@ -7,7 +7,6 @@ namespace app\controllers;
 use app\models\PostFormModel;
 use app\models\PostModel;
 use app\models\TrendingModel;
-use app\src\Path;
 use app\src\Request;
 use app\src\Response;
 use app\src\Session;
@@ -48,7 +47,7 @@ class PostController extends \app\src\Controller
         return $this->renderView("post", $layout, $data);
     }
     
-    public function interact($parameter): string
+    public function interact(array $parameters): string
     {
         if (Request::getMethod() === Request::METHOD_POST) {
             $user = Session::getUser();
@@ -59,7 +58,7 @@ class PostController extends \app\src\Controller
             }
 
             $body = Request::getBody();
-            $postId = $parameter["id"];
+            $postId = $parameters["id"];
             
             $post = PostModel::from($postId);
 
