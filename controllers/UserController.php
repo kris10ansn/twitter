@@ -65,6 +65,8 @@ class UserController extends \app\src\Controller
         $user = Session::getUser();
 
         if ($user === null) {
+            $path = Request::getPath();
+            Session::set(AuthController::AUTH_REDIRECT, $path);
             Response::redirect("/login");
         }
 
@@ -99,7 +101,9 @@ class UserController extends \app\src\Controller
             $user = Session::getUser();
 
             if ($user === null) {
+                Session::set(AuthController::AUTH_REDIRECT, "/user/{$followId}");
                 Response::redirect("/login");
+                return "";
             }
 
             if (!$user->follows($followId)) {
