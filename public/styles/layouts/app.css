@@ -77,4 +77,19 @@ div.flash.success {
   --color-flash: #42a942;
 }
 
+label {
+  display: flex;
+}
+
+input {
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--color-highlight-secondary);
+  color: var(--color-font-main);
+}
+
 /*# sourceMappingURL=app.css.map */
