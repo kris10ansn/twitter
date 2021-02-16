@@ -6,7 +6,7 @@ namespace app\src\util;
 
 class Time
 {
-    public static function since($time): string
+    public static function since(int $time): string
     {
         $time = time() - $time;
 
