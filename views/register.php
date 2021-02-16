@@ -8,34 +8,24 @@ use app\models\RegisterFormModel;
 <h1>Register</h1>
 
 <form action="" method="post">
-    <label>
-        First name
-        <input type="text" name="firstname" value="<?= $model->fields["firstname"] ?>">
-    </label>
+    <label for="firstname">First name</label>
+    <input type="text" id="firstname" name="firstname" value="<?= $model->fields["firstname"] ?>">
     <p class="error"><?= $model->getFirstError("firstname") ?></p>
 
-    <label>
-        Last name
-        <input type="text" name="lastname" value="<?= $model->fields["lastname"] ?>">
-    </label>
+    <label for="lastname">Last name</label>
+    <input type="text" id="lastname" name="lastname" value="<?= $model->fields["lastname"] ?>">
     <p class="error"><?= $model->getFirstError("lastname") ?></p>
 
-    <label>
-        Display name
-        <input type="text" name="username" value="<?= $model->fields["username"] ?>">
-    </label>
+    <label for="username">Display name</label>
+    <input type="text" id="username" name="username" value="<?= $model->fields["username"] ?>">
     <p class="error"><?= $model->getFirstError("username") ?></p>
 
-    <label>
-        E-mail
-        <input type="text" name="email" value="<?= $model->fields["email"] ?>">
-    </label>
+    <label for="email">E-mail</label>
+    <input type="text" id="email" name="email" value="<?= $model->fields["email"] ?>">
     <p class="error"><?= $model->getFirstError("email") ?></p>
 
-    <label>
-        Password
-        <input type="password" name="password" value="<?= $model->fields["password"] ?>">
-    </label>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" value="<?= $model->fields["password"] ?>">
     <p class="error"><?= $model->getFirstError("password") ?></p>
 
     <button type="submit">Register</button>
