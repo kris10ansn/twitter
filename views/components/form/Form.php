@@ -4,7 +4,7 @@
 namespace app\views\components\form;
 
 
-use app\models\FormModel;
+use app\models\form\FormModel;
 
 class Form
 {

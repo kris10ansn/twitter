@@ -2,7 +2,7 @@
 
 /** @var UserModel $user */
 
-use app\models\UserModel;
+use app\models\form\UserModel;
 use app\src\Session;
 
 $me = Session::getUser();

@@ -1,9 +1,10 @@
 <?php
 
 
-namespace app\models;
+namespace app\models\form;
 
 
+use app\models\DBModel;
 use app\src\Database;
 use app\src\Session;
 use app\src\validation\MaximumLengthRule;

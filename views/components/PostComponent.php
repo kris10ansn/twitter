@@ -4,7 +4,7 @@
 namespace app\views\components;
 
 
-use app\models\PostFormModel;
+use app\models\form\PostFormModel;
 use app\models\PostModel;
 use app\src\Session;
 use app\src\util\Time;

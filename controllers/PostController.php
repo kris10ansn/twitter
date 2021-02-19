@@ -4,7 +4,7 @@
 namespace app\controllers;
 
 
-use app\models\PostFormModel;
+use app\models\form\PostFormModel;
 use app\models\PostModel;
 use app\models\TrendingModel;
 use app\src\Request;

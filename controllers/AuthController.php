@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\LoginFormModel;
-use app\models\RegisterFormModel;
+use app\models\form\LoginFormModel;
+use app\models\form\RegisterFormModel;
 use app\src\Request;
 use app\src\Response;
 use app\src\Session;

@@ -1,7 +1,7 @@
 <?php
 /** @var RegisterFormModel $model */
 
-use app\models\RegisterFormModel;
+use app\models\form\RegisterFormModel;
 use app\views\components\form\Form;
 
 $form = new Form("", "post", $model);

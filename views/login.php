@@ -2,7 +2,7 @@
 <?php
 /** @var LoginFormModel $model */
 
-use app\models\LoginFormModel;
+use app\models\form\LoginFormModel;
 use app\views\components\form\Form;
 
 $form = new Form("", "post", $model);

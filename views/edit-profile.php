@@ -1,3 +1,11 @@
 <h1>Edit profile</h1>
 
-<p>Page under construction...</p>
+<?php
+
+use app\views\components\form\Form;
+
+$form = new Form("", "post", null);
+?>
+
+<?= $form->begin() ?>
+<?= $form->end() ?>
