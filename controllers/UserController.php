@@ -7,7 +7,6 @@ namespace app\controllers;
 use app\models\PostModel;
 use app\models\TrendingModel;
 use app\models\UserModel;
-use app\src\Path;
 use app\src\Request;
 use app\src\Response;
 use app\src\Session;
@@ -59,7 +58,6 @@ class UserController extends \app\src\Controller
 
     public function user(array $parameters): string
     {
-        $path = Request::getPath();
         $userId = $parameters["id"];
 
         if (is_numeric($userId)) {
