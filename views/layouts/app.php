@@ -46,9 +46,10 @@ $title = $title ?? "Twitter";
                 <a class="user" href="profile">
                     <?= "$user->firstname $user->lastname ($user->email)" ?>
                 </a>
-                <div>
+                <!-- Wrapper en div rundt siden det ble litt tull med styling av form -->
+                <div class="button">
                     <form action="logout" method="post">
-                        <button type="submit" name="logout" class="native">
+                        <button type="submit" name="logout">
                             Log out
                         </button>
                     </form>
