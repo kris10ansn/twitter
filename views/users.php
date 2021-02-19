@@ -13,7 +13,9 @@ $loggedIn = $me !== null;
 
 <h1>Users <?= $loggedIn ? "to follow" : "" ?></h1>
 
-<?php include constant("APP_ROOT") . "/views/includes/sort.php" ?>
+<?php include_once constant("APP_ROOT") . "/views/includes/sort.php" ?>
+
+<?php sort_options("new") ?>
 
 <?php foreach ($users as $user): ?>
     <?= new UserCardComponent($user) ?>
