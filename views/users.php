@@ -15,7 +15,7 @@ $loggedIn = $me !== null;
 
 <?php include_once constant("APP_ROOT") . "/views/includes/sort.php" ?>
 
-<?php sort_options("new") ?>
+<?php sort_options() ?>
 
 <?php foreach ($users as $user): ?>
     <?= new UserCardComponent($user) ?>
