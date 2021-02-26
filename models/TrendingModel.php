@@ -13,32 +13,26 @@ class TrendingModel
     {
         $db = Database::getInstance();
 
-        // Fant ikke en måte å ta (select count(*) from hashtagged....) as likes
-        // for å så ta (posts+likes) as score, så tok det heller direkte inn,
-        // for å så sette likes manuelt etterpå. Blir sånn om jeg ikke finner
-        // bedre løsning
         $statement = $db->pdo->prepare("
             SELECT
-                name,
-                COUNT(name) as posts,
-                (COUNT(name) + (
-                    SELECT count(*)
-                    FROM hashtagged as h
-                        JOIN post ON post.id = h.post_id
-                        JOIN `like` ON `like`.`post_id`=post.id
-                    WHERE h.name=hashtagged.name
-                )) as score
-            FROM hashtagged GROUP BY name ORDER BY score DESC LIMIT 0, $n
+                name, posts, likes, (posts + likes) as score
+            FROM hashtagged
+                JOIN (
+                    SELECT
+                        count(_hashtagged.name) as posts, _hashtagged.name as _name,
+                        (SELECT count(*) FROM hashtagged _h
+                         JOIN `like` ON `like`.post_id=_h.post_id
+                         WHERE _h.name=_hashtagged.name) as likes
+                    FROM hashtagged _hashtagged
+                    GROUP BY _name
+                ) as info ON info._name=hashtagged.name
+            GROUP BY name
+            ORDER BY score DESC
+            LIMIT 0, $n
         ");
 
         $statement->execute();
 
-        $top = $statement->fetchAll(\PDO::FETCH_OBJ);
-
-        foreach ($top as $item) {
-            $item->likes = $item->score - $item->posts;
-        }
-
-        return $top;
+        return $statement->fetchAll(\PDO::FETCH_OBJ);
     }
 }
