@@ -40,4 +40,9 @@ class Form
     {
         return new InputField($this->model, $attribute, $label);
     }
+
+    public function textAreaField($attribute, $label, $rows="", $cols=""): TextAreaField
+    {
+        return new TextAreaField($this->model, $attribute, $label, $rows, $cols);
+    }
 }

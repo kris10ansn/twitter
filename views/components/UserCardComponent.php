@@ -6,6 +6,7 @@ namespace app\views\components;
 
 use app\models\UserModel;
 use app\src\Session;
+use app\src\util\Text;
 use app\src\util\Time;
 
 class UserCardComponent
@@ -20,6 +21,8 @@ class UserCardComponent
     public function __toString(): string
     {
         $me = Session::getUser();
+
+        $biography = Text::render($this->user->biography);
 
         $follows = $me !== null && $me->follows($this->user->id);
         $followsClass = $follows ? "follows" : "";
@@ -47,7 +50,7 @@ class UserCardComponent
                     </form>
                 </div>
                 <div class='biography'>
-                    <p>{$this->user->biography}</p>
+                    <p>{$biography}</p>
                 </div>
             </div>";
     }

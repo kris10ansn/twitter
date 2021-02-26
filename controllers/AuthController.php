@@ -30,7 +30,7 @@ class AuthController extends \app\src\Controller
 
         return $this->render("login", "app", [
             "model" => $loginForm,
-            "title" => "Log in"
+            "title" => "Twitter | Log in"
         ]);
     }
 
@@ -52,7 +52,7 @@ class AuthController extends \app\src\Controller
 
         return $this->render("register", "app", [
             "model" => $registerForm,
-            "title" => "Register a new account"
+            "title" => "Twitter | Register a new account"
         ]);
     }
 

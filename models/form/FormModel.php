@@ -27,15 +27,20 @@ abstract class FormModel
     public function validate(): bool
     {
         foreach ($this->rules() as $field => $rules) {
-            $validation = new Validation($rules);
-            $error = $validation->getFirstError($this->fields[$field]);
-
-            if ($error) {
-                $this->setError($field, $error);
-            }
+            $this->validateField($field, $rules);
         }
 
         return empty($this->errors);
+    }
+
+    public function validateField($field, $rules)
+    {
+        $validation = new Validation($rules);
+        $error = $validation->getFirstError($this->fields[$field]);
+
+        if ($error) {
+            $this->setError($field, $error);
+        }
     }
 
     public function getFirstError(string $field): string

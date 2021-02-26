@@ -84,7 +84,7 @@ div#content {
 div#content label {
   display: flex;
 }
-div#content input {
+div#content input, div#content textarea {
   border: none;
   outline: none;
   padding: 10px 15px;
@@ -93,6 +93,7 @@ div#content input {
   overflow: hidden;
   background: var(--color-highlight-secondary);
   color: var(--color-font-main);
+  font-family: var(--font-family-main);
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -4,6 +4,8 @@
 namespace app\controllers;
 
 
+use app\models\form\EditProfileFormModel;
+use app\models\form\PostFormModel;
 use app\models\PostModel;
 use app\models\TrendingModel;
 use app\models\UserModel;
@@ -24,14 +26,29 @@ class UserController extends \app\src\Controller
             return "";
         }
 
+        $editProfile = new EditProfileFormModel();
+
         $data = [
-            "trending" => TrendingModel::getTop()
+            "trending" => TrendingModel::getTop(),
+            "model" => $editProfile,
+            "title" => "Twitter | Edit profile"
         ];
+
+        if (Request::getMethod() === Request::METHOD_POST) {
+            $request = Request::getBody();
+            $editProfile->loadData($request);
+
+            if ($editProfile->validate() && $editProfile->apply()) {
+                Response::redirect("/profile");
+            }
+        } else {
+            $editProfile->loadData((array) $user);
+        }
 
         $appLayout = $this->renderLayout("app", $data);
         $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
 
-        return $this->renderView("edit-profile", $mainLayout);
+        return $this->renderView("edit-profile", $mainLayout, $data);
     }
 
     public function users(): string

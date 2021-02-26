@@ -16,10 +16,33 @@ class UserModel
     public string $email;
     public string $created_at;
     public string $password;
-    public ?string  $biography;
+    public string  $biography;
 
     private ?int $followerCount = null;
     private ?int $followsCount = null;
+
+    public array $fields = [ "username", "firstname", "lastname", "email", "password", "biography" ];
+
+
+    public function sync()
+    {
+        $db = Database::getInstance();
+        $fields = implode(",", array_map(fn($f) => "$f=:$f", $this->fields));
+
+        $statement = $db->pdo->prepare("
+            UPDATE user
+            SET $fields
+            WHERE user.id=:id
+        ");
+
+        foreach ($this->fields as $fieldName) {
+            $statement->bindValue(":$fieldName", $this->{$fieldName});
+        }
+
+        $statement->bindValue(":id", $this->id);
+
+        return $statement->execute();
+    }
 
     public function follow(int $followId): bool
     {

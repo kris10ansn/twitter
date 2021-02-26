@@ -1,9 +1,12 @@
 <?php
 
 /** @var UserModel $user */
+/** @var PostFormModel $postFormModel */
 
-use app\models\form\UserModel;
+use app\models\form\PostFormModel;
+use app\models\UserModel;
 use app\src\Session;
+use app\src\util\Text;
 
 $me = Session::getUser();
 
@@ -28,7 +31,7 @@ $follows = $me && $me->follows($user->id);
             </a>
         <?php endif; ?>
     </div>
-    <p><?= $user->biography ?? "" ?></p>
+    <p><?= Text::render($user->biography) ?? "" ?></p>
     <br><br>
     <p><b><?= $user->followerCount() ?></b> Followers <b><?= $user->followsCount() ?></b> Following</p>
 </div>
