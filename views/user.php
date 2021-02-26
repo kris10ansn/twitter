@@ -20,7 +20,7 @@ $follows = $me && $me->follows($user->id);
         <h1><?= "$user->firstname $user->lastname" ?> (<a href="user/<?= $user->id ?>">@<?= $user->username ?></a>)</h1>
 
         <?php if (!$me || $user->id !== $me->id): ?>
-            <form action="follow/<?= $user->id ?>" method="post">
+            <form action="user/<?= $user->id ?>/follow" method="post">
                 <button type="submit" class="<?= $follows ? 'follows' : '' ?>">
                     <?= !$follows ? "Follow" : "Unfollow"; ?>
                 </button>
@@ -33,7 +33,12 @@ $follows = $me && $me->follows($user->id);
     </div>
     <p><?= Text::render($user->biography) ?? "" ?></p>
     <br><br>
-    <p><b><?= $user->followerCount() ?></b> Followers <b><?= $user->followsCount() ?></b> Following</p>
+    <p>
+        <b><?= $user->followerCount() ?></b>
+        <a href="user/<?= $user->id ?>/followers">Followers</a>
+        <b><?= $user->followsCount() ?></b>
+        <a href="user/<?= $user->id ?>/following">Following</a>
+    </p>
 </div>
 
 <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>

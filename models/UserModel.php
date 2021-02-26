@@ -102,6 +102,26 @@ class UserModel
         return $this->followerCount;
     }
 
+    public function followers(): array
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("SELECT * FROM follow JOIN user ON follower_id=user.id WHERE followed_id=:id");
+        $statement->execute([":id" => $this->id]);
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
+    }
+
+    public function following(): array
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->pdo->prepare("SELECT * FROM follow JOIN user ON follow.followed_id=user.id WHERE follower_id=:id");
+        $statement->execute([":id" => $this->id]);
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
+    }
+
     public function followsCount(): int
     {
         if ($this->followsCount !== null) {

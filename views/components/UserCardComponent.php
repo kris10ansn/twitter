@@ -43,7 +43,7 @@ class UserCardComponent
                             <span class='gray'>Joined {$timeSinceCreation}</span>
                         </small>
                     </div>
-                    <form action='follow/{$this->user->id}' method='post'>
+                    <form action='user/{$this->user->id}/follow' method='post'>
                         <button class='{$followsClass}'>
                             {$followButtonText}
                         </button>
