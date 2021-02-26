@@ -24,7 +24,7 @@ class UserModel
     public array $fields = [ "username", "firstname", "lastname", "email", "password", "biography" ];
 
 
-    public function sync()
+    public function sync(): bool
     {
         $db = Database::getInstance();
         $fields = implode(",", array_map(fn($f) => "$f=:$f", $this->fields));
