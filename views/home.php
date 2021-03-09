@@ -19,7 +19,7 @@ $user = Session::getUser();
 <?php endif; ?>
 
 <div id="top-card" class="card">
-    <?php if ($user != null): ?>
+    <?php if ($user !== null): ?>
         <?= new BigInputComponent($postFormModel, "What&#39;s on your mind?") ?>
     <?php else: ?>
         <p><a href="login">Log in</a> to post and follow users. <a href="explore">Explore</a>.</p>
