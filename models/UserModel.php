@@ -33,7 +33,7 @@ class UserModel
         $db = Database::getInstance();
         $fields = implode(",", array_map(fn($f) => "$f=:$f", $this->fields));
 
-        $statement = $db->pdo->prepare("
+        $statement = $db->prepare("
             UPDATE user
             SET $fields
             WHERE user.id=:id
@@ -52,7 +52,7 @@ class UserModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("INSERT INTO follow (follower_id, followed_id) VALUES (:id, :follow_id)");
+        $statement = $db->prepare("INSERT INTO follow (follower_id, followed_id) VALUES (:id, :follow_id)");
 
         $statement->bindValue(":id", $this->id);
         $statement->bindValue(":follow_id", $followId);
@@ -64,7 +64,7 @@ class UserModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("DELETE FROM follow WHERE follower_id=:id AND followed_id=:followed_id");
+        $statement = $db->prepare("DELETE FROM follow WHERE follower_id=:id AND followed_id=:followed_id");
 
         $statement->bindValue(":id", $this->id);
         $statement->bindValue(":followed_id", $followedId);
@@ -76,7 +76,7 @@ class UserModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT * FROM follow WHERE follower_id=:id AND followed_id=:user_id");
+        $statement = $db->prepare("SELECT * FROM follow WHERE follower_id=:id AND followed_id=:user_id");
 
         $statement->bindValue(":id", $this->id);
         $statement->bindValue(":user_id", $userId);
@@ -98,7 +98,7 @@ class UserModel
 
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT COUNT(*) FROM follow WHERE followed_id=:user_id");
+        $statement = $db->prepare("SELECT COUNT(*) FROM follow WHERE followed_id=:user_id");
         $statement->execute([":user_id" => $this->id]);
 
         $this->followerCount = (int) $statement->fetchColumn();
@@ -110,7 +110,7 @@ class UserModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT * FROM follow JOIN user ON follower_id=user.id WHERE followed_id=:id");
+        $statement = $db->prepare("SELECT * FROM follow JOIN user ON follower_id=user.id WHERE followed_id=:id");
         $statement->execute([":id" => $this->id]);
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
@@ -120,7 +120,7 @@ class UserModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT * FROM follow JOIN user ON follow.followed_id=user.id WHERE follower_id=:id");
+        $statement = $db->prepare("SELECT * FROM follow JOIN user ON follow.followed_id=user.id WHERE follower_id=:id");
         $statement->execute([":id" => $this->id]);
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
@@ -134,7 +134,7 @@ class UserModel
 
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT COUNT(*) FROM follow WHERE follower_id=:user_id");
+        $statement = $db->prepare("SELECT COUNT(*) FROM follow WHERE follower_id=:user_id");
         $statement->execute([":user_id" => $this->id]);
 
         $this->followsCount = (int) $statement->fetchColumn();
@@ -145,7 +145,7 @@ class UserModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT * FROM user WHERE id=:id");
+        $statement = $db->prepare("SELECT * FROM user WHERE id=:id");
         $statement->execute([":id" => $id]);
 
         $fetchedObject = $statement->fetchObject(UserModel::class);
@@ -168,7 +168,7 @@ class UserModel
         $sql = "SELECT * FROM $tableName WHERE $selectors";
 
         $db = Database::getInstance();
-        $statement = $db->pdo->prepare($sql);
+        $statement = $db->prepare($sql);
 
         foreach ($where as $key => $value) {
             $statement->bindValue(":$key", $value);
@@ -192,7 +192,7 @@ class UserModel
     public static function all($sort="user.created_at", $order="ASC"): array
     {
         $db = Database::getInstance();
-        $statement = $db->pdo->prepare("SELECT * FROM user ORDER BY $sort $order");
+        $statement = $db->prepare("SELECT * FROM user ORDER BY $sort $order");
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);

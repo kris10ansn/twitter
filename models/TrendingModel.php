@@ -17,7 +17,7 @@ class TrendingModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("
+        $statement = $db->prepare("
             SELECT
                 name, posts, likes, (posts + likes) as score
             FROM hashtagged

@@ -17,7 +17,7 @@ trait DBModel
         $attributes_string = implode(",", array_keys($this->fields));
         $values_string = implode(",", array_map(fn($key) => ":$key", array_keys($this->fields)));
 
-        $statement = $db->pdo->prepare("INSERT INTO $table ($attributes_string) VALUES ($values_string)");
+        $statement = $db->prepare("INSERT INTO $table ($attributes_string) VALUES ($values_string)");
 
         foreach ($this->fields as $key => $value) {
             $statement->bindValue(":$key", $value);

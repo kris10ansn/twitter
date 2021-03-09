@@ -36,7 +36,7 @@ class PostModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("
+        $statement = $db->prepare("
             SELECT post.*, user.username, user.firstname, user.lastname,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:self_user_id) as liked,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
@@ -67,7 +67,7 @@ class PostModel
             $likedQuery = "0 as liked";
         }
 
-        $statement = $db->pdo->prepare("
+        $statement = $db->prepare("
             SELECT post.*, user.username, user.firstname, user.lastname,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes,
                    $likedQuery
@@ -93,7 +93,7 @@ class PostModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare(self::SELECT_POSTS . " WHERE post.reply_id IS NULL ORDER BY $sort $order");
+        $statement = $db->prepare(self::SELECT_POSTS . " WHERE post.reply_id IS NULL ORDER BY $sort $order");
 
         $userId = Session::get("user");
 
@@ -107,7 +107,7 @@ class PostModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("
+        $statement = $db->prepare("
             SELECT post.*, user.username, user.firstname, user.lastname,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id) as likes
@@ -134,7 +134,7 @@ class PostModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("
+        $statement = $db->prepare("
             SELECT
                 post.*, user.firstname, user.lastname, user.username,
                 (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
@@ -161,7 +161,7 @@ class PostModel
     public function like(UserModel $user)
     {
         $db = Database::getInstance();
-        $statement = $db->pdo->prepare("INSERT INTO `like` (post_id, user_id) VALUES (:post_id, :user_id)");
+        $statement = $db->prepare("INSERT INTO `like` (post_id, user_id) VALUES (:post_id, :user_id)");
         $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
     }
 
@@ -171,7 +171,7 @@ class PostModel
     public function unlike(UserModel $user)
     {
          $db = Database::getInstance();
-         $statement = $db->pdo->prepare("DELETE FROM `like` WHERE user_id=:user_id AND post_id=:post_id");
+         $statement = $db->prepare("DELETE FROM `like` WHERE user_id=:user_id AND post_id=:post_id");
          $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
     }
 
@@ -179,7 +179,7 @@ class PostModel
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT count(*) as liked FROM `like` WHERE post_id=:post_id AND user_id=:user_id");
+        $statement = $db->prepare("SELECT count(*) as liked FROM `like` WHERE post_id=:post_id AND user_id=:user_id");
 
         $statement->execute(["post_id" => $this->id, "user_id" => $user->id]);
         $obj = $statement->fetchObject();
@@ -192,7 +192,7 @@ class PostModel
         $db = Database::getInstance();
         $userId = Session::get("user");
 
-        $statement = $db->pdo->prepare(self::SELECT_POSTS . " WHERE post.reply_id=:post_id ORDER BY post.created_at");
+        $statement = $db->prepare(self::SELECT_POSTS . " WHERE post.reply_id=:post_id ORDER BY post.created_at");
         $statement->execute(["post_id" => $this->id, "user_id" => $userId]);
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
