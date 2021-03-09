@@ -32,7 +32,7 @@ class UniqueRule extends ValidationRule
     {
         $db = Database::getInstance();
 
-        $statement = $db->pdo->prepare("SELECT count(*) as matches FROM $this->table WHERE $this->column=:input");
+        $statement = $db->prepare("SELECT count(*) as matches FROM $this->table WHERE $this->column=:input");
         $statement->bindValue(":input", $input);
         $statement->execute();
         $object = $statement->fetchObject();
