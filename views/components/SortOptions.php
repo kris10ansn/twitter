@@ -21,7 +21,7 @@ class SortOptions
         return $this;
     }
 
-    public function toString(): string
+    public function __toString(): string
     {
         $buttons = "";
 
@@ -48,3 +48,7 @@ class SortOptions
         ";
     }
 }
+
+?>
+<link rel="stylesheet" href="styles/includes/sort.css">
+
