@@ -13,6 +13,8 @@ use app\views\components\UserCardComponent;
 
 <?= (new SortOptions())->default("new") ?>
 
-<?php foreach ($users as $user): ?>
-    <?= new UserCardComponent($user) ?>
-<?php endforeach; ?>
+<div id="users">
+    <?php foreach ($users as $user): ?>
+        <?= new UserCardComponent($user) ?>
+    <?php endforeach; ?>
+</div>
