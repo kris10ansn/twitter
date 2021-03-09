@@ -30,7 +30,8 @@ div#content {
   }
 
   aside {
-    div#trending {
+    // Trending Card
+    div.card {
       width: 350px;
 
       $margin: 20px;
