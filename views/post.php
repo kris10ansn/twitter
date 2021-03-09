@@ -1,11 +1,13 @@
 <?php
 /** @var PostModel $post */
 /** @var PostFormModel $postFormModel */
+/** @var PostModel[] $posts */
 
 use app\models\form\PostFormModel;
 use app\models\PostModel;
 use app\views\components\BigInputComponent;
 use app\views\components\PostComponent;
+use app\views\components\PostsComponent;
 
 ?>
 
@@ -17,4 +19,4 @@ use app\views\components\PostComponent;
     <?= new BigInputComponent($postFormModel, "Reply to @{$post->username}&#39;s post") ?>
 </div>
 
-<?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
+<?= new PostsComponent($posts) ?>

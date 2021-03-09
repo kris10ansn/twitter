@@ -1,8 +1,6 @@
 @import "../components/post";
 
-main {
-  div#posts {
-    display: flex;
-    flex-direction: column;
-  }
+div.posts {
+  display: flex;
+  flex-direction: column;
 }

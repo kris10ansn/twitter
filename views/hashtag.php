@@ -1,6 +1,8 @@
 <?php
 /** @var string $hashtag */
+/** @var PostModel[] $posts */
 
+use app\models\PostModel;
 use app\views\components\SortOptions;
 
 ?>
@@ -9,4 +11,4 @@ use app\views\components\SortOptions;
 
 <?= new SortOptions() ?>
 
-<?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
+<?= new \app\views\components\PostsComponent($posts) ?>

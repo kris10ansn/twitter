@@ -2,11 +2,14 @@
 
 /** @var UserModel $user */
 /** @var PostFormModel $postFormModel */
+/** @var PostModel[] $posts */
 
 use app\models\form\PostFormModel;
+use app\models\PostModel;
 use app\models\UserModel;
 use app\src\Session;
 use app\src\util\Text;
+use app\views\components\PostsComponent;
 
 $me = Session::getUser();
 
@@ -41,4 +44,4 @@ $follows = $me && $me->follows($user->id);
     </p>
 </div>
 
-<?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
+<?= new PostsComponent($posts) ?>

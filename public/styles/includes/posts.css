@@ -52,7 +52,7 @@ div.post div.buttons button.like:not(.liked) {
   filter: grayscale(255);
 }
 
-main div#posts {
+div.posts {
   display: flex;
   flex-direction: column;
 }
