@@ -6,7 +6,6 @@ namespace app\models\form;
 
 use app\src\Session;
 use app\src\util\Text;
-use app\src\Validation;
 use app\src\validation\EmailRule;
 use app\src\validation\MaximumLengthRule;
 use app\src\validation\MinimumLengthRule;

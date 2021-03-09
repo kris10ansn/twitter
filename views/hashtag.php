@@ -3,6 +3,7 @@
 /** @var PostModel[] $posts */
 
 use app\models\PostModel;
+use app\views\components\PostsComponent;
 use app\views\components\SortOptions;
 
 ?>
@@ -11,4 +12,4 @@ use app\views\components\SortOptions;
 
 <?= new SortOptions() ?>
 
-<?= new \app\views\components\PostsComponent($posts) ?>
+<?= new PostsComponent($posts) ?>

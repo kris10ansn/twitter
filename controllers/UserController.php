@@ -5,7 +5,6 @@ namespace app\controllers;
 
 
 use app\models\form\EditProfileFormModel;
-use app\models\form\PostFormModel;
 use app\models\PostModel;
 use app\models\TrendingModel;
 use app\models\UserModel;

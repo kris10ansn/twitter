@@ -5,7 +5,6 @@ namespace app\models;
 
 
 use app\src\Database;
-use PDO;
 
 /**
  * Class TrendingModel
