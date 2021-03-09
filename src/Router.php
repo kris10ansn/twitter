@@ -38,6 +38,7 @@ class Router
         }
 
         if (!$found) {
+            Response::statusCode(404);
             echo "404 Not found";
         }
     }
