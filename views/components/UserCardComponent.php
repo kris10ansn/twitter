@@ -39,7 +39,10 @@ class UserCardComponent
                             (<a href='user/{$this->user->id}'>@{$this->user->username}</a>)
                         </p>
                         <small>
-                            <b>{$this->user->followerCount()}</b> followers
+                            <b>{$this->user->followerCount()}</b>
+                            <a href='user/{$this->user->id}/followers'>followers</a>
+                            <b>{$this->user->followsCount()}</b>
+                            <a href='user/{$this->user->id}/following'>following</a>
                             <span class='gray'>Joined {$timeSinceCreation}</span>
                         </small>
                     </div>
