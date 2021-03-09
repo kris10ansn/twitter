@@ -9,6 +9,10 @@ use app\src\Session;
 use app\src\util\Text;
 use app\src\util\Time;
 
+/**
+ * Class PostComponent
+ * @package app\views\components
+ */
 class PostComponent
 {
     private string $heart = "❤️";
