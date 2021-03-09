@@ -38,7 +38,7 @@ class RegisterFormModel extends FormModel
 
         $this->insert("user");
 
-        $id = Database::getInstance()->pdo->lastInsertId();
+        $id = Database::getInstance()->lastInsertId();
 
         Session::set("user", $id);
 
