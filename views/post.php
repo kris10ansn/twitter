@@ -11,8 +11,6 @@ use app\views\components\PostsComponent;
 
 ?>
 
-<link rel="stylesheet" href="styles/components/post.css">
-
 <?= new PostComponent($post, false) ?>
 
 <div class="card">

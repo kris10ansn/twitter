@@ -83,3 +83,7 @@ class PostComponent
         </div>";
     }
 }
+?>
+
+<link rel="stylesheet" href="styles/components/post.css">
+
