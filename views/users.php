@@ -11,7 +11,7 @@ use app\views\components\UserCardComponent;
 
 <h1><?= Text::render($text) ?></h1>
 
-<?= new SortOptions() ?>
+<?= (new SortOptions())->default("new") ?>
 
 <?php foreach ($users as $user): ?>
     <?= new UserCardComponent($user) ?>
