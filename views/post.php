@@ -17,4 +17,6 @@ use app\views\components\PostsComponent;
     <?= new BigInputComponent($postFormModel, "Reply to @{$post->username}&#39;s post") ?>
 </div>
 
-<?= new PostsComponent($posts) ?>
+<div id="replies">
+    <?= new PostsComponent($posts) ?>
+</div>
