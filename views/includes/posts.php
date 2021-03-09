@@ -1,7 +1,7 @@
 <?php
 /** @var PostModel[] $posts */
 
-use app\models\PostModel;
+use app\models\FormModels\PostModel;
 use app\views\components\PostComponent;
 
 ?>

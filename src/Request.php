@@ -21,7 +21,7 @@ class Request
         }
     }
 
-    private static function getPathRaw() {
+    public static function getPathRaw() {
         return str_replace(constant("APP_URL_ROOT"), "", $_SERVER["REQUEST_URI"]);
     }
 

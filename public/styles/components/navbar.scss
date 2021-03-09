@@ -21,6 +21,8 @@ nav {
     flex-basis: 0;
     flex-grow: 1;
 
+    align-items: center;
+
     &#left {
       justify-content: flex-start;
     }
@@ -50,8 +52,8 @@ nav {
       }
     }
 
-    div {
-      padding: 20px;
+    div.button {
+      padding: 10px;
     }
   }
 }

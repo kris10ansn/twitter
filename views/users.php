@@ -1,19 +1,18 @@
 
 <?php
 /** @var UserModel[] $users */
+/** @var string $text */
 
 use app\models\UserModel;
-use app\src\Session;
+use app\src\util\Text;
 use app\views\components\UserCardComponent;
-
-$me = Session::getUser();
-$loggedIn = $me !== null;
-
 ?>
 
-<h1>Users <?= $loggedIn ? "to follow" : "" ?></h1>
+<h1><?= Text::render($text) ?></h1>
 
-<?php include constant("APP_ROOT") . "/views/includes/sort.php" ?>
+<?php include_once constant("APP_ROOT") . "/views/includes/sort.php" ?>
+
+<?php sort_options() ?>
 
 <?php foreach ($users as $user): ?>
     <?= new UserCardComponent($user) ?>

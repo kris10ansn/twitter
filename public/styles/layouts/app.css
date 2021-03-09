@@ -17,6 +17,7 @@ nav div#left {
   display: flex;
   flex-basis: 0;
   flex-grow: 1;
+  align-items: center;
 }
 nav div#right#left,
 nav div#left#left {
@@ -47,9 +48,9 @@ nav div#right a.user,
 nav div#left a.user {
   color: var(--color-font-link);
 }
-nav div#right div,
-nav div#left div {
-  padding: 20px;
+nav div#right div.button,
+nav div#left div.button {
+  padding: 10px;
 }
 
 div.flash {
@@ -75,6 +76,24 @@ div.flash {
 }
 div.flash.success {
   --color-flash: #42a942;
+}
+
+div#content {
+  margin: var(--page-margin);
+}
+div#content label {
+  display: flex;
+}
+div#content input, div#content textarea {
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--color-highlight-secondary);
+  color: var(--color-font-main);
+  font-family: var(--font-family-main);
 }
 
 /*# sourceMappingURL=app.css.map */

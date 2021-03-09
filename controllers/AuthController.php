@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\LoginFormModel;
-use app\models\RegisterFormModel;
+use app\models\form\LoginFormModel;
+use app\models\form\RegisterFormModel;
 use app\src\Request;
 use app\src\Response;
 use app\src\Session;
@@ -30,7 +30,7 @@ class AuthController extends \app\src\Controller
 
         return $this->render("login", "app", [
             "model" => $loginForm,
-            "title" => "Log in"
+            "title" => "Twitter | Log in"
         ]);
     }
 
@@ -52,13 +52,14 @@ class AuthController extends \app\src\Controller
 
         return $this->render("register", "app", [
             "model" => $registerForm,
-            "title" => "Register a new account"
+            "title" => "Twitter | Register a new account"
         ]);
     }
 
     public function logout()
     {
         Session::logout();
+        Session::setFlash("success", "Good bye.");
         echo "<script>window.history.back();</script>";
     }
 

@@ -1,11 +1,14 @@
 <?php
 
 
-namespace app\models;
+namespace app\models\form;
 
 
+use app\models\DBModel;
+use app\models\UserModel;
 use app\src\Database;
 use app\src\Session;
+use app\src\util\Text;
 use app\src\validation\MaximumLengthRule;
 use app\src\validation\MinimumLengthRule;
 use app\src\validation\RequiredRule;
@@ -13,8 +16,6 @@ use app\src\validation\RequiredRule;
 class PostFormModel extends FormModel
 {
     use DBModel;
-
-    public const HASHTAG_REGEX = "/\w*(?<!&)#(\w+)/";
 
     public array $fields = [
         "text" => "",
@@ -30,23 +31,11 @@ class PostFormModel extends FormModel
 
         $this->fields["user_id"] = $user->id;
 
-        preg_match_all("/@(\w+)/", $this->fields["text"], $matches);
-
-        if (isset($matches[1])) {
-            for ($i = 0; $i < count($matches[1]); $i++) {
-                $match = $matches[0][$i];
-                $username = $matches[1][$i];
-                $user = UserModel::find([ "username" => $username ]);
-
-                if ($user) {
-                    $this->fields["text"] = str_replace($match, "@[{$user->id}]{$username}", $this->fields["text"]);
-                }
-            }
-        }
+        $this->fields["text"] = Text::process($this->fields["text"]);
 
         $result = $this->insert("post");
 
-        preg_match_all(self::HASHTAG_REGEX, $this->fields["text"], $matches);
+        preg_match_all(Text::HASHTAG_REGEX, $this->fields["text"], $matches);
 
         if ($result === true && $matches && count($matches[0]) > 0) {
             $db = Database::getInstance();

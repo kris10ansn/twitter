@@ -34,3 +34,24 @@ div.flash {
     --color-flash: #42a942;
   }
 }
+
+div#content {
+  margin: var(--page-margin);
+  
+  label {
+    // https://stackoverflow.com/a/39769485/9916057
+    display: flex;
+  }
+
+  input, textarea {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 30px;
+    overflow: hidden;
+    background: var(--color-highlight-secondary);
+    color: var(--color-font-main);
+    font-family: var(--font-family-main);
+  }
+}

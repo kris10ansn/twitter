@@ -4,26 +4,52 @@
 namespace app\controllers;
 
 
+use app\models\form\EditProfileFormModel;
+use app\models\form\PostFormModel;
 use app\models\PostModel;
 use app\models\TrendingModel;
 use app\models\UserModel;
-use app\src\Path;
 use app\src\Request;
 use app\src\Response;
 use app\src\Session;
+use app\src\util\Text;
 
 class UserController extends \app\src\Controller
 {
     public function editProfile(): string
     {
+        $user = Session::getUser();
+
+        if ($user === null) {
+            $path = Request::getPath();
+            Session::set(AuthController::AUTH_REDIRECT, $path);
+            Response::redirect("/login");
+            return "";
+        }
+
+        $editProfile = new EditProfileFormModel();
+
         $data = [
-            "trending" => TrendingModel::getTop()
+            "trending" => TrendingModel::getTop(),
+            "model" => $editProfile,
+            "title" => "Twitter | Edit profile"
         ];
+
+        if (Request::getMethod() === Request::METHOD_POST) {
+            $request = Request::getBody();
+            $editProfile->loadData($request);
+
+            if ($editProfile->validate() && $editProfile->apply()) {
+                Response::redirect("/profile");
+            }
+        } else {
+            $editProfile->loadData((array) $user);
+        }
 
         $appLayout = $this->renderLayout("app", $data);
         $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
 
-        return $this->renderView("edit-profile", $mainLayout);
+        return $this->renderView("edit-profile", $mainLayout, $data);
     }
 
     public function users(): string
@@ -35,11 +61,14 @@ class UserController extends \app\src\Controller
             $sort = "user.created_at";
         }
 
+        $me = Session::getUser();
         $users = UserModel::all($sort, "DESC");
 
+        // Viser kun "to follow" hvis du er logget inn
         $data = [
+            "text" => "Users" . ($me === null ? "" : " to follow"),
             "trending" => TrendingModel::getTop(),
-            "users" => $users
+            "users" => $users,
         ];
 
         $appLayout = $this->renderLayout("app", $data);
@@ -50,7 +79,6 @@ class UserController extends \app\src\Controller
 
     public function user(array $parameters): string
     {
-        $path = Request::getPath();
         $userId = $parameters["id"];
 
         if (is_numeric($userId)) {
@@ -65,6 +93,8 @@ class UserController extends \app\src\Controller
         $user = Session::getUser();
 
         if ($user === null) {
+            $path = Request::getPath();
+            Session::set(AuthController::AUTH_REDIRECT, $path);
             Response::redirect("/login");
         }
 
@@ -92,6 +122,36 @@ class UserController extends \app\src\Controller
         return $this->renderView("user", $mainLayout, $data);
     }
 
+    public function followers(array $parameters): string
+    {
+        $user = UserModel::from($parameters["id"]);
+
+        $data = [
+            "trending" => TrendingModel::getTop(),
+            "text" => Text::process("These people follow @{$user->username}"),
+            "users" => $user->followers()
+        ];
+
+        $appLayout = $this->renderLayout("app", $data);
+        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
+        return $this->renderView("users", $mainLayout, $data);
+    }
+
+    public function following(array $parameters): string
+    {
+        $user = UserModel::from($parameters["id"]);
+
+        $data = [
+            "trending" => TrendingModel::getTop(),
+            "text" => Text::process("@{$user->username} follows these users:"),
+            "users" => $user->following()
+        ];
+
+        $appLayout = $this->renderLayout("app", $data);
+        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
+        return $this->renderView("users", $mainLayout, $data);
+    }
+
     public function follow(array $parameters): string
     {
         if (Request::getMethod() === Request::METHOD_POST) {
@@ -99,7 +159,9 @@ class UserController extends \app\src\Controller
             $user = Session::getUser();
 
             if ($user === null) {
+                Session::set(AuthController::AUTH_REDIRECT, "/user/{$followId}");
                 Response::redirect("/login");
+                return "";
             }
 
             if (!$user->follows($followId)) {

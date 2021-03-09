@@ -40,8 +40,11 @@ $router->addRoute(new Route("/post/:id", PostController::class, "post"));
 $router->addRoute(new Route("/hashtag/:hashtag", HashtagController::class, "hashtag"));
 
 $router->addRoute(new Route("/user/:id", UserController::class, "user"));
+$router->addRoute(new Route("/user/:id/follow", UserController::class, "follow"));
+$router->addRoute(new Route("/user/:id/followers", UserController::class, "followers"));
+$router->addRoute(new Route("/user/:id/following", UserController::class, "following"));
+
 $router->addRoute(new Route("/users", UserController::class, "users"));
-$router->addRoute(new Route("/follow/:id", UserController::class, "follow"));
 $router->addRoute(new Route("/profile", UserController::class, "profile"));
 $router->addRoute(new Route("/profile/edit", UserController::class, "editProfile"));
 

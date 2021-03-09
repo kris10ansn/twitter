@@ -4,9 +4,9 @@
 namespace app\views\components;
 
 
-use app\models\PostFormModel;
 use app\models\PostModel;
 use app\src\Session;
+use app\src\util\Text;
 use app\src\util\Time;
 
 class PostComponent
@@ -25,11 +25,7 @@ class PostComponent
     public function __toString(): string
     {
         $liked = $this->post->liked ? "liked" : "";
-        $processedText = preg_replace(
-            [PostFormModel::HASHTAG_REGEX, "/@\[(\d+)](\w+)/"],
-            ['<a href="hashtag/$1">#$1</a>', '<a href="user/$1">@$2</a>'],
-            $this->post->text
-        );
+        $processedText = Text::render($this->post->text);
 
         preg_match_all("/@\[(\d+)](\w+)/", $this->post->text, $matches);
         $user = Session::getUser();
@@ -37,8 +33,8 @@ class PostComponent
         $mentioned = "";
 
         if (isset($matches) && isset($matches[2]) && $user !== null) {
-            foreach ($matches[2] as $match) {
-                if (strtolower($match) === strtolower($user->username)) {
+            foreach ($matches[1] as $id) {
+                if ((int) $id === $user->id) {
                     $mentioned = "mentioned";
                 }
             }

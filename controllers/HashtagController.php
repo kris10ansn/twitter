@@ -4,11 +4,9 @@
 namespace app\controllers;
 
 
-use app\models\Hashtag;
 use app\models\PostModel;
 use app\models\TrendingModel;
 use app\src\Controller;
-use app\src\Path;
 use app\src\Request;
 
 class HashtagController extends Controller

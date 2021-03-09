@@ -2,7 +2,7 @@
 /** @var PostModel $post */
 /** @var PostFormModel $postFormModel */
 
-use app\models\PostFormModel;
+use app\models\form\PostFormModel;
 use app\models\PostModel;
 use app\views\components\BigInputComponent;
 use app\views\components\PostComponent;

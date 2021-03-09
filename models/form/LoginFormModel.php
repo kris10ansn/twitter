@@ -1,14 +1,11 @@
 <?php
 
 
-namespace app\models;
+namespace app\models\form;
 
 
+use app\models\UserModel;
 use app\src\Session;
-use app\src\Validation;
-use app\src\validation\EmailRule;
-use app\src\validation\MaximumLengthRule;
-use app\src\validation\MinimumLengthRule;
 use app\src\validation\RequiredRule;
 
 class LoginFormModel extends FormModel
