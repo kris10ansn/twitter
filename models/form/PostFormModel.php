@@ -43,14 +43,14 @@ class PostFormModel extends FormModel
 
         if ($result === true && $matches && count($matches[0]) > 0) {
             $db = Database::getInstance();
-            $post_id = $db->pdo->lastInsertId();
+            $post_id = $db->lastInsertId();
 
             foreach ($matches[1] as $hashtag) {
                 $hashtag = strtolower($hashtag);
 
                 // IGNORE gjør at om det allerede finnes en rad med like primary keys (f.eks.
                 // hvis du har to like hashtags i en post) vil den bare ignoreres
-                $statement = $db->pdo->prepare(
+                $statement = $db->prepare(
                     "INSERT IGNORE INTO hashtagged (post_id, name) VALUES (:post_id, :name)"
                 );
 
