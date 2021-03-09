@@ -40,5 +40,5 @@ class PostsComponent
     }
 }
 ?>
-<link rel="stylesheet" href="styles/includes/posts.css">
+<link rel="stylesheet" href="styles/components/posts.css">
 

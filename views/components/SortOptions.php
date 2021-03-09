@@ -50,5 +50,5 @@ class SortOptions
 }
 
 ?>
-<link rel="stylesheet" href="styles/includes/sort.css">
+<link rel="stylesheet" href="styles/components/sort-options.css">
 
