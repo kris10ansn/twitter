@@ -9,6 +9,10 @@ use app\src\Session;
 use app\src\util\Text;
 use app\src\util\Time;
 
+/**
+ * Class UserCardComponent
+ * @package app\views\components
+ */
 class UserCardComponent
 {
     private UserModel $user;

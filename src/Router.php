@@ -3,13 +3,18 @@
 namespace app\src;
 
 
-use ReflectionClass;
-
+/**
+ * Class Router
+ * @package app\src
+ */
 class Router
 {
     /** @var Route[] $routes */
     private array $routes = [];
 
+    /**
+     * @param Route $route
+     */
     public function addRoute(Route $route)
     {
         $this->routes[] = $route;
@@ -33,6 +38,7 @@ class Router
         }
 
         if (!$found) {
+            Response::statusCode(404);
             echo "404 Not found";
         }
     }

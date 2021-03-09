@@ -9,6 +9,10 @@ use app\src\Session;
 use app\src\util\Text;
 use app\src\util\Time;
 
+/**
+ * Class PostComponent
+ * @package app\views\components
+ */
 class PostComponent
 {
     private string $heart = "❤️";
@@ -16,6 +20,11 @@ class PostComponent
     private PostModel $post;
     private bool $list;
 
+    /**
+     * PostComponent constructor.
+     * @param PostModel $post
+     * @param bool $list
+     */
     public function __construct(PostModel $post, $list = true)
     {
         $this->post = $post;
@@ -74,3 +83,7 @@ class PostComponent
         </div>";
     }
 }
+?>
+
+<link rel="stylesheet" href="styles/components/post.css">
+

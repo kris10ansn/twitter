@@ -6,6 +6,10 @@ namespace app\views\components\form;
 
 use app\models\form\FormModel;
 
+/**
+ * Class Field
+ * @package app\views\components\form
+ */
 abstract class Field
 {
     protected FormModel $model;

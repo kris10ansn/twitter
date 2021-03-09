@@ -6,7 +6,7 @@
     {{content}}
 </main>
 <aside>
-    <div id="trending" class="card">
+    <div class="card">
         <h1>Trending</h1>
         <hr>
         <?php foreach ($trending as $hashtag): ?>

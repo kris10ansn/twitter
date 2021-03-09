@@ -10,6 +10,7 @@ use app\models\PostModel;
 use app\models\UserModel;
 use app\src\Session;
 use app\views\components\BigInputComponent;
+use app\views\components\PostsComponent;
 
 $user = Session::getUser();
 ?>
@@ -19,7 +20,7 @@ $user = Session::getUser();
 <?php endif; ?>
 
 <div id="top-card" class="card">
-    <?php if ($user != null): ?>
+    <?php if ($user !== null): ?>
         <?= new BigInputComponent($postFormModel, "What&#39;s on your mind?") ?>
     <?php else: ?>
         <p><a href="login">Log in</a> to post and follow users. <a href="explore">Explore</a>.</p>
@@ -27,7 +28,7 @@ $user = Session::getUser();
 </div>
 
 <?php if ($user !== null): ?>
-    <?php include constant("APP_ROOT") . "/views/includes/posts.php" ?>
+    <?= new PostsComponent($posts) ?>
 
     <div class="card">
         <p><a href="users">Follow someone</a> to see more posts here. </p>

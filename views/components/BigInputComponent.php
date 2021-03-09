@@ -6,6 +6,10 @@ namespace app\views\components;
 
 use app\models\form\FormModel;
 
+/**
+ * Class BigInputComponent
+ * @package app\views\components
+ */
 class BigInputComponent
 {
     private FormModel $formModel;

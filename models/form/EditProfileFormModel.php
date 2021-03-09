@@ -6,7 +6,6 @@ namespace app\models\form;
 
 use app\src\Session;
 use app\src\util\Text;
-use app\src\Validation;
 use app\src\validation\EmailRule;
 use app\src\validation\MaximumLengthRule;
 use app\src\validation\MinimumLengthRule;
@@ -14,6 +13,10 @@ use app\src\validation\RegexRule;
 use app\src\validation\RequiredRule;
 use app\src\validation\UniqueRule;
 
+/**
+ * Class EditProfileFormModel
+ * @package app\models\form
+ */
 class EditProfileFormModel extends FormModel
 {
     public array $fields = [

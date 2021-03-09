@@ -1,0 +1,6 @@
+@import "./post";
+
+div.posts {
+  display: flex;
+  flex-direction: column;
+}

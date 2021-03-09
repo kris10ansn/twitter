@@ -4,6 +4,10 @@
 namespace app\src;
 
 
+/**
+ * Class Request
+ * @package app\src
+ */
 class Request
 {
     // Har kun funksjon for GET og POST foreløpig (kanskje permanent)
@@ -21,10 +25,16 @@ class Request
         }
     }
 
+    /**
+     * @return string|string[]
+     */
     public static function getPathRaw() {
         return str_replace(constant("APP_URL_ROOT"), "", $_SERVER["REQUEST_URI"]);
     }
 
+    /**
+     * @return false|string|string[]
+     */
     public static function getPath()
     {
         $path = self::getPathRaw();
@@ -42,6 +52,10 @@ class Request
         return strtolower($_SERVER["REQUEST_METHOD"]);
     }
 
+    /**
+     * @param null $method
+     * @return array
+     */
     public static function getBody($method = null): array
     {
         $body = [];
@@ -57,6 +71,11 @@ class Request
         return $body;
     }
 
+    /**
+     * @param string $method
+     * @param string $key
+     * @return mixed|null
+     */
     public static function getParameter(string $method, string $key)
     {
         $requestObject = self::getBody($method);

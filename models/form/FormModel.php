@@ -6,6 +6,10 @@ namespace app\models\form;
 
 use app\src\Validation;
 
+/**
+ * Class FormModel
+ * @package app\models\form
+ */
 abstract class FormModel
 {
     public array $fields = [];
@@ -13,6 +17,10 @@ abstract class FormModel
 
     protected abstract function rules(): array;
 
+    /**
+     * @param string $field
+     * @param string $message
+     */
     protected function setError(string $field, string $message) {
         $this->errors[$field] = $message;
     }
@@ -33,6 +41,10 @@ abstract class FormModel
         return empty($this->errors);
     }
 
+    /**
+     * @param $field
+     * @param $rules
+     */
     public function validateField($field, $rules)
     {
         $validation = new Validation($rules);

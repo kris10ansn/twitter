@@ -11,6 +11,10 @@ use app\src\Request;
 use app\src\Response;
 use app\src\Session;
 
+/**
+ * Class PostController
+ * @package app\controllers
+ */
 class PostController extends \app\src\Controller
 {
     public function post(array $parameters): string

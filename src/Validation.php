@@ -6,6 +6,10 @@ namespace app\src;
 
 use app\src\validation\ValidationRule;
 
+/**
+ * Class Validation
+ * @package app\src
+ */
 class Validation
 {
     /** @var ValidationRule[] $rules */
@@ -17,6 +21,10 @@ class Validation
         $this->rules = $rules;
     }
 
+    /**
+     * @param $input
+     * @return string
+     */
     public function getFirstError($input): string
     {
         foreach ($this->rules as $rule) {

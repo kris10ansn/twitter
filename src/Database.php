@@ -6,10 +6,14 @@ namespace app\src;
 
 use PDO;
 
+/**
+ * Class Database
+ * @package app\src
+ */
 final class Database
 {
     private static ?Database $instance = null;
-    public PDO $pdo;
+    private PDO $pdo;
 
     private function __construct() {
         $host = "localhost";
@@ -24,12 +28,12 @@ final class Database
 
     }
 
-    public static function getInstance(): Database
+    public static function getInstance(): PDO
     {
         if (self::$instance === null) {
             self::$instance = new Database();
         }
 
-        return self::$instance;
+        return self::$instance->pdo;
     }
 }

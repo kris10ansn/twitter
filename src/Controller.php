@@ -4,6 +4,10 @@
 namespace app\src;
 
 
+/**
+ * Class Controller
+ * @package app\src
+ */
 abstract class Controller
 {
     public function renderView(string $viewName, string $layout, array $data=[]): string
@@ -15,6 +19,11 @@ abstract class Controller
         );
     }
 
+    /**
+     * @param string $text
+     * @param string $layout
+     * @return string|string[]
+     */
     public function renderText(string $text, string $layout)
     {
         return str_replace("{{content}}", $text, $layout);

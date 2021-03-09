@@ -6,6 +6,10 @@ namespace app\views\components\form;
 
 use app\models\form\FormModel;
 
+/**
+ * Class InputField
+ * @package app\views\components\form
+ */
 class InputField extends Field
 {
     public const TYPE_TEXT = "text";

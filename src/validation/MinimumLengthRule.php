@@ -4,11 +4,20 @@
 namespace app\src\validation;
 
 
+/**
+ * Class MinimumLengthRule
+ * @package app\src\validation
+ */
 class MinimumLengthRule extends ValidationRule
 {
     private int $minimumLength;
     protected string $errorMessage = "Needs to be at least {min} characters";
 
+    /**
+     * MinimumLengthRule constructor.
+     * @param int $minimumLength
+     * @param false $customErrorMessage
+     */
     public function __construct(int $minimumLength, $customErrorMessage = false)
     {
         $this->minimumLength = $minimumLength;
