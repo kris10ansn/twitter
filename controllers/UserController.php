@@ -14,6 +14,10 @@ use app\src\Response;
 use app\src\Session;
 use app\src\util\Text;
 
+/**
+ * Class UserController
+ * @package app\controllers
+ */
 class UserController extends \app\src\Controller
 {
     public function editProfile(): string
@@ -88,6 +92,9 @@ class UserController extends \app\src\Controller
         return $this->renderUser($user ?? null);
     }
 
+    /**
+     * @return string|string[]
+     */
     public function profile()
     {
         $user = Session::getUser();
@@ -101,6 +108,10 @@ class UserController extends \app\src\Controller
         return $this->renderUser($user);
     }
 
+    /**
+     * @param UserModel|null $user
+     * @return string|string[]
+     */
     private function renderUser(?UserModel $user) {
         $trending = TrendingModel::getTop();
 

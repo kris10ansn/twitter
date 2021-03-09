@@ -14,6 +14,10 @@ use app\src\validation\RegexRule;
 use app\src\validation\RequiredRule;
 use app\src\validation\UniqueRule;
 
+/**
+ * Class EditProfileFormModel
+ * @package app\models\form
+ */
 class EditProfileFormModel extends FormModel
 {
     public array $fields = [

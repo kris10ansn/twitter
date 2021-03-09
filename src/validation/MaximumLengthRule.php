@@ -4,11 +4,20 @@
 namespace app\src\validation;
 
 
+/**
+ * Class MaximumLengthRule
+ * @package app\src\validation
+ */
 class MaximumLengthRule extends ValidationRule
 {
     private int $maximumLength;
     protected string $errorMessage = "Can't be longer than {max} characters";
 
+    /**
+     * MaximumLengthRule constructor.
+     * @param int $maximumLength
+     * @param false $customErrorMessage
+     */
     public function __construct(int $maximumLength, $customErrorMessage = false)
     {
         $this->maximumLength = $maximumLength;

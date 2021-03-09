@@ -6,6 +6,10 @@ namespace app\src;
 
 use PDO;
 
+/**
+ * Class Database
+ * @package app\src
+ */
 final class Database
 {
     private static ?Database $instance = null;

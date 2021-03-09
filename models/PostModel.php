@@ -7,6 +7,10 @@ namespace app\models;
 use app\src\Database;
 use app\src\Session;
 
+/**
+ * Class PostModel
+ * @package app\models
+ */
 class PostModel
 {
     public int $id;
@@ -120,6 +124,12 @@ class PostModel
         return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
     }
 
+    /**
+     * @param string $hashtag
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
     public static function withHashtag(string $hashtag, $sort="post.created_at", $order="DESC"): array
     {
         $db = Database::getInstance();
@@ -145,6 +155,9 @@ class PostModel
         return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
     }
 
+    /**
+     * @param UserModel $user
+     */
     public function like(UserModel $user)
     {
         $db = Database::getInstance();
@@ -152,6 +165,9 @@ class PostModel
         $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
     }
 
+    /**
+     * @param UserModel $user
+     */
     public function unlike(UserModel $user)
     {
          $db = Database::getInstance();

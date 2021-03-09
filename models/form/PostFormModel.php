@@ -13,6 +13,10 @@ use app\src\validation\MaximumLengthRule;
 use app\src\validation\MinimumLengthRule;
 use app\src\validation\RequiredRule;
 
+/**
+ * Class PostFormModel
+ * @package app\models\form
+ */
 class PostFormModel extends FormModel
 {
     use DBModel;

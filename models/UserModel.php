@@ -5,6 +5,10 @@ namespace app\models;
 
 use app\src\Database;
 
+/**
+ * Class UserModel
+ * @package app\models
+ */
 class UserModel
 {
     public const SORT_FOLLOWERS = "(SELECT COUNT(*) FROM follow WHERE followed_id=user.id)";
@@ -153,6 +157,10 @@ class UserModel
         return null;
     }
 
+    /**
+     * @param $where
+     * @return UserModel|null
+     */
     public static function find($where): ?UserModel
     {
         $tableName = "user";
@@ -176,6 +184,11 @@ class UserModel
         return null;
     }
 
+    /**
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
     public static function all($sort="user.created_at", $order="ASC"): array
     {
         $db = Database::getInstance();

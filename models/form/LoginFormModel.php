@@ -8,6 +8,10 @@ use app\models\UserModel;
 use app\src\Session;
 use app\src\validation\RequiredRule;
 
+/**
+ * Class LoginFormModel
+ * @package app\models\form
+ */
 class LoginFormModel extends FormModel
 {
     public array $fields = [

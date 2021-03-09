@@ -8,6 +8,10 @@ use app\src\Request;
 use app\src\Response;
 use app\src\Session;
 
+/**
+ * Class AuthController
+ * @package app\controllers
+ */
 class AuthController extends \app\src\Controller
 {
     public const AUTH_REDIRECT = "auth-redirect";

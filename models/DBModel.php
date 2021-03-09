@@ -4,6 +4,10 @@ namespace app\models;
 
 use app\src\Database;
 
+/**
+ * Trait DBModel
+ * @package app\models
+ */
 trait DBModel
 {
     private function insert(string $table): bool

@@ -14,6 +14,10 @@ use app\src\validation\RegexRule;
 use app\src\validation\RequiredRule;
 use app\src\validation\UniqueRule;
 
+/**
+ * Class RegisterFormModel
+ * @package app\models\form
+ */
 class RegisterFormModel extends FormModel
 {
     use DBModel;

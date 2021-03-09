@@ -11,6 +11,10 @@ use app\src\Request;
 use app\src\Response;
 use app\src\Session;
 
+/**
+ * Class HomeController
+ * @package app\controllers
+ */
 class HomeController extends Controller
 {
     public function home(): string

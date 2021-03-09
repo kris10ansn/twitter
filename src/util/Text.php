@@ -6,6 +6,10 @@ namespace app\src\util;
 
 use app\models\UserModel;
 
+/**
+ * Class Text
+ * @package app\src\util
+ */
 class Text
 {
     public const HASHTAG_REGEX = "/\w*(?<!&)#(\w+)/";
@@ -19,6 +23,10 @@ class Text
         );
     }
 
+    /**
+     * @param string $text
+     * @return string|string[]
+     */
     public static function process(string $text)
     {
         preg_match_all("/@(\w+)/", $text, $matches);

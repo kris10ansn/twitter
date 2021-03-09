@@ -4,11 +4,20 @@
 namespace app\src\validation;
 
 
+/**
+ * Class RegexRule
+ * @package app\src\validation
+ */
 class RegexRule extends ValidationRule
 {
     private string $pattern;
     protected string $errorMessage = "Illegal character: '{char}'";
 
+    /**
+     * RegexRule constructor.
+     * @param $regex
+     * @param false $customErrorMessage
+     */
     public function __construct($regex, $customErrorMessage = false)
     {
         $this->pattern = $regex;

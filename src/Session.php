@@ -6,6 +6,10 @@ namespace app\src;
 
 use app\models\UserModel;
 
+/**
+ * Class Session
+ * @package app\src
+ */
 class Session
 {
     private const FLASH_KEY = "flash_msg";
@@ -39,6 +43,10 @@ class Session
         return self::$user;
     }
 
+    /**
+     * @param $key
+     * @param $message
+     */
     public static function setFlash($key, $message)
     {
         $_SESSION[self::FLASH_KEY][$key] = [
@@ -47,6 +55,10 @@ class Session
         ];
     }
 
+    /**
+     * @param $key
+     * @return string|null
+     */
     public static function getFlash($key): ?string
     {
         if (isset($_SESSION[self::FLASH_KEY][$key])) {
@@ -56,16 +68,27 @@ class Session
         return null;
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public static function set($key, $value)
     {
         $_SESSION[$key] = $value;
     }
 
+    /**
+     * @param $key
+     * @return mixed|null
+     */
     public static function get($key)
     {
         return $_SESSION[$key] ?? null;
     }
 
+    /**
+     * @param $key
+     */
     public static function remove($key)
     {
         unset($_SESSION[$key]);

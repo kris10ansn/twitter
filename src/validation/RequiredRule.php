@@ -4,6 +4,10 @@
 namespace app\src\validation;
 
 
+/**
+ * Class RequiredRule
+ * @package app\src\validation
+ */
 class RequiredRule extends ValidationRule
 {
     protected string $errorMessage = "This field is required";

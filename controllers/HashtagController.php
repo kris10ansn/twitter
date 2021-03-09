@@ -9,6 +9,10 @@ use app\models\TrendingModel;
 use app\src\Controller;
 use app\src\Request;
 
+/**
+ * Class HashtagController
+ * @package app\controllers
+ */
 class HashtagController extends Controller
 {
     public function hashtag(array $parameters): string

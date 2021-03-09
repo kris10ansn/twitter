@@ -4,6 +4,10 @@
 namespace app\src\util;
 
 
+/**
+ * Class Time
+ * @package app\src\util
+ */
 class Time
 {
     public static function since(int $time): string
