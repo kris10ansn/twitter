@@ -10,7 +10,7 @@ namespace app\src;
  */
 abstract class Controller
 {
-    public function renderView(string $viewName, string $layout, array $data=[]): string
+    private function renderView(string $viewName, string $layout, array $data=[]): string
     {
         return str_replace(
             "{{content}}",
@@ -19,17 +19,7 @@ abstract class Controller
         );
     }
 
-    /**
-     * @param string $text
-     * @param string $layout
-     * @return string
-     */
-    public function renderText(string $text, string $layout): string
-    {
-        return str_replace("{{content}}", $text, $layout);
-    }
-
-    public function renderLayout(string $layoutName, array $data=[]): string
+    private function renderLayout(string $layoutName, array $data=[]): string
     {
         foreach ($data as $key => $value) {
             $$key = $value;
