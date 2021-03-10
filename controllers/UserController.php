@@ -164,6 +164,10 @@ class UserController extends \app\src\Controller
                 return "";
             }
 
+            if ($user->id === intval($followId)) {
+                return "<script>window.history.back()</script>";
+            }
+
             if (!$user->follows($followId)) {
                 $user->follow($followId);
             } else {
