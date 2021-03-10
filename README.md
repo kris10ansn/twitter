@@ -1,6 +1,7 @@
 # Twitter
 
-A php twitter clone. I tried using a mvc design strategy, 
+A php twitter inspired application, made for the sake of
+learning php and php design architecture. I tried using a mvc design strategy, 
 you can be the judge on if it's true MVC or not (first time).
 **This is just a personal repository for a school project.**
 
