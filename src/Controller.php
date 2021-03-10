@@ -22,9 +22,9 @@ abstract class Controller
     /**
      * @param string $text
      * @param string $layout
-     * @return string|string[]
+     * @return string
      */
-    public function renderText(string $text, string $layout)
+    public function renderText(string $text, string $layout): string
     {
         return str_replace("{{content}}", $text, $layout);
     }
