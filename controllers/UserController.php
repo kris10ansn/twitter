@@ -113,7 +113,7 @@ class UserController extends \app\src\Controller
                 "error" => "User not found",
                 "trending" => $trending
             ];
-            
+
             return $this->render($data, "error", "app", "main");
         }
 
