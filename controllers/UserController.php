@@ -109,9 +109,12 @@ class UserController extends \app\src\Controller
         $trending = TrendingModel::getTop();
 
         if ($user === null) {
-            $appLayout = $this->renderLayout("app");
-            $mainLayout = $this->renderLayoutInside($appLayout, "main", ["trending" => $trending]);
-            return $this->renderText("<h1>User not found</h1>", $mainLayout);
+            $data = [
+                "error" => "User not found",
+                "trending" => $trending
+            ];
+            
+            return $this->render($data, "error", "app", "main");
         }
 
         $data = [
