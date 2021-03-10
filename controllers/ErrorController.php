@@ -4,16 +4,17 @@
 namespace app\controllers;
 
 
+use app\src\Controller;
 use app\src\Response;
 
-class ErrorController extends \app\src\Controller
+class ErrorController extends Controller
 {
-    public function error404()
+    public function error404(): string
     {
         Response::statusCode(404);
 
-        $appLayout = $this->renderlayout("app");
+        $data = [ "error" => "404 Not found" ];
 
-        return $this->renderText("<h1>404 Not found</h1>", $appLayout);
+        return $this->render($data, "error", "app");
     }
 }
