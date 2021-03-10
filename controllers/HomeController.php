@@ -42,10 +42,7 @@ class HomeController extends Controller
             "trending" => TrendingModel::getTop()
         ];
 
-        $appLayout = $this->renderLayout("app", $data);
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-
-        return $this->renderView("home", $mainLayout, $data);
+        return $this->render($data, "home", "app", "main");
     }
 
     public function explore(): string
@@ -62,9 +59,6 @@ class HomeController extends Controller
             "trending" => TrendingModel::getTop()
         ];
 
-        $appLayout = $this->renderLayout("app", $data);
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-
-        return $this->renderView("explore", $mainLayout, $data);
+        return $this->render($data, "explore", "app", "main");
     }
 }

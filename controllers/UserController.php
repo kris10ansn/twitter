@@ -49,10 +49,7 @@ class UserController extends \app\src\Controller
             $editProfile->loadData((array) $user);
         }
 
-        $appLayout = $this->renderLayout("app", $data);
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-
-        return $this->renderView("edit-profile", $mainLayout, $data);
+        return $this->render($data, "edit-profile", "app", "main");
     }
 
     public function users(): string
@@ -74,10 +71,7 @@ class UserController extends \app\src\Controller
             "users" => $users,
         ];
 
-        $appLayout = $this->renderLayout("app", $data);
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-
-        return $this->renderView("users", $mainLayout, $data);
+        return $this->render($data, "users", "app", "main");
     }
 
     public function user(array $parameters): string
@@ -126,10 +120,7 @@ class UserController extends \app\src\Controller
             "trending" => $trending,
         ];
 
-        $appLayout = $this->renderLayout("app", $data);
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-
-        return $this->renderView("user", $mainLayout, $data);
+        return $this->render($data, "user", "app", "main");
     }
 
     public function followers(array $parameters): string
@@ -142,9 +133,7 @@ class UserController extends \app\src\Controller
             "users" => $user->followers()
         ];
 
-        $appLayout = $this->renderLayout("app", $data);
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-        return $this->renderView("users", $mainLayout, $data);
+        return $this->render($data, "users", "app", "main");
     }
 
     public function following(array $parameters): string
@@ -157,9 +146,7 @@ class UserController extends \app\src\Controller
             "users" => $user->following()
         ];
 
-        $appLayout = $this->renderLayout("app", $data);
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-        return $this->renderView("users", $mainLayout, $data);
+        return $this->render($data, "users", "app", "main");
     }
 
     public function follow(array $parameters): string

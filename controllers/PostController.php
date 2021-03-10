@@ -45,10 +45,7 @@ class PostController extends \app\src\Controller
             "postFormModel" => $postFormModel
         ];
 
-        $appLayout = $this->renderLayout("app", $data);
-        $layout = $this->renderLayoutInside($appLayout, "main", $data);
-
-        return $this->renderView("post", $layout, $data);
+        return $this->render($data, "post", "app", "main");
     }
     
     public function interact(array $parameters): string

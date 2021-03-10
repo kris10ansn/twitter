@@ -45,10 +45,26 @@ abstract class Controller
         return $this->renderView("layouts/$childLayoutName", $parentLayout, $data);
     }
 
-    public function render(string $viewName, string $layoutName, array $data = []): string
+    /**
+     * @param array $data
+     * @param string $viewName
+     * @param string ...$layouts
+     * @return string
+     */
+    public function render(array $data, string $viewName, ...$layouts): string
     {
-        $layoutContent = $this->renderLayout($layoutName, $data);
-        return $this->renderView($viewName, $layoutContent, $data);
+        $layout = "";
+
+        for ($i = 0; $i < count($layouts); $i++) {
+            if ($i === 0) {
+                $layout = $this->renderLayout($layouts[$i], $data);
+                continue;
+            }
+
+            $layout = $this->renderLayoutInside($layout, $layouts[$i], $data);
+        }
+
+        return $this->renderView($viewName, $layout, $data);
     }
 
     private function renderFile(string $file, array $data = []): string {

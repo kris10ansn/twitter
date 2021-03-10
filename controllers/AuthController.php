@@ -32,10 +32,12 @@ class AuthController extends \app\src\Controller
             }
         }
 
-        return $this->render("login", "app", [
+        $data = [
             "model" => $loginForm,
             "title" => "Twitter | Log in"
-        ]);
+        ];
+
+        return $this->render($data, "login", "app");
     }
 
     public function register(): string
@@ -54,10 +56,12 @@ class AuthController extends \app\src\Controller
             }
         }
 
-        return $this->render("register", "app", [
+        $data = [
             "model" => $registerForm,
             "title" => "Twitter | Register a new account"
-        ]);
+        ];
+
+        return $this->render($data, "register", "app");
     }
 
     public function logout()

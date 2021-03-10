@@ -31,9 +31,6 @@ class HashtagController extends Controller
             "hashtag" => $hashtag
         ];
 
-        $appLayout= $this->renderLayout("app");
-        $mainLayout = $this->renderLayoutInside($appLayout, "main", $data);
-
-        return $this->renderView("hashtag", $mainLayout, $data);
+        return $this->render($data, "hashtag", "app", "main");
     }
 }
