@@ -3,6 +3,8 @@
 namespace app\src;
 
 
+use app\controllers\ErrorController;
+
 /**
  * Class Router
  * @package app\src
@@ -38,8 +40,8 @@ class Router
         }
 
         if (!$found) {
-            Response::statusCode(404);
-            echo "404 Not found";
+            $controller = new ErrorController();
+            echo $controller->error404();
         }
     }
 }
