@@ -29,7 +29,6 @@ class Router
         $found = false;
 
         foreach ($this->routes as $route) {
-            // Setter alfakrøll foran preg_match for å unngå varsler om $path ikke er regex
             if (@preg_match($route->path, $path, $matches)) {
                 $controller = new $route->controller;
 
