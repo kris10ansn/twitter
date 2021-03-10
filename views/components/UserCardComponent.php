@@ -25,12 +25,22 @@ class UserCardComponent
     public function __toString(): string
     {
         $me = Session::getUser();
+        $isMe = $this->user->id === $me->id;
 
         $biography = Text::render($this->user->biography);
 
         $follows = $me !== null && $me->follows($this->user->id);
         $followsClass = $follows ? "follows" : "";
         $followButtonText = $follows ? "Unfollow" : "Follow";
+
+
+        $followButton = $isMe ? "" :"
+            <form action='user/{$this->user->id}/follow' method='post'>
+                <button class='{$followsClass}'>
+                    {$followButtonText}
+                </button>
+            </form>
+        ";
 
         $timeSinceCreation = Time::since(strtotime($this->user->created_at));
 
@@ -50,11 +60,7 @@ class UserCardComponent
                             <span class='gray'>Joined {$timeSinceCreation}</span>
                         </small>
                     </div>
-                    <form action='user/{$this->user->id}/follow' method='post'>
-                        <button class='{$followsClass}'>
-                            {$followButtonText}
-                        </button>
-                    </form>
+                    $followButton
                 </div>
                 <div class='biography'>
                     <p>{$biography}</p>
