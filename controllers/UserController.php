@@ -165,7 +165,7 @@ class UserController extends \app\src\Controller
             }
 
             if ($user->id === intval($followId)) {
-                return "<script>window.history.back()</script>";
+                return Response::back();
             }
 
             if (!$user->follows($followId)) {
@@ -175,6 +175,6 @@ class UserController extends \app\src\Controller
             }
         }
 
-        return "<script>window.history.back();</script>";
+        return Response::back();
     }
 }
