@@ -25,4 +25,12 @@ class Response
     {
         header("Location: " . constant("APP_URL_ROOT") . "$path");
     }
+
+    /**
+     * @return string
+     */
+    public static function back(): string
+    {
+        return "<script>window.history.back()</script>";
+    }
 }
