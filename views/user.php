@@ -35,7 +35,7 @@ $follows = $me && $me->follows($user->id);
         <?php endif; ?>
     </div>
     <p><?= Text::render($user->biography) ?? "" ?></p>
-    <?php if ($user->favorite_user !== "0"):
+    <?php if ($user->favorite_user !== null):
         $favorite_user = UserModel::from($user->favorite_user);
         ?>
         <br><br>

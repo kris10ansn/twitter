@@ -21,7 +21,7 @@ $form = new Form("", "post", $model);
 
     <label for="favorite_user">Favorite user</label>
     <select name="favorite_user" id="favorite_user">
-        <?php if ($model->fields["favorite_user"] === "0"): ?>
+        <?php if ($model->fields["favorite_user"] === null): ?>
             <option value="" disabled selected hidden>Select your favorite user</option>
         <?php endif; ?>
         <?php foreach ($users as $user): ?>
