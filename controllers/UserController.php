@@ -143,11 +143,20 @@ class UserController extends \app\src\Controller
     public function following(array $parameters): string
     {
         $user = UserModel::from($parameters["id"]);
+        $sortParam = Request::getParameter(Request::METHOD_GET, "sort");
+
+        $sort = "user.created_at";
+        $order = "DESC";
+
+        if ($sortParam === "top") {
+            $sort = UserModel::SORT_FOLLOWERS;
+        }
+
 
         $data = [
             "trending" => TrendingModel::getTop(),
             "text" => Text::process("@{$user->username} follows these users:"),
-            "users" => $user->following()
+            "users" => $user->following($sort, $order)
         ];
 
         return $this->render($data, "users", "app", "main");

@@ -107,21 +107,33 @@ class UserModel
         return $this->followerCount;
     }
 
-    public function followers(): array
+    public function followers($sort = "user.created_at", $order = "DESC"): array
     {
         $db = Database::getInstance();
 
-        $statement = $db->prepare("SELECT * FROM follow JOIN user ON follower_id=user.id WHERE followed_id=:id");
+        $statement = $db->prepare("
+            SELECT * FROM follow
+                JOIN user ON follower_id=user.id
+            WHERE followed_id=:id
+            ORDER BY $sort $order
+        ");
         $statement->execute([":id" => $this->id]);
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
     }
 
-    public function following(): array
+    public function following($sort = "user.created_at", $order = "DESC"): array
     {
         $db = Database::getInstance();
 
-        $statement = $db->prepare("SELECT * FROM follow JOIN user ON follow.followed_id=user.id WHERE follower_id=:id");
+        $statement = $db->prepare("
+            SELECT * FROM follow 
+                JOIN user 
+                    ON follow.followed_id=user.id
+            WHERE follower_id=:id
+            ORDER BY $sort $order
+        ");
+
         $statement->execute([":id" => $this->id]);
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
