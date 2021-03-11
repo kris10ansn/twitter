@@ -54,11 +54,11 @@ class UserController extends \app\src\Controller
 
     public function users(): string
     {
-        $sort = UserModel::SORT_FOLLOWERS;
+        $sort = "user.created_at";
         $sortParam = Request::getParameter(Request::METHOD_GET, "sort");
 
-        if ($sortParam === "new") {
-            $sort = "user.created_at";
+        if ($sortParam === "top") {
+            $sort = UserModel::SORT_FOLLOWERS;
         }
 
         $me = Session::getUser();
