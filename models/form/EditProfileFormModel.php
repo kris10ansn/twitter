@@ -22,7 +22,8 @@ class EditProfileFormModel extends FormModel
     public array $fields = [
         "username" => "",
         "biography" => "",
-        "email" => ""
+        "email" => "",
+        "favorite_user" => ""
     ];
 
     public function apply(): bool

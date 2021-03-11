@@ -35,6 +35,7 @@ class UserController extends \app\src\Controller
         $data = [
             "trending" => TrendingModel::getTop(),
             "model" => $editProfile,
+            "users" => UserModel::all("user.firstname"),
             "title" => "Twitter | Edit profile"
         ];
 
