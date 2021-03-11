@@ -56,3 +56,7 @@ $follows = $me && $me->follows($user->id);
 </div>
 
 <?= new PostsComponent($posts) ?>
+
+<?php if (count($posts) === 0): ?>
+    <p>This user has not posted anything yet.</p>
+ <?php endif; ?>
