@@ -35,6 +35,17 @@ $follows = $me && $me->follows($user->id);
         <?php endif; ?>
     </div>
     <p><?= Text::render($user->biography) ?? "" ?></p>
+    <?php if ($user->favorite_user !== "0"):
+        $favorite_user = UserModel::from($user->favorite_user);
+        ?>
+        <br><br>
+
+        <p>
+            <b>⭐ Favorite user: </b>
+            <?= $favorite_user->firstname ?> <?= $favorite_user->lastname ?>
+            (<a href="user/<?= $favorite_user->id ?>">@<?= $favorite_user->username ?></a>)
+        </p>
+     <?php endif; ?>
     <br><br>
     <p>
         <b><?= $user->followerCount() ?></b>
