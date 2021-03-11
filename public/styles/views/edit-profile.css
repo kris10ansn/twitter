@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+form label {
+  margin: 10px 0;
+}
+form button {
+  margin: 20px 0;
+}
+
+/*# sourceMappingURL=edit-profile.css.map */

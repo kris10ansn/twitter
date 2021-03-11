@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="styles/views/edit-profile.css">
+
 <h1>Edit profile</h1>
 
 <?php
