@@ -142,6 +142,11 @@ class UserModel
         return $this->followsCount;
     }
 
+    public function __toString(): string
+    {
+        return "{$this->firstname} {$this->lastname} ($this->username)";
+    }
+
     public static function from(int $id): ?UserModel
     {
         $db = Database::getInstance();
