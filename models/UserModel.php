@@ -21,7 +21,7 @@ class UserModel
     public string $created_at;
     public string $password;
     public string $biography;
-    public string $favorite_user;
+    public ?string $favorite_user;
 
     private ?int $followerCount = null;
     private ?int $followsCount = null;
