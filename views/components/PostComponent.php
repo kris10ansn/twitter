@@ -5,6 +5,8 @@ namespace app\views\components;
 
 
 use app\models\PostModel;
+use app\src\Request;
+use app\src\Response;
 use app\src\Session;
 use app\src\util\Text;
 use app\src\util\Time;
@@ -63,11 +65,19 @@ class PostComponent
             $replyMessage = "<p class='reply-message'>
                                 Replying to
                                 <a href='user/{$parentPost->user_id}'>@{$parentPost->username}</a>'s post
-                                (<a href='post/{$parentPost->id}'>view</a>)
+                                (<a href='post/{$parentPost->id}?previous={$this->post->id}'>view</a>)
                              </p>";
         }
 
-        return "<div class='card post {$mentioned}'>
+        $previousParameter = Request::getParameter(Request::METHOD_GET, "previous");
+        $previous = "";
+
+        if ($previousParameter && $previousParameter == $this->post->id) {
+            $previous = "previous";
+            echo Response::removeGetParameters();
+        }
+
+        return "<div class='card post {$mentioned} {$previous}'>
             <form action='interact/{$this->post->id}' id='{$this->post->id}' method='post'></form>
             <div class='top'>
                 <div class='user'>
