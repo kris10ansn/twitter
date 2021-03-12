@@ -22,6 +22,7 @@ class PostModel
     public int $user_id;
     public int $liked;
     public int $likes;
+    public ?int $reply_id;
 
     private const SELECT_POSTS = "SELECT post.*, user.username, user.firstname, user.lastname,
                    (SELECT count(*) FROM `like` WHERE `like`.post_id=post.id AND `like`.user_id=:user_id) as liked,
