@@ -12,4 +12,4 @@ use app\views\components\SortOptions;
 
 <?= new SortOptions() ?>
 
-<?= new PostsComponent($posts) ?>
+<?= new PostsComponent($posts, true, true) ?>
