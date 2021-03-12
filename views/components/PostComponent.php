@@ -21,16 +21,19 @@ class PostComponent
     private string $comment = "💬";
     private PostModel $post;
     private bool $list;
+    private bool $showReplyMessage;
 
     /**
      * PostComponent constructor.
      * @param PostModel $post
      * @param bool $list
+     * @param ?bool $replyMessage
      */
-    public function __construct(PostModel $post, $list = true)
+    public function __construct(PostModel $post, $list = true, $replyMessage = null)
     {
         $this->post = $post;
         $this->list = $list;
+        $this->showReplyMessage = $replyMessage ?? !$list;
     }
 
     public function __toString(): string
@@ -60,7 +63,7 @@ class PostComponent
 
         $replyMessage = "";
 
-        if (!$this->list && $this->post->reply_id !== null) {
+        if ($this->showReplyMessage && $this->post->reply_id !== null) {
             $parentPost = PostModel::from($this->post->reply_id);
             $replyMessage = "<p class='reply-message'>
                                 Replying to
