@@ -29,6 +29,17 @@ div.post.mentioned div.mention {
   display: block !important;
   align-self: flex-end;
 }
+@keyframes previous {
+  from {
+    background: var(--color-highlight-third);
+  }
+  to {
+    background: var(--color-background-secondary);
+  }
+}
+div.post.previous {
+  animation: 1.4s previous ease forwards;
+}
 div.post form {
   display: none;
 }

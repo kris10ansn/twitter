@@ -38,6 +38,19 @@ div.post {
     }
   }
 
+  @keyframes previous {
+    from {
+      background: var(--color-highlight-third);
+    }
+
+    to {
+      background: var(--color-background-secondary);
+    }
+  }
+  &.previous {
+    animation: 1.4s previous ease forwards;
+  }
+
   form {
     display: none;
   }
