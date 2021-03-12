@@ -52,7 +52,9 @@ class PostComponent
         $time = strtotime($this->post->created_at);
         $date = Time::since($time);
 
-        $viewLink = $this->list? "<a href='post/{$this->post->id}' class='view-post'>View post</a>" : "";
+        $numReplies = $this->post->numberOfReplies();
+        $replies = $numReplies > 0 ? " ($numReplies replies)" : "";
+        $viewLink = $this->list? "<a href='post/{$this->post->id}' class='view-post'>View post$replies</a>" : "";
 
         return "<div class='card post {$mentioned}'>
             <form action='interact/{$this->post->id}' id='{$this->post->id}' method='post'></form>

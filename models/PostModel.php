@@ -60,6 +60,19 @@ class PostModel
         return (bool) $obj->liked;
     }
 
+    /**
+     * @return int
+     */
+    public function numberOfReplies(): int
+    {
+        $db = Database::getInstance();
+        $statement = $db->prepare("SELECT count(*) as replies FROM post WHERE post.reply_id=:post_id");
+        $statement->execute(["post_id" => $this->id]);
+        
+        $result = $statement->fetch();
+        return intval($result["replies"]);
+    }
+
     public function getReplies(): array
     {
         $db = Database::getInstance();
