@@ -33,4 +33,14 @@ class Response
     {
         return "<script>window.history.back()</script>";
     }
+
+    /**
+     * @return string
+     */
+    public static function removeGetParameters(): string
+    {
+        $url = Request::getPath();
+        $urlRoot = APP_URL_ROOT;
+        return "<script>window.history.pushState({}, 'Remove get parameters', '{$urlRoot}{$url}')</script>";
+    }
 }
