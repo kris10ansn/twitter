@@ -42,7 +42,7 @@ class SortOptions
         }
 
         return "
-            <form id='sort' method='get'>
+            <form class='sort' method='get'>
                 {$buttons}
             </form>
         ";

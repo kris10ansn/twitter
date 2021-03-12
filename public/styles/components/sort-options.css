@@ -1,10 +1,10 @@
-form#sort {
+form.sort {
   display: flex;
   flex-direction: row;
   margin-left: -5px;
   margin-bottom: 20px;
 }
-form#sort button.option {
+form.sort button.option {
   color: var(--color-font-main);
   background: var(--color-highlight);
   border: none;
@@ -18,7 +18,7 @@ form#sort button.option {
   background: var(--color-highlight-secondary);
   border-radius: 40px;
 }
-form#sort button.option.sorted-by {
+form.sort button.option.sorted-by {
   background: var(--color-highlight);
 }
 
