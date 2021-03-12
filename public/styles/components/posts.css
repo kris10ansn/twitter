@@ -17,6 +17,11 @@ div.post div.top div.mention {
   margin-left: 8px;
   display: none;
 }
+div.post p.reply-message {
+  color: gray;
+  margin-top: 0.5em;
+  font-style: italic;
+}
 div.post.mentioned {
   background: var(--color-highlight-secondary) !important;
 }
