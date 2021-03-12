@@ -1,17 +1,19 @@
 
+
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    margin: 0;
+  }
+}
+
+p {
+  margin: 0;
+}
+
 div#content {
   display: flex;
   justify-content: center;
-
-  @for $i from 1 through 6 {
-    h#{$i} {
-      margin: 0;
-    }
-  }
-
-  p {
-    margin: 0;
-  }
 
   .card {
     background: var(--color-background-secondary);
