@@ -56,6 +56,17 @@ class PostComponent
         $replies = $numReplies > 0 ? " ($numReplies replies)" : "";
         $viewLink = $this->list? "<a href='post/{$this->post->id}' class='view-post'>View post$replies</a>" : "";
 
+        $replyMessage = "";
+
+        if (!$this->list && $this->post->reply_id !== null) {
+            $parentPost = PostModel::from($this->post->reply_id);
+            $replyMessage = "<p class='reply-message'>
+                                Replying to
+                                <a href='user/{$parentPost->user_id}'>@{$parentPost->username}</a>'s post
+                                (<a href='post/{$parentPost->id}'>view</a>)
+                             </p>";
+        }
+
         return "<div class='card post {$mentioned}'>
             <form action='interact/{$this->post->id}' id='{$this->post->id}' method='post'></form>
             <div class='top'>
@@ -67,6 +78,7 @@ class PostComponent
                 <div class='date'>{$date}</div>
                 <div class='mention'>@</div>
             </div>
+            $replyMessage
             <div class='text'>
                 {$processedText}
             </div>
