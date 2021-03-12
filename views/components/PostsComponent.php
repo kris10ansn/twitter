@@ -13,20 +13,23 @@ use app\models\PostModel;
 class PostsComponent
 {
     private array $posts;
+    private array $args;
 
     /**
      * PostsComponent constructor.
      * @param PostModel[] $posts
+     * @param ...$args
      */
-    public function __construct(array $posts)
+    public function __construct(array $posts, ...$args)
     {
         $this->posts = $posts;
+        $this->args = $args;
     }
 
     public function __toString(): string
     {
         $postStrings = array_map(
-            fn($post) => new PostComponent($post),
+            fn($post) => new PostComponent($post, ...$this->args),
             $this->posts
         );
 
