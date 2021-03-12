@@ -1,5 +1,5 @@
 div#user {
-  div.top {
+  div#top {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -10,6 +10,11 @@ div#user {
         background: var(--color-highlight-secondary);
       }
     }
+  }
+
+  p#stats {
+    margin-top: 2em;
+    margin-bottom: 1em;
   }
 
   margin-bottom: 2em;

@@ -19,7 +19,7 @@ $follows = $me && $me->follows($user->id);
 <link rel="stylesheet" href="styles/views/user.css">
 
 <div id="user">
-    <div class="top">
+    <div id="top">
         <h1><?= "$user->firstname $user->lastname" ?> (<a href="user/<?= $user->id ?>">@<?= $user->username ?></a>)</h1>
 
         <?php if (!$me || $user->id !== $me->id): ?>
@@ -34,25 +34,25 @@ $follows = $me && $me->follows($user->id);
             </a>
         <?php endif; ?>
     </div>
-    <p><?= Text::render($user->biography) ?? "" ?></p>
-    <?php if ($user->favorite_user !== null):
-        $favorite_user = UserModel::from($user->favorite_user);
-        ?>
-        <br><br>
+    <p id="biography"><?= Text::render($user->biography) ?? "" ?></p>
 
-        <p>
-            <b>⭐ Favorite user: </b>
-            <?= $favorite_user->firstname ?> <?= $favorite_user->lastname ?>
-            (<a href="user/<?= $favorite_user->id ?>">@<?= $favorite_user->username ?></a>)
-        </p>
-     <?php endif; ?>
-    <br><br>
-    <p>
+    <p id="stats">
         <b><?= $user->followerCount() ?></b>
         <a href="user/<?= $user->id ?>/followers">Followers</a>
         <b><?= $user->followsCount() ?></b>
         <a href="user/<?= $user->id ?>/following">Following</a>
     </p>
+
+    <?php if ($user->favorite_user !== null):
+        $favorite_user = UserModel::from($user->favorite_user);
+        ?>
+
+        <p id="favorite">
+            <b>⭐ Favorite user: </b>
+            <?= $favorite_user->firstname ?> <?= $favorite_user->lastname ?>
+            (<a href="user/<?= $favorite_user->id ?>">@<?= $favorite_user->username ?></a>)
+        </p>
+     <?php endif; ?>
 </div>
 
 <?= new PostsComponent($posts) ?>
