@@ -30,6 +30,49 @@ class PostModel
 
     /**
      * @param UserModel $user
+     */
+    public function like(UserModel $user)
+    {
+        $db = Database::getInstance();
+        $statement = $db->prepare("INSERT INTO `like` (post_id, user_id) VALUES (:post_id, :user_id)");
+        $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
+    }
+
+    /**
+     * @param UserModel $user
+     */
+    public function unlike(UserModel $user)
+    {
+        $db = Database::getInstance();
+        $statement = $db->prepare("DELETE FROM `like` WHERE user_id=:user_id AND post_id=:post_id");
+        $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
+    }
+
+    public function likedBy(UserModel $user): bool
+    {
+        $db = Database::getInstance();
+
+        $statement = $db->prepare("SELECT count(*) as liked FROM `like` WHERE post_id=:post_id AND user_id=:user_id");
+
+        $statement->execute(["post_id" => $this->id, "user_id" => $user->id]);
+        $obj = $statement->fetchObject();
+
+        return (bool) $obj->liked;
+    }
+
+    public function getReplies(): array
+    {
+        $db = Database::getInstance();
+        $userId = Session::get("user");
+
+        $statement = $db->prepare(self::SELECT_POSTS . " WHERE post.reply_id=:post_id ORDER BY post.created_at");
+        $statement->execute(["post_id" => $this->id, "user_id" => $userId]);
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
+    }
+
+    /**
+     * @param UserModel $user
      * @return PostModel[]
      */
     public static function postedBy(UserModel $user): array
@@ -153,48 +196,5 @@ class PostModel
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, PostModel::class);
-    }
-
-    /**
-     * @param UserModel $user
-     */
-    public function like(UserModel $user)
-    {
-        $db = Database::getInstance();
-        $statement = $db->prepare("INSERT INTO `like` (post_id, user_id) VALUES (:post_id, :user_id)");
-        $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
-    }
-
-    /**
-     * @param UserModel $user
-     */
-    public function unlike(UserModel $user)
-    {
-         $db = Database::getInstance();
-         $statement = $db->prepare("DELETE FROM `like` WHERE user_id=:user_id AND post_id=:post_id");
-         $statement->execute([ "post_id" => $this->id, "user_id" => $user->id ]);
-    }
-
-    public function likedBy(UserModel $user): bool
-    {
-        $db = Database::getInstance();
-
-        $statement = $db->prepare("SELECT count(*) as liked FROM `like` WHERE post_id=:post_id AND user_id=:user_id");
-
-        $statement->execute(["post_id" => $this->id, "user_id" => $user->id]);
-        $obj = $statement->fetchObject();
-
-        return (bool) $obj->liked;
-    }
-
-    public function getReplies(): array
-    {
-        $db = Database::getInstance();
-        $userId = Session::get("user");
-
-        $statement = $db->prepare(self::SELECT_POSTS . " WHERE post.reply_id=:post_id ORDER BY post.created_at");
-        $statement->execute(["post_id" => $this->id, "user_id" => $userId]);
-
-        return $statement->fetchAll(\PDO::FETCH_CLASS, self::class);
     }
 }
