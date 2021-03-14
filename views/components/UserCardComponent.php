@@ -44,6 +44,18 @@ class UserCardComponent
 
         $timeSinceCreation = Time::since(strtotime($this->user->created_at));
 
+        $favoriteUserText = "";
+
+        if ($this->user->favorite_user != null) {
+            $favoriteUser = UserModel::from($this->user->favorite_user);
+            $favoriteUserText =
+                "<small>
+                    <b>⭐ Favorite user: </b>
+                    {$favoriteUser->firstname} {$favoriteUser->lastname}
+                    (<a href='user/{$favoriteUser->id}'>@{$favoriteUser->username}</a>)
+                </small>";
+        }
+
         return "
             <div class='card user'>
                 <div class='top'>
@@ -59,6 +71,7 @@ class UserCardComponent
                             <a href='user/{$this->user->id}/following'>following</a>
                             <span class='gray'>Joined {$timeSinceCreation}</span>
                         </small>
+                        $favoriteUserText
                     </div>
                     $followButton
                 </div>
