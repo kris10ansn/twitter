@@ -35,6 +35,11 @@ class EditProfileFormModel extends FormModel
                 $user->biography = Text::process($value);
                 continue;
             }
+
+            if ($field === "favorite_user" && $value == null) {
+                $value = null;
+            }
+
             $user->{$field} = $value;
         }
 
