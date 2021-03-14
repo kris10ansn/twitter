@@ -25,7 +25,7 @@ class UserCardComponent
     public function __toString(): string
     {
         $me = Session::getUser();
-        $isMe = $this->user->id === $me->id;
+        $isMe = $me !== null && $this->user->id === $me->id;
 
         $biography = Text::render($this->user->biography);
 
