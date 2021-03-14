@@ -1,12 +1,12 @@
 <?php
 
 
-namespace app\src\validation;
+namespace app\models\form\validation;
 
 
 /**
  * Class ValidationRule
- * @package app\src\validation
+ * @package app\models\form\validation
  */
 abstract class ValidationRule
 {

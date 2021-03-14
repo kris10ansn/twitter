@@ -1,14 +1,14 @@
 <?php
 
 
-namespace app\src\validation;
+namespace app\models\form\validation;
 
 
 use app\src\Database;
 
 /**
  * Class UniqueRule
- * @package app\src\validation
+ * @package app\models\form\validation
  */
 class UniqueRule extends ValidationRule
 {

@@ -1,14 +1,14 @@
 <?php
 
 
-namespace app\src;
+namespace app\models\form;
 
 
-use app\src\validation\ValidationRule;
+use app\models\form\validation\ValidationRule;
 
 /**
  * Class Validation
- * @package app\src
+ * @package app\models\form
  */
 class Validation
 {

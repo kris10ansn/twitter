@@ -8,8 +8,8 @@ use app\models\DBModel;
 use app\src\Database;
 use app\src\Session;
 use app\src\util\Text;
-use app\src\validation\MaximumLengthRule;
-use app\src\validation\RequiredRule;
+use app\models\form\validation\MaximumLengthRule;
+use app\models\form\validation\RequiredRule;
 
 /**
  * Class PostFormModel

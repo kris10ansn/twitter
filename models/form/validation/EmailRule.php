@@ -1,12 +1,12 @@
 <?php
 
 
-namespace app\src\validation;
+namespace app\models\form\validation;
 
 
 /**
  * Class EmailRule
- * @package app\src\validation
+ * @package app\models\form\validation
  */
 class EmailRule extends ValidationRule
 {

@@ -7,12 +7,12 @@ namespace app\models\form;
 use app\models\DBModel;
 use app\src\Database;
 use app\src\Session;
-use app\src\validation\EmailRule;
-use app\src\validation\MaximumLengthRule;
-use app\src\validation\MinimumLengthRule;
-use app\src\validation\RegexRule;
-use app\src\validation\RequiredRule;
-use app\src\validation\UniqueRule;
+use app\models\form\validation\EmailRule;
+use app\models\form\validation\MaximumLengthRule;
+use app\models\form\validation\MinimumLengthRule;
+use app\models\form\validation\RegexRule;
+use app\models\form\validation\RequiredRule;
+use app\models\form\validation\UniqueRule;
 
 /**
  * Class RegisterFormModel

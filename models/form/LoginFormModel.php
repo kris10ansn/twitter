@@ -6,7 +6,7 @@ namespace app\models\form;
 
 use app\models\UserModel;
 use app\src\Session;
-use app\src\validation\RequiredRule;
+use app\models\form\validation\RequiredRule;
 
 /**
  * Class LoginFormModel
