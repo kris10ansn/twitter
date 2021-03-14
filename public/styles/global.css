@@ -21,6 +21,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   display: none;
 }
 
+p.error {
+  color: red;
+}
+
 * {
   box-sizing: border-box;
 }
