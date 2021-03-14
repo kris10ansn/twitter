@@ -50,8 +50,7 @@ class RegisterFormModel extends FormModel
         $nameRules = [
             new RequiredRule(),
             new MinimumLengthRule(2),
-            new MaximumLengthRule(45),
-            new RegexRule("\w+")
+            new MaximumLengthRule(45)
         ];
 
         return [
@@ -67,6 +66,7 @@ class RegisterFormModel extends FormModel
             ],
             "username" => [
                 ...$nameRules,
+                new RegexRule("\w+"),
                 new UniqueRule("user", "username", "A user with that username already exists")
             ],
             "firstname" => $nameRules,
