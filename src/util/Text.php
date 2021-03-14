@@ -18,7 +18,7 @@ class Text
     {
         return preg_replace(
             [self::HASHTAG_REGEX, "/@\[(\d+)](\w+)/", "/(https?[\-\w@:%_\+.~#?,&\/\/=]+)/"],
-            ['<a href="hashtag/$1">#$1</a>', '<a href="user/$1">@$2</a>', '<a href="$1">$1</a>'],
+            ['<a href="hashtag/$1">#$1</a>', '<a href="user/$1">@$2</a>', '<a href="$1" target="_blank">$1</a>'],
             $text
         );
     }
